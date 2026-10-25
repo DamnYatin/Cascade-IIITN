@@ -28,7 +28,7 @@ from backend.app.city_config import load_city_config
 from backend.app.eval.alerts import AlertRun, attribute_alerts, detect_alert_runs
 from backend.app.eval.events import TrueEpisode
 from backend.app.eval.metrics import (
-    bootstrap_metric_ci,
+    blocked_bootstrap_ci,
     brier_score,
     brier_skill_score,
     compute_reliability_bins,
@@ -224,13 +224,14 @@ def run_heldout_evaluation(
         iqr_lead = float(np.percentile(all_leads, 75) - np.percentile(all_leads, 25)) if len(all_leads) >= 4 else 0.0
 
         # Blocked bootstrap 95% CIs
-        # Group episodes by seed for lead times
-        seed_lead_groups = [s["lead_times"] for s in per_seed_data if s["lead_times"]]
-        if seed_lead_groups:
-            def _lead_med(samples: List[float]) -> float:
-                return float(np.median(samples)) if samples else 0.0
-            ci_lead_low, ci_lead_high = bootstrap_metric_ci(
-                all_leads, metric_fn=_lead_med, block_groups=seed_lead_groups, n_resamples=1000, seed=42
+        lead_items = [(val, s["seed"]) for s in per_seed_data for val in s["lead_times"]]
+        if lead_items:
+            _, ci_lead_low, ci_lead_high = blocked_bootstrap_ci(
+                items=lead_items,
+                metric_fn=lambda its: float(np.median([x[0] for x in its])) if its else 0.0,
+                block_fn=lambda x: x[1],
+                n_resamples=1000,
+                seed=42,
             )
         else:
             ci_lead_low, ci_lead_high = (0.0, 0.0)
