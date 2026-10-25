@@ -32,7 +32,7 @@
   - `backend/app/forecast/records.py` (`ForecastSnapshot`, canonical serialisation, provenance mix).
   - Schema additive updates (`PredictionRecord.meta`, `Observation`).
   - Tests: Mapper monotonicity & hysteresis (T24), snapshot round-trip & provenance (T25).
-- [ ] **F7: Forecast Engine Wiring & End-to-End Orchestration**
+- [x] **F7: Forecast Engine Wiring & End-to-End Orchestration**
   - `backend/app/forecast/engine.py` (`ForecastEngine` consuming only `StreamView`).
   - Tests: Leakage canary (T1), determinism & golden hash (T7), both configs execution without code changes (T23).
 - [ ] **F8: CLI, API, WebSocket, Benchmark & Documentation**
