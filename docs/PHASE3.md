@@ -21,18 +21,18 @@
   - `backend/app/eval/runner.py` (parallel execution, disk cache keyed by run signature, resume support).
   - Pre-registered protocol document: `docs/EVAL_PROTOCOL.md`.
   - Unit tests E7 and E20 in `tests/test_eval_scenarios_runner.py` (all passed).
-- [ ] **G3: Calibration & Observed Outcome Tracker**
-  - `backend/app/forecast/outcomes.py` (`ObservedOutcomeTracker` without ground truth).
+- [x] **G3: Calibration & Observed Outcome Tracker**
+  - `backend/app/forecast/outcomes.py` (`ObservedOutcomeTracker` without ground truth, enforcing label maturity).
   - `backend/app/forecast/calibrate.py` (`FrozenIsotonicCalibrator` and `OnlineRollingCalibrator` with custom PAV algorithm).
-  - Wire calibrators into `ForecastEngine` and `RiskStateMapper`.
-  - Calib-fit seed runs {21, 22, 23, 24} to fit and save `eval/calibrator_frozen.json` with provenance.
-  - Tests E8 to E11, E14.
-- [ ] **G4: Baselines & Ablations**
+  - Wrote `scripts/eval_calibrate.py` and fitted `eval/calibrator_frozen.json` on calib-fit seeds {21, 22, 23, 24}.
+  - Unit tests E8 to E11, E14 in `tests/test_eval_calibration.py` (all passed).
+- [x] **G4: Baselines & Ablations**
   - `backend/app/baselines/isolated.py` (B1 isolated per-node monitoring).
-  - `backend/app/baselines/rainrule.py` (B2 rain-threshold rule and climatology/persistence).
-  - `backend/app/baselines/ablations.py` (B3 to B7 adapters/flags).
-  - Additive `ablation:` section in `configs/forecast.yaml` and `ForecastConfig`.
-  - Tests E12, E17, E18.
+  - `backend/app/baselines/rainrule.py` (B2 rain-threshold rule and B3 climatology/persistence).
+  - `backend/app/baselines/ablations.py` (B4 to B7 adapters/flags).
+  - Added additive `ablation:` section in `configs/forecast.yaml` and `ForecastConfig`.
+  - Wired ablations into `ForecastEngine`.
+  - Unit tests E12, E17, E18 in `tests/test_baselines_ablations.py` (all passed).
 - [ ] **G5: Dev-Seed Runs & Operating Point Tuning**
   - Run dev seeds {11, 12, 13} across methods and families.
   - `backend/app/eval/sweeps.py` (threshold sweeps, matched-FAR comparison, operating point selection).

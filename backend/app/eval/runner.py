@@ -132,14 +132,46 @@ def run_single_evaluation(
 
     # 3. Create Forecaster or Baseline
     # (baselines will be imported and hooked dynamically in G4)
-    calib = calibrator or IdentityCalibrator()
-    engine = ForecastEngine(
-        city_config=city_config,
-        forecast_config=f_cfg,
-        calibrator=calib,
-        global_seed=run_cfg.seed,
-        anchor_mode=run_cfg.anchor_mode,
-    )
+    # 3. Create Forecaster, Baseline, or Ablation
+    from backend.app.baselines.ablations import make_ablation_forecaster
+    from backend.app.baselines.isolated import IsolatedMonitoringBaseline
+    from backend.app.baselines.rainrule import ClimatologyPersistenceBaseline, RainRuleBaseline
+    from backend.app.eval.calibrator_fitting import FROZEN_CALIBRATOR_PATH
+    from backend.app.forecast.calibrate import FrozenIsotonicCalibrator
+
+    if calibrator is not None:
+        calib = calibrator
+    elif run_cfg.calibrator_source == "frozen" and FROZEN_CALIBRATOR_PATH.exists():
+        calib = FrozenIsotonicCalibrator.load(FROZEN_CALIBRATOR_PATH)
+    else:
+        calib = IdentityCalibrator()
+
+    is_baseline = run_cfg.method in ("b1_isolated", "b2_rainrule", "b3_climatology")
+    if run_cfg.method == "b1_isolated":
+        model = IsolatedMonitoringBaseline(city_config)
+    elif run_cfg.method == "b2_rainrule":
+        model = RainRuleBaseline(city_config)
+    elif run_cfg.method == "b3_climatology":
+        model = ClimatologyPersistenceBaseline(city_config)
+    elif run_cfg.method.startswith("b"):
+        # B4, B5, B6, B7 ablations
+        model = make_ablation_forecaster(
+            ablation_name=run_cfg.method,
+            city_config=city_config,
+            base_config=f_cfg,
+            seed=run_cfg.seed,
+            anchor_mode=run_cfg.anchor_mode,
+        )
+        model.calibrator = calib
+    else:
+        # Full forecaster
+        model = ForecastEngine(
+            city_config=city_config,
+            forecast_config=f_cfg,
+            calibrator=calib,
+            global_seed=run_cfg.seed,
+            anchor_mode=run_cfg.anchor_mode,
+        )
 
     # 4. Walk-forward step loop
     stream = ReplayStream(scenario.observations)
@@ -149,26 +181,37 @@ def run_single_evaluation(
     zone_p_crit_12: Dict[str, List[float]] = {z.id: [] for z in city_config.zones}
     city_p_crit_72: List[float] = []
     drift_events_log: List[Dict[str, Any]] = []
+    final_edges: List[Dict[str, Any]] = []
 
     start_utc = city_config.start_time_utc
     for step_h in range(0, run_cfg.duration_hours + 1, run_cfg.cadence_hours):
         clock_dt = start_utc + timedelta(hours=step_h)
         stream_view.set_clock_time(clock_dt)
-
-        snapshot = engine.step(clock_time=clock_dt, stream_view=stream_view)
-
         hours.append(float(step_h))
-        for z in city_config.zones:
-            p72 = snapshot.zone_probabilities.get(z.id, {}).get("72", {}).get("CRITICAL", 0.0)
-            p12 = snapshot.zone_probabilities.get(z.id, {}).get("12", {}).get("CRITICAL", 0.0)
-            zone_p_crit_72[z.id].append(float(p72))
-            zone_p_crit_12[z.id].append(float(p12))
 
-        c_p72 = snapshot.city_probabilities.get("72", {}).get("CRITICAL", 0.0)
-        city_p_crit_72.append(float(c_p72))
+        if is_baseline:
+            # Baseline outputs zone_id -> score
+            scores = model.step(clock_time=clock_dt, stream_view=stream_view)
+            for z in city_config.zones:
+                sc = float(scores.get(z.id, 0.0))
+                zone_p_crit_72[z.id].append(sc)
+                zone_p_crit_12[z.id].append(sc)
+            c_score = float(max(scores.values())) if scores else 0.0
+            city_p_crit_72.append(c_score)
+        else:
+            snapshot = model.step(clock_time=clock_dt, stream_view=stream_view)
+            for z in city_config.zones:
+                p72 = snapshot.zone_probabilities.get(z.id, {}).get("72", {}).get("CRITICAL", 0.0)
+                p12 = snapshot.zone_probabilities.get(z.id, {}).get("12", {}).get("CRITICAL", 0.0)
+                zone_p_crit_72[z.id].append(float(p72))
+                zone_p_crit_12[z.id].append(float(p12))
 
-        if snapshot.drift_events:
-            drift_events_log.extend(snapshot.drift_events)
+            c_p72 = snapshot.city_probabilities.get("72", {}).get("CRITICAL", 0.0)
+            city_p_crit_72.append(float(c_p72))
+
+            if snapshot.drift_events:
+                drift_events_log.extend(snapshot.drift_events)
+            final_edges = snapshot.top_edges
 
     elapsed_wall = time.perf_counter() - start_wall
 

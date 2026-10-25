@@ -48,7 +48,10 @@ class ForecastEngine:
     ):
         self.city_config = city_config
         self.forecast_config = forecast_config or load_forecast_config()
-        self.rain_outlook = rain_outlook or PersistenceDecayOutlook()
+        if self.forecast_config.ablation.persistence_outlook_only:
+            self.rain_outlook = PersistenceDecayOutlook()
+        else:
+            self.rain_outlook = rain_outlook or PersistenceDecayOutlook()
         self.calibrator = calibrator or IdentityCalibrator()
         self.global_seed = int(global_seed)
         self.anchor_mode = anchor_mode
@@ -64,6 +67,9 @@ class ForecastEngine:
         # 2. Evidence Ledger & Trust
         self.ledger = EvidenceLedger()
         self.trust_manager = SourceTrustManager(self.forecast_config.trust)
+        if self.forecast_config.ablation.no_source_trust:
+            self.trust_manager.get_trust = lambda source: 1.0  # type: ignore
+            self.trust_manager.is_outlier = lambda *args, **kwargs: False  # type: ignore
 
         # 3. State Estimator
         self.estimator = NodeStateEstimator(
@@ -181,18 +187,27 @@ class ForecastEngine:
                 target_stress = st.mean
                 boost_f = self.forecast_config.drift.forgetting_during_boost if node in self._boosted_nodes else None
 
-                # Record learning update (R3 strictly checked: clock_time >= clock_time)
-                err = self.learner.record_update(
-                    node=node,
-                    feature_vals=feats,
-                    target_stress=target_stress,
-                    target_time=clock_time,
-                    clock_time=clock_time,
-                    boost_forgetting=boost_f,
-                )
+                should_learn = True
+                if self.forecast_config.ablation.prior_only:
+                    should_learn = False
+                elif self.forecast_config.ablation.static_graph and not is_burn_in:
+                    should_learn = False
+
+                if should_learn:
+                    # Record learning update (R3 strictly checked: clock_time >= clock_time)
+                    err = self.learner.record_update(
+                        node=node,
+                        feature_vals=feats,
+                        target_stress=target_stress,
+                        target_time=clock_time,
+                        clock_time=clock_time,
+                        boost_forgetting=boost_f,
+                    )
+                else:
+                    err = 0.0
 
                 # 5. Drift detector check on standardised prediction error (outside burn-in)
-                if not is_burn_in:
+                if not is_burn_in and not self.forecast_config.ablation.static_graph and not self.forecast_config.ablation.prior_only:
                     pred_std = float(np.sqrt(max(1e-6, st.variance)))
                     norm_err = abs(err) / pred_std
                     detector = self._drift_detectors[node]
@@ -347,15 +362,40 @@ class ForecastEngine:
             for z in zone_ids
         }
 
+        is_cal = bool(getattr(self.calibrator, "is_calibrated", False))
+        cal_source = str(getattr(self.calibrator, "calibration_source", "none"))
+
+        if is_cal:
+            out_city_probs = {
+                str(h): {
+                    st: self.calibrator.calibrate(val) if st != "NORMAL" else 1.0
+                    for st, val in agg.city_probabilities[h].items()
+                }
+                for h in self.forecast_config.horizons_hours
+            }
+            out_zone_probs = {
+                z: {
+                    str(h): {
+                        st: self.calibrator.calibrate(val) if st != "NORMAL" else 1.0
+                        for st, val in agg.zone_probabilities.get(z, {}).get(h, {}).items()
+                    }
+                    for h in self.forecast_config.horizons_hours
+                }
+                for z in zone_ids
+            }
+        else:
+            out_city_probs = city_probs_str
+            out_zone_probs = zone_probs_str
+
         is_oracle_active = getattr(self.rain_outlook, "is_oracle", False)
 
         return ForecastSnapshot(
             issued_at=clock_time,
             city_id=self.city_config.city_id,
             city_risk_state=city_state,
-            city_probabilities=city_probs_str,
+            city_probabilities=out_city_probs,
             zone_risk_states=zone_risk_states,
-            zone_probabilities=zone_probs_str,
+            zone_probabilities=out_zone_probs,
             evidence_quality=eq_map,
             top_edges=top_edges_list,
             edge_changes=recent_changes,
@@ -364,7 +404,8 @@ class ForecastEngine:
             provenance_mix=provenance_mix,
             disclosure_string=disc_str,
             burn_in=is_burn_in,
-            calibrated=False,
+            calibrated=is_cal,
+            calibration_source=cal_source,
             oracle=is_oracle_active,
             config_hash=self.config_hash,
         )

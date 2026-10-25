@@ -44,3 +44,10 @@ mapper:
 aggregation:
   zone_cascade_min_systems: 2
   city_zone_fraction: 0.2
+
+ablation:
+  static_graph: false
+  prior_only: false
+  no_source_trust: false
+  no_evidence_widening: false
+  persistence_outlook_only: false
