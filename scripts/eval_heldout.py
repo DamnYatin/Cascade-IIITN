@@ -33,7 +33,6 @@ from backend.app.eval.metrics import (
     brier_skill_score,
     compute_reliability_bins,
     compute_warning_metrics,
-    expected_calibration_error,
 )
 from backend.app.eval.protocol import (
     HELDOUT_SEEDS,
@@ -219,7 +218,7 @@ def run_heldout_evaluation(
         pod = all_hits / (all_hits + all_misses) if (all_hits + all_misses) > 0 else 0.0
         far_per_100 = (all_fa / all_zone_days) * 100.0 if all_zone_days > 0 else 0.0
         bs = brier_score(all_probs, all_outcomes)
-        ece = expected_calibration_error(all_probs, all_outcomes, n_bins=10)
+        ece, _ = compute_reliability_bins(all_probs, all_outcomes, n_bins=10)
         median_lead = float(np.median(all_leads)) if all_leads else 0.0
         iqr_lead = float(np.percentile(all_leads, 75) - np.percentile(all_leads, 25)) if len(all_leads) >= 4 else 0.0
 
