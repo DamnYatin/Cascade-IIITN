@@ -1,0 +1,144 @@
+[
+  {
+    "id": "resp_001_nagaland_alert",
+    "date_ist": "2026-07-19",
+    "time_ist": "10:00",
+    "time_precision": "approx",
+    "interval_utc": [
+      "2026-07-19T04:15:00Z",
+      "2026-07-19T04:45:00Z"
+    ],
+    "actor": "Nagaland State Authorities",
+    "action": "Alert sent to Assam Chief Secretary within ~10 minutes of surge observation; no automated public alert reached downstream communities.",
+    "source_tags": [
+      "S24"
+    ],
+    "reliability": "C",
+    "counterfactual_relevance": "Key bottleneck: hydrograph reached plains in ~90 min, but public warning was absent."
+  },
+  {
+    "id": "resp_002_army_ndrf_deployment",
+    "date_ist": "2026-07-20",
+    "time_ist": "18:00",
+    "time_precision": "approx",
+    "interval_utc": [
+      "2026-07-20T10:30:00Z",
+      "2026-07-20T14:30:00Z"
+    ],
+    "actor": "Indian Army, NDRF, SDRF",
+    "action": "Army deployed alongside NDRF in Sivasagar, Charaideo, Jorhat; SDRF deploys 62 boats; 6,700+ people evacuated.",
+    "source_tags": [
+      "S11",
+      "S19",
+      "S22"
+    ],
+    "reliability": "A",
+    "counterfactual_relevance": "Deployment was reactive to inundation rather than prepositioned 24-48h ahead."
+  },
+  {
+    "id": "resp_003_relief_camps_opened",
+    "date_ist": "2026-07-21",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-20T18:30:00Z",
+      "2026-07-21T18:30:00Z"
+    ],
+    "actor": "ASDMA & District Administrations",
+    "action": "101 relief camps and distribution centres established, sheltering 9,600+ flood-displaced citizens.",
+    "source_tags": [
+      "S11"
+    ],
+    "reliability": "A",
+    "counterfactual_relevance": "Camps surged after major village submergence occurred on 19-20 July."
+  },
+  {
+    "id": "resp_004_special_trains_rerouting",
+    "date_ist": "2026-07-21",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-20T18:30:00Z",
+      "2026-07-21T18:30:00Z"
+    ],
+    "actor": "Northeast Frontier Railway (NFR)",
+    "action": "Long-distance services rerouted via Rangiya-Rangapara; special shuttle trains and buses run for stranded passengers.",
+    "source_tags": [
+      "S14",
+      "S19",
+      "S20"
+    ],
+    "reliability": "A",
+    "counterfactual_relevance": "Tracks inundated before proactive diversions could take place."
+  },
+  {
+    "id": "resp_005_central_team_visit",
+    "date_ist": "2026-07-26",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-25T18:30:00Z",
+      "2026-07-29T18:30:00Z"
+    ],
+    "actor": "Inter-Ministerial Central Team (IMCT)",
+    "action": "Six-member central team reviews damage in Charaideo, Sivasagar, Jorhat, Golaghat; state requests relaxed SDRF norms.",
+    "source_tags": [
+      "S30"
+    ],
+    "reliability": "A",
+    "counterfactual_relevance": "Damage assessment occurred post-peak."
+  },
+  {
+    "id": "resp_006_interim_relief_announcement",
+    "date_ist": "2026-08-03",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-02T18:30:00Z",
+      "2026-08-03T18:30:00Z"
+    ],
+    "actor": "Government of Assam",
+    "action": "Announced Rs 15,000 interim assistance per family, power bill waiver up to 300 units in Sivasagar and Charaideo.",
+    "source_tags": [
+      "S1",
+      "S41"
+    ],
+    "reliability": "A",
+    "counterfactual_relevance": "Relief announced 15 days after initial flood surge."
+  },
+  {
+    "id": "resp_007_sdrf_advance_sanction",
+    "date_ist": "2026-08-14",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-13T18:30:00Z",
+      "2026-08-14T18:30:00Z"
+    ],
+    "actor": "Ministry of Home Affairs, Government of India",
+    "action": "Approved advance SDRF release of Rs 379.35 crore to Assam.",
+    "source_tags": [
+      "S35"
+    ],
+    "reliability": "A",
+    "counterfactual_relevance": "Central emergency liquidity injection."
+  },
+  {
+    "id": "resp_008_digital_survey_phase4",
+    "date_ist": "2026-09-01",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-31T18:30:00Z",
+      "2026-09-01T18:30:00Z"
+    ],
+    "actor": "Government of Assam",
+    "action": "Phase-IV relief: Rs 25.12 crore disbursed; rapid digital damage survey of 94,545 households concluded by 1,182 teachers.",
+    "source_tags": [
+      "S37",
+      "S38"
+    ],
+    "reliability": "A",
+    "counterfactual_relevance": "Final baseline snapshot of rapid digital rehabilitation assessment."
+  }
+]

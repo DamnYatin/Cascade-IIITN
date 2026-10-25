@@ -1,0 +1,122 @@
+[
+  {
+    "obs_id": "asdma:statewide:20260720",
+    "source": "asdma_bulletin_via_report",
+    "source_kind": "real",
+    "zone": "sivasagar",
+    "system": "human_toll",
+    "value": 362933.0,
+    "unit": "people_affected",
+    "event_time": "2026-07-20T14:30:00Z",
+    "arrival_time": "2026-07-20T16:30:00Z",
+    "quality_flags": [
+      "real",
+      "source=asdma_snapshot",
+      "reliability=A",
+      "districts=16",
+      "villages=794",
+      "crop_ha=19100"
+    ],
+    "node_id": "sivasagar:human_toll"
+  },
+  {
+    "obs_id": "asdma:statewide:20260722",
+    "source": "asdma_bulletin_via_report",
+    "source_kind": "real",
+    "zone": "sivasagar",
+    "system": "human_toll",
+    "value": 564660.0,
+    "unit": "people_affected",
+    "event_time": "2026-07-22T14:30:00Z",
+    "arrival_time": "2026-07-22T16:30:00Z",
+    "quality_flags": [
+      "real",
+      "source=asdma_snapshot",
+      "reliability=A",
+      "districts=16",
+      "villages=872",
+      "crop_ha=24210"
+    ],
+    "node_id": "sivasagar:human_toll"
+  },
+  {
+    "obs_id": "asdma:statewide:20260725",
+    "source": "asdma_bulletin_via_report",
+    "source_kind": "real",
+    "zone": "sivasagar",
+    "system": "human_toll",
+    "value": 705000.0,
+    "unit": "people_affected",
+    "event_time": "2026-07-25T14:30:00Z",
+    "arrival_time": "2026-07-25T16:30:00Z",
+    "quality_flags": [
+      "real",
+      "source=asdma_snapshot",
+      "reliability=A",
+      "districts=12",
+      "villages=856",
+      "crop_ha=56606.78"
+    ],
+    "node_id": "sivasagar:human_toll"
+  },
+  {
+    "obs_id": "asdma:statewide:20260727",
+    "source": "asdma_bulletin_via_report",
+    "source_kind": "real",
+    "zone": "sivasagar",
+    "system": "human_toll",
+    "value": 445385.0,
+    "unit": "people_affected",
+    "event_time": "2026-07-27T14:30:00Z",
+    "arrival_time": "2026-07-27T16:30:00Z",
+    "quality_flags": [
+      "real",
+      "source=asdma_snapshot",
+      "reliability=A",
+      "districts=6",
+      "villages=631",
+      "crop_ha=37139.52"
+    ],
+    "node_id": "sivasagar:human_toll"
+  },
+  {
+    "obs_id": "asdma:statewide:20260806",
+    "source": "asdma_bulletin_via_report",
+    "source_kind": "real",
+    "zone": "sivasagar",
+    "system": "human_toll",
+    "value": 160653.0,
+    "unit": "people_affected",
+    "event_time": "2026-08-06T14:30:00Z",
+    "arrival_time": "2026-08-06T16:30:00Z",
+    "quality_flags": [
+      "real",
+      "source=asdma_snapshot",
+      "reliability=A",
+      "districts=14",
+      "villages=563",
+      "crop_ha=17000"
+    ],
+    "node_id": "sivasagar:human_toll"
+  },
+  {
+    "obs_id": "asdma:statewide:20260809",
+    "source": "asdma_bulletin_via_report",
+    "source_kind": "real",
+    "zone": "sivasagar",
+    "system": "human_toll",
+    "value": 137500.0,
+    "unit": "people_affected",
+    "event_time": "2026-08-09T14:30:00Z",
+    "arrival_time": "2026-08-09T16:30:00Z",
+    "quality_flags": [
+      "real",
+      "source=asdma_snapshot",
+      "reliability=A",
+      "districts=7",
+      "villages=456",
+      "crop_ha=11933.46"
+    ],
+    "node_id": "sivasagar:human_toll"
+  }
+]

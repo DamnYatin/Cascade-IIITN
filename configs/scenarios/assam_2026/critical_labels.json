@@ -1,0 +1,141 @@
+[
+  {
+    "node_id": "sivasagar:river_embankment",
+    "zone": "sivasagar",
+    "system": "river_embankment",
+    "state": "CRITICAL",
+    "interval_utc": [
+      "2026-07-19T13:30:00Z",
+      "2026-07-26T18:30:00Z"
+    ],
+    "time_precision": "hour",
+    "label_confidence": 0.95,
+    "source_tags": [
+      "S1",
+      "S14",
+      "S21"
+    ],
+    "anchor_rationale": "Dikhow crossed highest flood level at Sivasagar; Betbari and Santak fully submerged."
+  },
+  {
+    "node_id": "sivasagar:transport",
+    "zone": "sivasagar",
+    "system": "transport",
+    "state": "CRITICAL",
+    "interval_utc": [
+      "2026-07-20T00:00:00Z",
+      "2026-07-23T18:00:00Z"
+    ],
+    "time_precision": "day",
+    "label_confidence": 0.95,
+    "source_tags": [
+      "S14",
+      "S21",
+      "S49"
+    ],
+    "anchor_rationale": "Simaluguri station tracks, yard, and railway colony flooded; train services cancelled or diverted."
+  },
+  {
+    "node_id": "jorhat:river_embankment",
+    "zone": "jorhat",
+    "system": "river_embankment",
+    "state": "CRITICAL",
+    "interval_utc": [
+      "2026-07-20T00:00:00Z",
+      "2026-07-26T18:00:00Z"
+    ],
+    "time_precision": "day",
+    "label_confidence": 0.9,
+    "source_tags": [
+      "S13",
+      "S16"
+    ],
+    "anchor_rationale": "Eight major embankment breaches in the Jorhat region; Selengahat inundated."
+  },
+  {
+    "node_id": "jorhat:transport",
+    "zone": "jorhat",
+    "system": "transport",
+    "state": "HIGH_RISK",
+    "interval_utc": [
+      "2026-07-20T06:00:00Z",
+      "2026-07-23T18:00:00Z"
+    ],
+    "time_precision": "approx",
+    "label_confidence": 0.9,
+    "source_tags": [
+      "S14"
+    ],
+    "anchor_rationale": "NH-37 (NH-715) submerged near Teok; traffic halted; advisory issued for Guwahati-Dibrugarh highway."
+  },
+  {
+    "node_id": "sivasagar:health",
+    "zone": "sivasagar",
+    "system": "health",
+    "state": "CRITICAL",
+    "interval_utc": [
+      "2026-07-20T00:00:00Z",
+      "2026-07-25T00:00:00Z"
+    ],
+    "time_precision": "day",
+    "label_confidence": 0.85,
+    "source_tags": [
+      "S29"
+    ],
+    "anchor_rationale": "Nazira tea-estate hospitals flooded; medical staff isolated; emergency childbirths in factory quarters."
+  },
+  {
+    "node_id": "charaideo:river_embankment",
+    "zone": "charaideo",
+    "system": "river_embankment",
+    "state": "CRITICAL",
+    "interval_utc": [
+      "2026-07-19T14:00:00Z",
+      "2026-07-26T18:00:00Z"
+    ],
+    "time_precision": "approx",
+    "label_confidence": 0.9,
+    "source_tags": [
+      "S1",
+      "S10",
+      "S15"
+    ],
+    "anchor_rationale": "Disang surge from Mon hills batters Charaideo (170 mm rain, 21 deaths, 8,300 ha crop lost)."
+  },
+  {
+    "node_id": "golaghat:river_embankment",
+    "zone": "golaghat",
+    "system": "river_embankment",
+    "state": "CRITICAL",
+    "interval_utc": [
+      "2026-07-21T00:00:00Z",
+      "2026-08-07T18:00:00Z"
+    ],
+    "time_precision": "day",
+    "label_confidence": 0.9,
+    "source_tags": [
+      "S9",
+      "S10",
+      "S12"
+    ],
+    "anchor_rationale": "Dhansiri (South) above danger mark at Numaligarh; bridge collapse; 70,000 affected in August wave."
+  },
+  {
+    "node_id": "kamrup_metropolitan:river_embankment",
+    "zone": "kamrup_metropolitan",
+    "system": "river_embankment",
+    "state": "HIGH_RISK",
+    "interval_utc": [
+      "2026-07-20T18:30:00Z",
+      "2026-07-22T18:30:00Z"
+    ],
+    "time_precision": "day",
+    "label_confidence": 0.85,
+    "source_tags": [
+      "S11",
+      "S19",
+      "S22"
+    ],
+    "anchor_rationale": "Urban flooding hits Guwahati; North Guwahati wards 1, 4, 5, 6 flooded; 62 SDRF rescue boats deployed."
+  }
+]

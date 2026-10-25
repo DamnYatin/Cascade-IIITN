@@ -1,0 +1,542 @@
+[
+  {
+    "id": "ev_20260718_upstream_rain",
+    "date_ist": "2026-07-18",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-17T18:30:00Z",
+      "2026-07-20T18:30:00Z"
+    ],
+    "zone": "mon_nl",
+    "scope": "multi_zone",
+    "system": "river_embankment",
+    "kind": "cause",
+    "claim": "Very heavy rain over Upper Assam and Nagaland catchments (Mon, Mokokchung, Wokha); Dikhow, Disang, Dhansiri swell.",
+    "value": 137.0,
+    "unit": "mm_accumulated",
+    "source_tags": [
+      "S1",
+      "S24",
+      "S26"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": "cloudburst_cause",
+    "zone_assignment": "stated",
+    "notes": "Aboi AWS recorded 137 mm over 8-9h; Charaideo recorded 170 mm (~436% above seasonal average)."
+  },
+  {
+    "id": "ev_20260719_santak_entry",
+    "date_ist": "2026-07-19",
+    "time_ist": "13:00",
+    "time_precision": "approx",
+    "interval_utc": [
+      "2026-07-19T07:00:00Z",
+      "2026-07-19T08:00:00Z"
+    ],
+    "zone": "sivasagar",
+    "scope": "zone",
+    "system": "river_embankment",
+    "kind": "impact",
+    "claim": "Santak Panchali water entered at about 1 pm and reached chest height within 20 minutes.",
+    "value": null,
+    "unit": null,
+    "source_tags": [
+      "S1"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Surge arrived rapidly from Naga hills in roughly 90 minutes."
+  },
+  {
+    "id": "ev_20260719_betbari_submerged",
+    "date_ist": "2026-07-19",
+    "time_ist": "19:30",
+    "time_precision": "approx",
+    "interval_utc": [
+      "2026-07-19T13:30:00Z",
+      "2026-07-19T14:30:00Z"
+    ],
+    "zone": "sivasagar",
+    "scope": "zone",
+    "system": "river_embankment",
+    "kind": "impact",
+    "claim": "Betbari village fully submerged around 7:30 pm on 19 July; water from Dikhow flowed into Dorika; 99% houses affected.",
+    "value": 99.0,
+    "unit": "percent_houses",
+    "source_tags": [
+      "S1"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Calculated UTC: 19:30 IST - 05:30 = 14:00:00Z."
+  },
+  {
+    "id": "ev_20260719_nepalikhuti_midnight",
+    "date_ist": "2026-07-19",
+    "time_ist": "23:59",
+    "time_precision": "approx",
+    "interval_utc": [
+      "2026-07-19T17:00:00Z",
+      "2026-07-19T20:00:00Z"
+    ],
+    "zone": "sivasagar",
+    "scope": "zone",
+    "system": "human_toll",
+    "kind": "impact",
+    "claim": "Nepalikhuti (Sivasagar) residents climb onto rooftops as water rushes in around midnight; 60-65 families shelter in 2-storey building.",
+    "value": 65.0,
+    "unit": "families_sheltered",
+    "source_tags": [
+      "S1"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Window covers both start of night and midnight IST."
+  },
+  {
+    "id": "ev_20260720_simaluguri_railway",
+    "date_ist": "2026-07-20",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-19T18:30:00Z",
+      "2026-07-20T18:30:00Z"
+    ],
+    "zone": "sivasagar",
+    "scope": "zone",
+    "system": "transport",
+    "kind": "impact",
+    "claim": "Dikhow floods Simaluguri railway station yard, colony and tracks; long-distance trains diverted via Rangiya, local trains suspended.",
+    "value": null,
+    "unit": null,
+    "source_tags": [
+      "S14",
+      "S21",
+      "S49"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Named services affected include Rajdhani, Vivek Express, Kamrup Express."
+  },
+  {
+    "id": "ev_20260720_nh37_teok",
+    "date_ist": "2026-07-20",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-19T18:30:00Z",
+      "2026-07-20T18:30:00Z"
+    ],
+    "zone": "jorhat",
+    "scope": "zone",
+    "system": "transport",
+    "kind": "impact",
+    "claim": "A key stretch of NH-37 (now NH-715) near Teok submerged; traffic near standstill; travel advisory issued.",
+    "value": null,
+    "unit": null,
+    "source_tags": [
+      "S14"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "inferred",
+    "notes": "Teok revenue circle is in Jorhat district (inferred from OSM)."
+  },
+  {
+    "id": "ev_20260720_power_cut_deluge",
+    "date_ist": "2026-07-20",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-19T18:30:00Z",
+      "2026-07-20T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide_or_unspecified",
+    "system": "power",
+    "kind": "impact",
+    "claim": "Power supply to 1.26 lakh families disconnected during the deluge.",
+    "value": 126000.0,
+    "unit": "families_disconnected",
+    "source_tags": [
+      "S37"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "CM stated statewide total; district not specified, so no single zone assigned."
+  },
+  {
+    "id": "ev_20260720_dikhow_hfl_breaches",
+    "date_ist": "2026-07-20",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-19T18:30:00Z",
+      "2026-07-20T18:30:00Z"
+    ],
+    "zone": "sivasagar",
+    "scope": "multi_zone",
+    "system": "river_embankment",
+    "kind": "impact",
+    "claim": "Dikhow crossed its highest flood level at Sivasagar; eight embankment breaches reported in Jorhat region.",
+    "value": 8.0,
+    "unit": "embankment_breaches",
+    "source_tags": [
+      "S13",
+      "S14"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Dorika and Dikhow bunds breached."
+  },
+  {
+    "id": "ev_20260720_nazira_tea_hospitals",
+    "date_ist": "2026-07-20",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-19T18:30:00Z",
+      "2026-07-20T18:30:00Z"
+    ],
+    "zone": "sivasagar",
+    "scope": "zone",
+    "system": "health",
+    "kind": "impact",
+    "claim": "Estate hospitals in Nazira tea estates under floodwater; medical access severed.",
+    "value": null,
+    "unit": null,
+    "source_tags": [
+      "S29"
+    ],
+    "reliability": "B",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Pregnant tea garden worker delivered inside factory due to flooded hospital."
+  },
+  {
+    "id": "ev_20260721_army_ndrf_deployment",
+    "date_ist": "2026-07-21",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-20T18:30:00Z",
+      "2026-07-21T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "emergency_response",
+    "kind": "response",
+    "claim": "Army joins NDRF and SDRF; 101 relief camps opened sheltering 9,600+; 6,700+ rescued; toll reported at 10.",
+    "value": 101.0,
+    "unit": "relief_camps",
+    "source_tags": [
+      "S11",
+      "S19",
+      "S22"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "SDRF deployed 62 rescue boats."
+  },
+  {
+    "id": "ev_20260722_toll_spike_31",
+    "date_ist": "2026-07-22",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-21T18:30:00Z",
+      "2026-07-22T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "human_toll",
+    "kind": "impact",
+    "claim": "21 deaths reported in a single day, taking toll to 31; 16 districts, 872 villages, 5.65 lakh affected, 24,210 ha cropland damaged.",
+    "value": 31.0,
+    "unit": "deaths_toll",
+    "source_tags": [
+      "S12",
+      "S13",
+      "S14"
+    ],
+    "reliability": "A",
+    "headline": true,
+    "conflict_group": "toll_20260722",
+    "zone_assignment": "stated",
+    "notes": "Primary toll figure from established agencies (The Wire / LatestLY)."
+  },
+  {
+    "id": "ev_20260722_toll_spike_41",
+    "date_ist": "2026-07-22",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-21T18:30:00Z",
+      "2026-07-22T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "human_toll",
+    "kind": "impact",
+    "claim": "Death toll reported at 41 after 10 deaths in one day.",
+    "value": 41.0,
+    "unit": "deaths_toll",
+    "source_tags": [
+      "S47"
+    ],
+    "reliability": "D",
+    "headline": false,
+    "conflict_group": "toll_20260722",
+    "zone_assignment": "stated",
+    "notes": "Alternative aggregator figure preserved without silent reconciliation."
+  },
+  {
+    "id": "ev_20260725_peak_impact",
+    "date_ist": "2026-07-25",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-07-24T18:30:00Z",
+      "2026-07-25T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "human_toll",
+    "kind": "impact",
+    "claim": "Peak of reported impact: 7.05 lakh affected across 12 districts, 856 villages, 56,606.78 ha submerged; toll 61 after 14 deaths in 24 hours.",
+    "value": 705000.0,
+    "unit": "people_affected",
+    "source_tags": [
+      "S15",
+      "S23"
+    ],
+    "reliability": "A",
+    "headline": true,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Deaths breakdown: 7 Charaideo, 6 Sivasagar, 1 Jorhat."
+  },
+  {
+    "id": "ev_20260806_toll_95_districts",
+    "date_ist": "2026-08-06",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-05T18:30:00Z",
+      "2026-08-06T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "human_toll",
+    "kind": "impact",
+    "claim": "Toll reaches 95: Sivasagar 50, Charaideo 21, Jorhat 9, Golaghat 5, Dhemaji 3, Karbi Anglong 2, Biswanath 2, Sonitpur 1, Kamrup Metropolitan 1, Morigaon 1 (sum = 95).",
+    "value": 95.0,
+    "unit": "deaths_toll",
+    "source_tags": [
+      "S9",
+      "S10"
+    ],
+    "reliability": "A",
+    "headline": true,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "District counts strictly sum to 95."
+  },
+  {
+    "id": "ev_20260810_toll_100",
+    "date_ist": "2026-08-10",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-09T18:30:00Z",
+      "2026-08-10T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "human_toll",
+    "kind": "impact",
+    "claim": "Official death toll reaches 100 with two more deaths; 1,37,500 affected across seven districts.",
+    "value": 100.0,
+    "unit": "deaths_toll",
+    "source_tags": [
+      "S2",
+      "S3",
+      "S5"
+    ],
+    "reliability": "A",
+    "headline": true,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Major anchor verified across PTI and AP."
+  },
+  {
+    "id": "ev_20260809_crop_area_pti",
+    "date_ist": "2026-08-09",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-08T18:30:00Z",
+      "2026-08-09T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "agriculture",
+    "kind": "impact",
+    "claim": "11,933.46 ha crop area damaged across seven districts.",
+    "value": 11933.46,
+    "unit": "hectares",
+    "source_tags": [
+      "S2"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": "crop_area_20260809",
+    "zone_assignment": "stated",
+    "notes": "Official PTI bulletin figure."
+  },
+  {
+    "id": "ev_20260809_crop_area_mongabay",
+    "date_ist": "2026-08-09",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-08T18:30:00Z",
+      "2026-08-09T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "agriculture",
+    "kind": "impact",
+    "claim": "About 119,000 ha agricultural land submerged in the 9 August bulletin.",
+    "value": 119000.0,
+    "unit": "hectares",
+    "source_tags": [
+      "S1"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": "crop_area_20260809",
+    "zone_assignment": "stated",
+    "notes": "Tenfold discrepancy in Mongabay reporting of the same bulletin retained."
+  },
+  {
+    "id": "ev_20260813_toll_103",
+    "date_ist": "2026-08-13",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-12T18:30:00Z",
+      "2026-08-13T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "human_toll",
+    "kind": "impact",
+    "claim": "Death toll rises to 103 after two drownings in Sivasagar and Karbi Anglong; 86,800+ affected across four districts.",
+    "value": 103.0,
+    "unit": "deaths_toll",
+    "source_tags": [
+      "S6",
+      "S7"
+    ],
+    "reliability": "A",
+    "headline": true,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Final recorded flood fatality milestone."
+  },
+  {
+    "id": "ev_20260814_sdrf_advance",
+    "date_ist": "2026-08-14",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-13T18:30:00Z",
+      "2026-08-14T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "emergency_response",
+    "kind": "response",
+    "claim": "Centre approves advance SDRF release: Rs 379.35 crore to Assam (part of Rs 2,117.85 crore for seven states).",
+    "value": 379.35,
+    "unit": "crore_inr",
+    "source_tags": [
+      "S35"
+    ],
+    "reliability": "A",
+    "headline": false,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Disaster relief advance sanctioned by Ministry of Home Affairs."
+  },
+  {
+    "id": "ev_20260817_damage_assessment",
+    "date_ist": "2026-08-17",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-16T18:30:00Z",
+      "2026-08-17T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "housing",
+    "kind": "impact",
+    "claim": "CM: flood damage estimated at Rs 480 crore; 26,681 houses affected; 96,842 families paid Rs 15,000 interim relief.",
+    "value": 480.0,
+    "unit": "crore_inr",
+    "source_tags": [
+      "S36"
+    ],
+    "reliability": "A",
+    "headline": true,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "26,681 houses damaged across Upper Assam."
+  },
+  {
+    "id": "ev_20260901_relief_disbursed",
+    "date_ist": "2026-09-01",
+    "time_ist": null,
+    "time_precision": "day",
+    "interval_utc": [
+      "2026-08-31T18:30:00Z",
+      "2026-09-01T18:30:00Z"
+    ],
+    "zone": null,
+    "scope": "statewide",
+    "system": "emergency_response",
+    "kind": "response",
+    "claim": "Total relief disbursed reaches Rs 175.64 crore; Phase-IV releases Rs 25.12 crore; 1,182 teachers conclude rapid digital survey of 94,545 households.",
+    "value": 175.64,
+    "unit": "crore_inr",
+    "source_tags": [
+      "S37",
+      "S38"
+    ],
+    "reliability": "A",
+    "headline": true,
+    "conflict_group": null,
+    "zone_assignment": "stated",
+    "notes": "Fresh flooding at Gohpur on 30-31 Aug also recorded."
+  }
+]

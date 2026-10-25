@@ -1,0 +1,44 @@
+# Named scenario windows for the Assam July-August 2026 flood event.
+# All times are timezone-aware UTC.
+# IST is UTC+05:30; conversions are computed at the boundary.
+
+scenario_id: assam_2026
+hero_city: upper_assam
+heldout_city: north_bank_assam
+
+windows:
+  warmup:
+    start_time_utc: "2026-07-05T00:00:00Z"
+    end_time_utc: "2026-07-12T00:00:00Z"
+    duration_hours: 168
+    description: "Antecedent wetness and progressive soil saturation across Upper Assam and Nagaland hills."
+
+  lead:
+    start_time_utc: "2026-07-12T00:00:00Z"
+    end_time_utc: "2026-07-19T00:00:00Z"
+    duration_hours: 168
+    description: "The 72-hour early warning zone prior to the first major breach and flash flood episodes on 19 July IST."
+
+  onset:
+    start_time_utc: "2026-07-19T00:00:00Z"
+    end_time_utc: "2026-07-21T00:00:00Z"
+    duration_hours: 48
+    description: "Flash flood surge arrival from Nagaland, Dikhow and Disang rising beyond danger levels, first breaches in Sivasagar and Charaideo."
+
+  peak:
+    start_time_utc: "2026-07-21T00:00:00Z"
+    end_time_utc: "2026-07-27T00:00:00Z"
+    duration_hours: 144
+    description: "Peak inundation across Upper Assam: over 7 lakh people affected, major road and railway cuts, wide emergency response deployment."
+
+  recession:
+    start_time_utc: "2026-07-27T00:00:00Z"
+    end_time_utc: "2026-08-13T00:00:00Z"
+    duration_hours: 408
+    description: "Slow flood recession, secondary wave, relief camp administration and recovery operations."
+
+  hero_full:
+    start_time_utc: "2026-07-05T00:00:00Z"
+    end_time_utc: "2026-08-15T00:00:00Z"
+    duration_hours: 984
+    description: "Full hero evaluation horizon spanning antecedent moisture, peak crisis, and primary relief disbursement."
