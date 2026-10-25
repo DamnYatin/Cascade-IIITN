@@ -39,10 +39,12 @@
   - `scripts/eval_tune.py` -> generated `configs/forecast_tuned.yaml` with cryptographic provenance.
   - Forecaster selected tau=0.15, k=1, tau_low=0.15: POD=1.000, FAR=0.00, Lead=19.0h (beats B1 Isolated by +3.5h).
   - Tests E13 (future-isolation canary on both configs) and E19 (diagnostic predictors: perfect, constant 0.5, random, shuffled) in `tests/test_eval_canary_selftests.py` (all passed).
-- [ ] **G6: Structure, Drift & Robustness Analyses**
-  - `backend/app/eval/structure.py` (edge precision/recall/F1 over time, decoy pair FPR, drift latency).
-  - `backend/app/eval/robustness.py` (fault deltas, source trust ranking, evidence quality vs error).
-  - Dev analyses execution and verification.
+- [x] **G6: Structure, Drift & Robustness Analyses**
+  - `backend/app/eval/structure.py` (edge precision 0.900, recall 0.098, F1 0.176, decoy pair FPR 0.000, mean lag error 0.5h).
+  - `backend/app/eval/structure.py` (drift detection rate 3/3 on F-drift, mean delay 15.0h, pre-change false drift alerts 0).
+  - `backend/app/eval/robustness.py` (fault deltas, source trust ordering: faulty spike sensor correctly downweighted to Rank 1/4 lowest trust, evidence quality vs error binning).
+  - `scripts/eval_analyses.py` executed on DEV seeds {11, 12, 13} and outputs saved to `eval/analyses_dev.json`.
+  - Unit tests in `tests/test_eval_structure_robustness.py` (5/5 passed).
 - [ ] **G7: Real-Event Check (Assam 2026)**
   - `backend/app/eval/realcheck.py` and `scripts/eval_real.py`.
   - Coarse interval lead-time evaluation with label grades, response milestone rank correlation, negative controls.
