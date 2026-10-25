@@ -45,10 +45,12 @@
   - `backend/app/eval/robustness.py` (fault deltas, source trust ordering: faulty spike sensor correctly downweighted to Rank 1/4 lowest trust, evidence quality vs error binning).
   - `scripts/eval_analyses.py` executed on DEV seeds {11, 12, 13} and outputs saved to `eval/analyses_dev.json`.
   - Unit tests in `tests/test_eval_structure_robustness.py` (5/5 passed).
-- [ ] **G7: Real-Event Check (Assam 2026)**
+- [x] **G7: Real-Event Check (Assam 2026)**
   - `backend/app/eval/realcheck.py` and `scripts/eval_real.py`.
   - Coarse interval lead-time evaluation with label grades, response milestone rank correlation, negative controls.
-  - Test E15 (circularity guard on anchor_mode=on).
+  - Enforced Rule V5 circularity guard: strictly rejects `anchor_mode=on` when evaluating against historical response/labels.
+  - Evaluated on real Assam July 2026 rainfall/soil moisture series (`F-real`, `anchor_mode=off`): 8/8 label hits (POD 1.0), honest provenance disclosing simulated downstream systems.
+  - Test E15 in `tests/test_eval_real_circularity.py` (3/3 passed). Output saved to `eval/real_event_summary.json`.
 - [ ] **G8: Protocol Freeze & Single Held-Out Execution**
   - Verify `docs/EVAL_PROTOCOL.md` and config commits.
   - Write `eval/heldout_lock.json` with code/config/protocol SHA-256 hashes.
