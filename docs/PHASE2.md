@@ -41,12 +41,12 @@
   - API endpoint `GET /forecast/latest` and `/ws/stream?forecast=1`.
   - `docs/FORECASTER.md` (equations, architecture, real vs simulated, limitations).
   - Population prior model in `backend/app/forecast/prior.py`.
-- [ ] **F9: Final Verification, Held-Out Validation & Clean Commits**
+- [x] **F9: Final Verification, Held-Out Validation & Clean Commits**
   - Run dev seeds {11, 12, 13} and held-out seeds {101, 102} for T15, T16.
   - Run full test suite twice consecutively and once randomly (`pytest-randomly`).
   - Write `tests/PHASE2_TEST_REPORT.md` with measured numbers.
   - Logical commits staged on `feat/forecaster`.
-  - Confirm `main` is untouched.
+  - Confirm `main` is untouched (`1e25ed9f98d4e5ab1df0d2313b6adeb6dcafbe42`).
 
 ---
 
@@ -56,6 +56,27 @@
 
 ---
 
+## Measured Results (T15 & T16)
+
+### Edge Recovery (T15)
+- **Dev Seeds {11, 12, 13}:**
+  - Precision: 78.1%, 79.4%, 79.4% (Threshold $\ge 70\%$ satisfied)
+  - Recall: 27.2%, 29.3%, 29.3%
+  - Decoy pair recovery rate: 0.0% (0 / 5 across all runs)
+- **Held-Out Seeds {101, 102}:**
+  - Precision: 78.8%, 79.4%
+  - Recall: 28.3%, 29.3%
+  - Decoy pair recovery rate: 0.0% (0 / 5)
+
+### Drift Detection Latency (T16)
+- **Dev Seeds {11, 12, 13}:** False alarms: 0, Detection delay: 1 hour
+- **Held-Out Seeds {101, 102}:** False alarms: 0, Detection delay: 0–1 hours
+
+---
+
 ## Key Decisions & Deviations
 - **Branching:** Created `feat/forecaster` from `feat/assam-migration` (commit `c16eb39`).
 - **Baseline Test Suite:** 50 hermetic tests passing in 3.17s (+1 network test deselected).
+- **Final Test Suite:** 81 hermetic tests passing in 8.24s (+1 network test deselected).
+- **Multi-Lag Parent Disambiguation:** When updating EdgeBook, parents select their highest-significance lag to prevent mutual cancellation across candidate lags.
+

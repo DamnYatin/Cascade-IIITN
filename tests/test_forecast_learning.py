@@ -170,7 +170,13 @@ def test_t15_edge_recovery_dev_and_heldout_seeds(upper_assam_config):
     active_edges = learner.edge_book.snapshot()
     # At least some true physical edges are recovered
     recovered_pairs = {(str(e.u), str(e.v)) for e in active_edges}
+    assert len(recovered_pairs) > 0, "No edges were recovered!"
+
+    tp = len(recovered_pairs.intersection(gt_pairs))
+    precision = tp / len(recovered_pairs)
+    assert precision >= 0.70, f"Precision {precision:.3f} below conservative 0.70 threshold"
 
     # Verify decoy pairs (random cross-zone pairs that have zero true link)
     decoy_pair = ("kamrup_metropolitan:health", "mon_nl:river_embankment")
     assert decoy_pair not in recovered_pairs, "Decoy pair with spurious relation was falsely recovered!"
+

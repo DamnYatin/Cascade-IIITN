@@ -358,15 +358,24 @@ class DependencyLearner:
                 conf = float(1.0 / (1.0 + np.exp(-max(-5.0, min(5.0, z_score - 2.0)))))
                 candidates.append((parent, node, lag, w, conf, is_sig))
 
-        # Sort by z_score descending and enforce max_active_edges_per_node
-        candidates.sort(key=lambda c: abs(c[3] / max(1e-6, se[learner.features.index(f"{c[0]}@-{int(c[2])}h")])), reverse=True)
-        active_count = 0
+        # Select single best lag per parent candidate to prevent multi-lag self-cancellation
+        best_by_parent: Dict[str, Tuple[str, str, float, float, float, bool, float]] = {}
         for parent, target, lag, w, conf, is_sig in candidates:
+            idx = learner.features.index(f"{parent}@-{int(lag)}h")
+            z = abs(w) / max(1e-6, se[idx])
+            if parent not in best_by_parent or z > best_by_parent[parent][6]:
+                best_by_parent[parent] = (parent, target, lag, w, conf, is_sig, z)
+
+        # Sort by z_score descending and enforce max_active_edges_per_node
+        selected = sorted(best_by_parent.values(), key=lambda c: c[6], reverse=True)
+        active_count = 0
+        for parent, target, lag, w, conf, is_sig, z in selected:
             if is_sig and active_count < self.config.max_active_edges_per_node:
                 self.edge_book.update_edge(parent, target, lag, w, conf, clock_time, is_significant=True)
                 active_count += 1
             else:
                 self.edge_book.update_edge(parent, target, lag, w, conf, clock_time, is_significant=False)
+
 
     def get_model(self) -> ForecastModel:
         """Extract current forward model from learned coefficients."""
