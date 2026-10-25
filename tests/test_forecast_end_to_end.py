@@ -106,3 +106,14 @@ def test_t23_both_configs_run_end_to_end_and_flag_unobserved(upper_assam_config,
                 st = engine.estimator.states[unobs]
                 assert st.unobserved is True
                 assert st.evidence_quality == 0.0
+
+
+def test_forecast_api_latest_endpoint():
+    from backend.app.api import forecast_latest
+    snap_dict = forecast_latest(city="upper_assam", seed=42, rain_window="lead")
+    assert "issued_at" in snap_dict
+    assert "city_risk_state" in snap_dict
+    assert "zone_risk_states" in snap_dict
+    assert snap_dict["calibrated"] is False
+
+

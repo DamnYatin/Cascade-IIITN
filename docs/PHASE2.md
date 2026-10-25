@@ -35,12 +35,12 @@
 - [x] **F7: Forecast Engine Wiring & End-to-End Orchestration**
   - `backend/app/forecast/engine.py` (`ForecastEngine` consuming only `StreamView`).
   - Tests: Leakage canary (T1), determinism & golden hash (T7), both configs execution without code changes (T23).
-- [ ] **F8: CLI, API, WebSocket, Benchmark & Documentation**
+- [x] **F8: CLI, API, WebSocket, Benchmark & Documentation**
   - `scripts/run_forecast.py` (CLI with replay, multi-horizon tables, top edges, drift events, provenance).
-  - `scripts/bench_forecast.py` (performance benchmark).
+  - `scripts/bench_forecast.py` (performance benchmark: 7.3M node-steps/sec).
   - API endpoint `GET /forecast/latest` and `/ws/stream?forecast=1`.
   - `docs/FORECASTER.md` (equations, architecture, real vs simulated, limitations).
-  - Optional `backend/app/forecast/prior.py`.
+  - Population prior model in `backend/app/forecast/prior.py`.
 - [ ] **F9: Final Verification, Held-Out Validation & Clean Commits**
   - Run dev seeds {11, 12, 13} and held-out seeds {101, 102} for T15, T16.
   - Run full test suite twice consecutively and once randomly (`pytest-randomly`).
