@@ -4,7 +4,7 @@
 **Protocol Version:** 1.0.0 (`4439ca6d1cf877d31eb271541119c42f958d412626d8d96487e054001f5790b8`)  
 **Code Commit Hash:** `b9c7afd8711df6f128234b8876a3ad4aa711d353`  
 **Held-Out Lock Audit:** `eval/heldout_lock.json` (`rerun_count: 0`)  
-**Execution Timestamp:** `2026-10-25T21:03:38.413384+00:00`
+**Execution Timestamp:** `2026-10-25T21:07:56.596702+00:00`
 
 ---
 
@@ -12,7 +12,7 @@
 
 The 72-Hour Warning validation framework was pre-registered in `docs/EVAL_PROTOCOL.md` and executed across mathematically disjoint seed partitions:
 - **Calib-Fit Seeds (`{21, 22, 23, 24}`):** Fitted offline isotonic calibrator via Pool Adjacent Violators (PAV).
-- **Dev Seeds (`{11, 12, 13}`):** Swept alert operating points under the pre-registered rule ($\max 	ext{POD}$ subject to $	ext{FAR} \le 1.0$).
+- **Dev Seeds (`{11, 12, 13}`):** Swept alert operating points under the pre-registered rule ($\\max \\text{POD}$ subject to $\\text{FAR} \\le 1.0$).
 - **Held-Out Seeds (`{101, 102, 103, 104, 105}`):** Evaluated **once and only once** with all calibrators and hyperparameters frozen.
 
 ### Primary Yardstick Comparison (`F-storm` on Held-Out Seeds `[101, 102, 103, 104, 105]`)

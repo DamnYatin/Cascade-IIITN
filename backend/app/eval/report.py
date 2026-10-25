@@ -292,7 +292,7 @@ def _generate_requirements_matrix_markdown(summary: Dict[str, Any]) -> str:
 | :---: | :--- | :---: | :--- | :--- | :--- |
 | **1** | Multi-Horizon Cascade Forecasts (1h, 3h, 6h, 12h, 24h, 48h, 72h) | **DONE** | Vectorised Monte Carlo cascade engine; multi-horizon probabilities emitted. | Brier={fc.get('brier_score', 0.16):.4f}, ECE={fc.get('ece', 0.04):.4f} across horizons | Conditioned on calibrated observation stream. |
 | **2** | Causal Dependency Graph Discovery & EdgeBook | **DONE** | Online RLS learner with ridge prior; tests `test_eval_structure_robustness.py`. | Edge Precision=0.900, Decoy Pair FPR=0.000 (0 false cross-zone links) | Learns directed physical lags; recall on weak subtle links is 0.098. |
-| **3** | Lead-Time Prediction for Cascading Failures | **DONE** | Operating point tuning; hysteresis run attribution in `eval/metrics.py`. | **Median Lead = {lead:.1f}h** [95% CI: {ci[0]:.1f}h, {ci[1]:.1f}h] (n={n}) | Evaluated on zone cascades requiring $\ge 2$ simultaneous critical systems. |
+| **3** | Lead-Time Prediction for Cascading Failures | **DONE** | Operating point tuning; hysteresis run attribution in `eval/metrics.py`. | **Median Lead = {lead:.1f}h** [95% CI: {ci[0]:.1f}h, {ci[1]:.1f}h] (n={n}) | Evaluated on zone cascades requiring $\\\\ge 2$ simultaneous critical systems. |
 | **4** | Online Adaptation & Drift Tracking | **DONE** | Page-Hinkley cumulative sum detector + covariance boost; `test_eval_structure_robustness.py`. | **Drift Detection Rate = 100% (3/3)**, Mean Latency = 15.0h, Pre-change False Alarms = 0 | Tested under sudden topological dynamics shift at hour 72. |
 | **5** | Uncertainty Quantification & Adversity Resilience | **DONE** | Dynamic Beta-Binomial source trust, outlier gating, evidence-quality tracking. | Faulty spike sensor ranked lowest (Rank 1/4); delta ECE $\le 0.04$ | Outlier z-score rejects non-physical spikes before state estimation. |
 | **6** | Counterfactual Explainability Engine | **not yet (Phase 4)** | Reserved for Phase 4 causal attribution layer. | — | Does not exist in Phase 3. |
@@ -330,7 +330,7 @@ def _generate_evaluation_markdown(summary: Dict[str, Any]) -> str:
 
 The 72-Hour Warning validation framework was pre-registered in `docs/EVAL_PROTOCOL.md` and executed across mathematically disjoint seed partitions:
 - **Calib-Fit Seeds (`{{21, 22, 23, 24}}`):** Fitted offline isotonic calibrator via Pool Adjacent Violators (PAV).
-- **Dev Seeds (`{{11, 12, 13}}`):** Swept alert operating points under the pre-registered rule ($\max \text{{POD}}$ subject to $\text{{FAR}} \le 1.0$).
+- **Dev Seeds (`{{11, 12, 13}}`):** Swept alert operating points under the pre-registered rule ($\\\\max \\\\text{{POD}}$ subject to $\\\\text{{FAR}} \\\\le 1.0$).
 - **Held-Out Seeds (`{{101, 102, 103, 104, 105}}`):** Evaluated **once and only once** with all calibrators and hyperparameters frozen.
 
 ### Primary Yardstick Comparison (`F-storm` on Held-Out Seeds `{summary.get('heldout_seeds')}`)
