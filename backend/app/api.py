@@ -150,6 +150,28 @@ def city(city_id: str):
     }
 
 
+@app.get("/forecast/latest")
+def forecast_latest(city: str = "upper_assam", seed: int = 1, rain_window: str = "peak", anchor: str = "off"):
+    """Return the latest ForecastSnapshot for a replay session."""
+    cfg = _load_config(city)
+    key = f"{city}:{seed}:{rain_window}:{anchor}"
+    if key not in _sessions:
+        _sessions[key] = ReplaySession(cfg, seed, duration_hours=24, anchor_mode=anchor)
+    session = _sessions[key]
+
+    from .forecast.engine import ForecastEngine
+    from .forecast.config import ForecastConfig
+
+    engine = ForecastEngine(
+        city_config=cfg,
+        forecast_config=ForecastConfig(rollouts=50),
+        global_seed=seed,
+        anchor_mode=anchor,
+    )
+    snapshot = engine.step(session.clock.now, session.view)
+    return snapshot.to_canonical_dict()
+
+
 @app.post("/faults")
 def post_faults(city: str, seed: int, fault: FaultIn):
     """Add a fault to the replay session for (city, seed)."""
@@ -180,6 +202,7 @@ async def ws_stream(websocket: WebSocket):
         hours = int(websocket.query_params.get("hours", "72"))
         rain_window = websocket.query_params.get("rain_window", "peak")
         anchor_mode = websocket.query_params.get("anchor", "off")
+        forecast_mode = int(websocket.query_params.get("forecast", "0"))
     except ValueError as exc:
         await websocket.close(code=4000, reason=str(exc))
         return
@@ -230,6 +253,19 @@ async def ws_stream(websocket: WebSocket):
     session = _sessions[key]
     session.clock.speed = speed
 
+    # Optional forecast engine if forecast_mode == 1
+    forecast_engine = None
+    if forecast_mode == 1:
+        from .forecast.engine import ForecastEngine
+        from .forecast.config import ForecastConfig
+
+        forecast_engine = ForecastEngine(
+            city_config=cfg,
+            forecast_config=ForecastConfig(rollouts=50),
+            global_seed=seed,
+            anchor_mode=anchor_mode,
+        )
+
     end_time = cfg.start_time_utc + timedelta(hours=hours)
     step_hours = 1.0
 
@@ -249,6 +285,16 @@ async def ws_stream(websocket: WebSocket):
                 },
             }
             await websocket.send_text(json.dumps(msg, default=str))
+
+            if forecast_engine is not None:
+                snap = forecast_engine.step(session.clock.now, session.view)
+                f_msg = {
+                    "type": "forecast",
+                    "clock_time": session.clock.now.isoformat(),
+                    "forecast": snap.to_canonical_dict(),
+                }
+                await websocket.send_text(json.dumps(f_msg, default=str))
+
             await asyncio.sleep(max(0.001, 0.05 / speed))
     except WebSocketDisconnect:
         pass

@@ -60,6 +60,11 @@ class ReplayStream:
         self._cursor = 0
         self._released_count = 0
 
+    @property
+    def view(self) -> StreamView:
+        start_t = self._obs[0].arrival_time if self._obs else datetime.now(timezone.utc)
+        return StreamView(self, start_t)
+
 
 class StreamView:
     """Read-only view handed to the model.

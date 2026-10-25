@@ -31,7 +31,13 @@ pytest -q
 # 4. Run CLI replay for Upper Assam hero scenario
 python scripts/run_replay.py --city upper_assam --seed 7 --hours 72 --rain-window peak
 
-# 5. Start API server
+# 5. Run Phase 2 Forecaster (multi-horizon, online learned edges, drift, provenance)
+python scripts/run_forecast.py --city upper_assam --scenario assam_2026 --window peak --seed 42
+
+# 6. Run Forecaster Monte Carlo benchmark
+python scripts/bench_forecast.py
+
+# 7. Start API server
 python -m backend.app.api
 ```
 
@@ -39,12 +45,15 @@ python -m backend.app.api
 
 ## Documentation
 
+- [docs/FORECASTER.md](docs/FORECASTER.md): Phase 2 Forecaster architecture, equations, limitations, and real vs simulated table.
+- [docs/PHASE2.md](docs/PHASE2.md): Phase 2 implementation log, progress checklist, schema changes, and decisions.
 - [docs/PHASE1.md](docs/PHASE1.md): Technical layout, endpoints, and schema contracts.
 - [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md): Data lineage, satellite feeds, licence attributions, and latency matrix.
 - [docs/ASSAM_MIGRATION.md](docs/ASSAM_MIGRATION.md): Full migration log, codebase provenance, and ambiguity resolutions.
 - [docs/PLAYBOOK.md](docs/PLAYBOOK.md): Project architecture and leakage isolation guidelines.
 
 ---
+
 
 ## Attribution
 - District boundaries & infrastructure features: © OpenStreetMap contributors (ODbL).

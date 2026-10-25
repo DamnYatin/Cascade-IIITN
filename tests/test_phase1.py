@@ -436,22 +436,44 @@ def test_leakage_canary_assam_hero_window(upper_assam_config):
 
 
 def test_import_isolation_no_synth_in_model_packages():
-    """Verify model/replay packages never import backend.app.synth."""
-    prohibited = "backend.app.synth"
-    packages = ["backend.app.replay", "backend.app.city_config", "backend.app.schemas", "backend.app.adapters"]
+    """Verify model/replay/forecast packages never import synth and forecast source contains no forbidden references."""
+    prohibited_modules = ["backend.app.synth"]
+    forbidden_terms = [
+        "critical_labels.json",
+        "observed_response.json",
+        "events.json",
+        "official_bulletins.json",
+        "planted",
+        "ground_truth",
+    ]
+    packages = [
+        "backend.app.replay",
+        "backend.app.city_config",
+        "backend.app.schemas",
+        "backend.app.adapters",
+        "backend.app.forecast",
+    ]
 
     for pkg_name in packages:
         mod = importlib.import_module(pkg_name)
         pkg_path = Path(mod.__file__).parent
         for py in pkg_path.glob("**/*.py"):
-            tree = ast.parse(py.read_text(encoding="utf-8"))
+            text = py.read_text(encoding="utf-8")
+            tree = ast.parse(text)
             for node in ast.walk(tree):
                 if isinstance(node, ast.Import):
                     for alias in node.names:
-                        assert not alias.name.startswith(prohibited), f"{py} imports {alias.name}"
+                        for prohibited in prohibited_modules:
+                            assert not alias.name.startswith(prohibited), f"{py} imports {alias.name}"
                 elif isinstance(node, ast.ImportFrom):
                     if node.module:
-                        assert not node.module.startswith(prohibited), f"{py} imports from {node.module}"
+                        for prohibited in prohibited_modules:
+                            assert not node.module.startswith(prohibited), f"{py} imports from {node.module}"
+
+            # If inside forecast package, scan source for forbidden terms/files
+            if "forecast" in pkg_name:
+                for term in forbidden_terms:
+                    assert term not in text.lower(), f"{py} references forbidden term/file: {term}"
 
 
 def test_fault_dropout_reduces_stream(upper_assam_config):
