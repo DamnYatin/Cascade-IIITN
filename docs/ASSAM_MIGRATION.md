@@ -64,11 +64,11 @@
   - [x] New tests: hygiene, geography, time, adapters, generator, faults/leakage, ground truth, integration
   - [x] Two consecutive full clean test runs plus random order run (`pytest-randomly`) passed
 
-- [ ] **Phase K: Migration Test Report**
-  - [ ] `tests/ASSAM_MIGRATION_TEST_REPORT.md` written from real test execution output
-- [ ] **Phase L: Git Commits & Definition of Done**
-  - [ ] Structured logical commits on `feat/assam-migration`
-  - [ ] Verification that `main` is untouched
+- [x] **Phase K: Migration Test Report**
+  - [x] `tests/ASSAM_MIGRATION_TEST_REPORT.md` written from real test execution output
+- [x] **Phase L: Git Commits & Definition of Done**
+  - [x] Structured logical commits on `feat/assam-migration`
+  - [x] Verification that `main` is untouched
 
 ---
 
