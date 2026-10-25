@@ -26,7 +26,7 @@
   - `backend/app/forecast/rollout.py` (NumPy vectorised cascade rollout, `NoiseBank` with `SeedSequence`, common random numbers, intervention hook).
   - `backend/app/forecast/aggregate.py` (`p_by` cumulative vs `p_at` instantaneous, censored time-to-critical quantiles, zone/city cascade aggregation, cascade summary).
   - Tests: NoiseBank reuse (T8), monotone `p_by` (T9), censoring (T10), chain ordering (T11), feedback loop non-divergence (T12), simultaneous cascades (T13), zone cascade rule (T14).
-- [ ] **F6: Risk-State Mapper, Calibrator & Records**
+- [x] **F6: Risk-State Mapper, Calibrator & Records**
   - `backend/app/forecast/mapper.py` (probabilistic risk state mapping with hysteresis and dwell time).
   - `backend/app/forecast/calibrate.py` (`Calibrator` protocol + `IdentityCalibrator`).
   - `backend/app/forecast/records.py` (`ForecastSnapshot`, canonical serialisation, provenance mix).
