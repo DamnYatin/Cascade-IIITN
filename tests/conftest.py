@@ -1,44 +1,33 @@
-"""Pytest fixtures and helpers for Phase 1 acceptance tests."""
+"""Pytest fixtures and helpers for Assam Phase 1 acceptance tests."""
 from __future__ import annotations
 
 import json
-from datetime import date
 from pathlib import Path
-
 import pytest
 
 REPO = Path(__file__).resolve().parent.parent
 
 from backend.app.city_config import load_city_config  # noqa: E402
-from backend.app.synth.generator import generate_city  # noqa: E402
-from backend.app.replay.stream import ReplayStream  # noqa: E402
-from backend.app.replay.clock import ReplayClock  # noqa: E402
-from backend.app.adapters.imd_rain import IMDRainAdapter  # noqa: E402
-from backend.app.adapters.imd_rain import DailyRow  # noqa: E402
-
-
-@pytest.fixture(scope="session", autouse=True)
-def ensure_rain_csv():
-    """Ensure the fixture rainfall CSV exists (generated on demand, not committed).
-
-    ``data/`` is gitignored, so a fresh clone regenerates the fixture here.
-    """
-    csv_path = REPO / "data" / "processed" / "maharashtra_climate.csv"
-    if not csv_path.exists():
-        from scripts.generate_rain_fixture import main as _gen  # noqa: E402
-
-        _gen()
-    return csv_path
 
 
 @pytest.fixture(scope="session")
-def mumbai_config():
-    return load_city_config(REPO / "configs" / "mumbai.yaml")
+def upper_assam_config():
+    """Hero city configuration (10 zones x 6 systems)."""
+    cfg_path = REPO / "configs" / "upper_assam.yaml"
+    if not cfg_path.exists():
+        from scripts.build_assam_config import main as _build
+        _build()
+    return load_city_config(cfg_path)
 
 
 @pytest.fixture(scope="session")
-def heldout_config():
-    return load_city_config(REPO / "configs" / "heldout_city.yaml")
+def north_bank_config():
+    """Heldout city configuration (6 zones x 5 systems)."""
+    cfg_path = REPO / "configs" / "north_bank_assam.yaml"
+    if not cfg_path.exists():
+        from scripts.build_assam_config import main as _build
+        _build()
+    return load_city_config(cfg_path)
 
 
 def serialize_observations(obs):
@@ -57,8 +46,12 @@ def serialize_ground_truth(gt):
         "planted_edges": [e.model_dump() for e in gt.planted_edges],
         "decoy_pairs": list(gt.decoy_pairs),
         "critical_episodes": [
-            {"node_id": e.node_id, "start_hour": e.start_hour,
-             "end_hour": e.end_hour, "peak_stress": e.peak_stress}
+            {
+                "node_id": e.node_id,
+                "start_hour": e.start_hour,
+                "end_hour": e.end_hour,
+                "peak_stress": e.peak_stress,
+            }
             for e in gt.critical_episodes
         ],
         "city_critical_episodes": list(gt.city_critical_episodes),
