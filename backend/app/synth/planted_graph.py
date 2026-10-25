@@ -1,16 +1,19 @@
-"""Hidden planted dependency graph over ``(zone, system)`` nodes.
+"""Hidden planted dependency graph over (zone, system) nodes.
 
-This module is GROUND TRUTH. Only the synthetic generator and the validation
-suite may import it. Future model packages (replay/view/estimator/learner) must
-never import anything from ``backend.app.synth``.
+This module owns GROUND TRUTH. Only the synthetic generator and validation tests
+may import it. Replay views, estimators, and learners must NEVER import from
+backend.app.synth.
 
-The graph implements the required planted structure:
-  (a) a physical chain  rainfall -> drainage -> roads -> emergency_response -> hospital
-  (b) at least one signed negative edge
-  (c) at least one feedback loop
-  (d) cross-zone propagation via zone neighbours
-  (e) edges present only in certain time windows (drift testing)
-  (f) decoy node pairs with spurious correlation but no planted edge
+Implements the Assam physical cascade:
+  (a) Upstream Nagaland surge -> Upper Assam floodplains (Dikhow, Disang, Dhansiri)
+      with realistic lag of ~1.5 - 3.5 hours (report: ~90 min hills to plains).
+  (b) Intra-zone physical chain: river_embankment -> transport -> emergency_response -> health.
+  (c) Feedback loops (emergency clearance relieves transport; transport delays relief).
+  (d) Cross-zone spill-over between neighbours.
+  (e) Circularity mitigation (Playbook Sec 8): Planted graph differs from the domain
+      prior by at least one removed prior edge (e.g. hospital generator buffering)
+      and at least one surprising planted edge (e.g. power grid tripping drainage pumps).
+  (f) Decoy pairs: Spurious correlation across non-adjacent zones with no planted edge.
 """
 from __future__ import annotations
 
@@ -19,9 +22,6 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from ..schemas import Edge, SystemSpec, Zone
-
-
-REQUIRED_SYSTEMS = ("drainage", "roads", "emergency_response", "hospital")
 
 
 @dataclass(frozen=True)
@@ -33,7 +33,7 @@ class PlantedEdge:
     confidence: float
     active_start: Optional[datetime] = None  # None == always active
     active_end: Optional[datetime] = None
-    edge_type: str = "planted"  # chain | negative | feedback | cross_zone | windowed
+    edge_type: str = "planted"  # chain | negative | feedback | cross_zone | river_link | windowed | surprising
 
 
 @dataclass
@@ -51,11 +51,12 @@ class PlantedGraph:
         return any(e.u == u and e.v == v for e in self.edges)
 
 
-def _system_id(systems, wanted: str) -> str:
-    ids = {s.id for s in systems}
-    if wanted not in ids:
-        raise ValueError(f"planted graph requires system '{wanted}', got {sorted(ids)}")
-    return wanted
+def _match_system(systems: list[SystemSpec], candidates: list[str]) -> str | None:
+    sys_ids = {s.id for s in systems}
+    for c in candidates:
+        if c in sys_ids:
+            return c
+    return None
 
 
 def build_planted_graph(
@@ -67,73 +68,109 @@ def build_planted_graph(
     import numpy as np
 
     rng = np.random.default_rng(seed)
-    drainage = _system_id(systems, "drainage")
-    roads = _system_id(systems, "roads")
-    emergency = _system_id(systems, "emergency_response")
-    hospital = _system_id(systems, "hospital")
-
     edges: list[PlantedEdge] = []
-
     zone_by_id = {z.id: z for z in zones}
 
-    def add(u_zone, u_sys, v_zone, v_sys, lag, weight, etype="planted",
-            start=None, end=None, confidence=0.9):
-        edges.append(PlantedEdge(
-            u=f"{u_zone}:{u_sys}",
-            v=f"{v_zone}:{v_sys}",
-            lag_hours=lag,
-            weight=weight,
-            confidence=confidence,
-            active_start=start,
-            active_end=end,
-            edge_type=etype,
-        ))
+    river_sys = _match_system(systems, ["river_embankment", "drainage"])
+    transport_sys = _match_system(systems, ["transport", "roads"])
+    emergency_sys = _match_system(systems, ["emergency_response", "emergency"])
+    health_sys = _match_system(systems, ["health", "hospital"])
+    power_sys = _match_system(systems, ["power", "electricity"])
+    comms_sys = _match_system(systems, ["comms", "telecom"])
 
-    # (a) Physical chain per zone: drainage -> roads -> emergency_response -> hospital.
-    #     Rainfall is exogenous (drives drainage directly inside the generator).
+    def add(u_zone: str, u_s: str, v_zone: str, v_s: str, lag: float, weight: float,
+            etype: str = "planted", start: Optional[datetime] = None, end: Optional[datetime] = None,
+            confidence: float = 0.9):
+        # Only add edge if both nodes are valid for the respective zones
+        uz_obj = zone_by_id.get(u_zone)
+        vz_obj = zone_by_id.get(v_zone)
+        if uz_obj and vz_obj:
+            if uz_obj.systems and u_s not in uz_obj.systems:
+                return
+            if vz_obj.systems and v_s not in vz_obj.systems:
+                return
+            edges.append(
+                PlantedEdge(
+                    u=f"{u_zone}:{u_s}",
+                    v=f"{v_zone}:{v_s}",
+                    lag_hours=lag,
+                    weight=weight,
+                    confidence=confidence,
+                    active_start=start,
+                    active_end=end,
+                    edge_type=etype,
+                )
+            )
+
+    # 1. Documented Hydrological River Links (Nagaland Hills -> Upper Assam Floodplains)
     for z in zones:
-        add(z.id, drainage, z.id, roads, lag=1.5, weight=0.6, etype="chain")
-        add(z.id, roads, z.id, emergency, lag=2.0, weight=0.5, etype="chain")
-        add(z.id, emergency, z.id, hospital, lag=2.5, weight=0.7, etype="chain")
+        for rlink in getattr(z, "river_links", []):
+            target = rlink.get("target")
+            if target and target in zone_by_id and river_sys:
+                # Disang surge reaches Charaideo within ~1.5 h; Dikhow reaches Sivasagar ~2.5 h
+                lag = 1.5 if "charaideo" in target else 2.5
+                add(z.id, river_sys, target, river_sys, lag=lag, weight=0.85, etype="river_link")
 
-    # (b) Signed negative edge: incident-clearance by emergency_response relieves
-    #     road congestion (negative weight) -- mirrors (c) to form a feedback loop.
-    # (c) Feedback loop: roads <-> emergency_response.
+    # 2. Intra-zone physical cascade
     for z in zones:
-        add(z.id, roads, z.id, emergency, lag=2.0, weight=0.5, etype="chain")  # congestion delays response
-        add(z.id, emergency, z.id, roads, lag=1.0, weight=-0.4, etype="negative")  # clearance relieves congestion
+        zid = z.id
+        if river_sys and transport_sys:
+            # Embankment breach/overtopping inundates roads & railway tracks
+            add(zid, river_sys, zid, transport_sys, lag=1.5, weight=0.65, etype="chain")
+        if transport_sys and emergency_sys:
+            # Submerged roads delay NDRF / emergency deployment
+            add(zid, transport_sys, zid, emergency_sys, lag=2.0, weight=0.55, etype="chain")
+        if emergency_sys and health_sys:
+            # Emergency rescue saturation strains medical access
+            add(zid, emergency_sys, zid, health_sys, lag=2.5, weight=0.60, etype="chain")
+        if power_sys and comms_sys:
+            # Substation waterlogging causes telecom BTS battery depletion
+            add(zid, power_sys, zid, comms_sys, lag=1.0, weight=0.70, etype="chain")
 
-    # (d) Cross-zone propagation via neighbours.
+        # Feedback loop: emergency road clearance relieves transport congestion (negative weight)
+        if emergency_sys and transport_sys:
+            add(zid, emergency_sys, zid, transport_sys, lag=1.0, weight=-0.40, etype="negative")
+
+    # 3. Cross-zone propagation across neighbours
     for z in zones:
         for n_id in z.neighbours:
-            n = zone_by_id[n_id]
-            # road congestion spills into neighbouring zones
-            add(z.id, roads, n.id, roads, lag=2.0, weight=0.25, etype="cross_zone")
-            # drainage loading spills downstream into neighbours
-            add(z.id, drainage, n.id, drainage, lag=3.0, weight=0.2, etype="cross_zone")
+            if transport_sys:
+                # Road blockages cascade across district borders
+                add(z.id, transport_sys, n_id, transport_sys, lag=2.0, weight=0.25, etype="cross_zone")
+            if river_sys:
+                # Floodwaters spill into adjacent downstream districts
+                add(z.id, river_sys, n_id, river_sys, lag=3.0, weight=0.30, etype="cross_zone")
 
-    # (e) Time-windowed edge: an extra drainage->roads coupling active only inside
-    #     a monsoon-looking window (first 40% of the horizon). Enables drift tests.
-    horizon_hint = 720  # 30 days default; actual horizon set by generator
+    # 4. Time-windowed edge: extra coupling active inside early surge window (enables drift testing)
+    horizon_hint = 720
     window_end = start_time_utc + timedelta(hours=int(horizon_hint * 0.4))
     for z in zones[: max(1, len(zones) // 2)]:
-        add(z.id, drainage, z.id, roads, lag=1.0, weight=0.35,
-            start=start_time_utc, end=window_end, etype="windowed", confidence=0.6)
+        if river_sys and transport_sys:
+            add(z.id, river_sys, z.id, transport_sys, lag=1.0, weight=0.35,
+                start=start_time_utc, end=window_end, etype="windowed", confidence=0.6)
 
+    # 5. Circularity Mitigations (Playbook Sec 8):
+
+    # (a) Extra SURPRISING edge absent from domain prior:
+    #     Substation failure directly disables electric drainage pumping stations at embankments
+    if power_sys and river_sys:
+        for z in zones[:3]:
+            add(z.id, power_sys, z.id, river_sys, lag=0.5, weight=0.45, etype="surprising")
+
+    # (b) Decoy pairs: Two river nodes driven by monsoon rain but not connected by any edge
     decoy_pairs: list[tuple[str, str]] = []
-    # (f) Decoy pairs: two drainage nodes driven by the same rain but NOT neighbours,
-    #     so no planted edge connects them -- a learner may infer a spurious edge.
     zone_ids = [z.id for z in zones]
     for i in range(len(zone_ids)):
         for j in range(i + 1, len(zone_ids)):
             zi, zj = zone_ids[i], zone_ids[j]
-            zi_obj = next(z for z in zones if z.id == zi)
-            zj_obj = next(z for z in zones if z.id == zj)
+            zi_obj = zone_by_id[zi]
+            zj_obj = zone_by_id[zj]
             if zj_obj.id in zi_obj.neighbours:
-                continue  # neighbours already have a real cross-zone edge
-            decoy_pairs.append((f"{zi}:{drainage}", f"{zj}:{drainage}"))
-            if len(decoy_pairs) >= 3:
-                break
+                continue
+            if river_sys:
+                decoy_pairs.append((f"{zi}:{river_sys}", f"{zj}:{river_sys}"))
+                if len(decoy_pairs) >= 3:
+                    break
         if len(decoy_pairs) >= 3:
             break
 
@@ -141,11 +178,15 @@ def build_planted_graph(
 
 
 def edges_to_schema(edges: list[PlantedEdge], last_updated: datetime) -> list[Edge]:
-    """Convert planted edges to the public Edge schema (for test inspection only)."""
-    out = []
-    for e in edges:
-        out.append(Edge(
-            u=e.u, v=e.v, lag_hours=e.lag_hours, weight=e.weight,
-            confidence=e.confidence, last_updated=last_updated,
-        ))
-    return out
+    """Convert planted edges to public Edge schema (for test validation only)."""
+    return [
+        Edge(
+            u=e.u,
+            v=e.v,
+            lag_hours=e.lag_hours,
+            weight=e.weight,
+            confidence=e.confidence,
+            last_updated=last_updated,
+        )
+        for e in edges
+    ]

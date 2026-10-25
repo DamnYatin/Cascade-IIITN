@@ -1,20 +1,21 @@
 """Synthetic city generator with a hidden planted dependency graph.
 
-This module owns the ground truth: it builds a planted directed lagged graph
-over ``(zone, system)`` nodes, simulates latent stress per node per hour,
-detects CRITICAL episodes, and derives noisy observation streams from the
-latent stress.
+This module owns ground truth: it simulates latent stress across (zone, system) nodes
+driven by exogenous real rain or synthetic storms, computes CRITICAL episodes, and
+derives observation streams.
 
-The ``GroundTruth`` object is produced here but is NEVER placed on the replay
-stream -- only ``Observation`` objects are. Future model code must never import
-from this package (see ``backend/app/replay/stream.py`` and the import-isolation
-test).
+Ground truth is NEVER placed on the replay stream view -- only Observation objects are.
+Future model code must never import from this package.
+
+Honesty rule:
+  `anchor_mode: "off" | "on"` (default "off").
+  When "on", outputs carry `QualityFlag.ANCHORED` / "anchored=true" with explicit disclosure.
 """
 from __future__ import annotations
 
 import math
 from datetime import datetime, timedelta, timezone
-from typing import Optional
+from typing import Any, Dict, Optional, Tuple, Union
 
 import numpy as np
 
@@ -22,22 +23,20 @@ from ..schemas import (
     CityConfig,
     Observation,
     QualityFlag,
+    SourceKind,
     StreamSpec,
 )
 from .ground_truth import CriticalEpisode, GroundTruth
 from .planted_graph import build_planted_graph, edges_to_schema
 
-
-# Per-system physical parameters used by both generator families.
+# Per-system physical dynamics
 _SYSTEM_PARAMS = {
-    "drainage": {"bias": 0.02, "decay": 0.94, "rain_sensitivity": 0.6, "scale": 100.0},
+    "river_embankment": {"bias": 0.02, "decay": 0.94, "rain_sensitivity": 0.65, "scale": 100.0},
+    "drainage": {"bias": 0.02, "decay": 0.94, "rain_sensitivity": 0.60, "scale": 100.0},
+    "transport": {"bias": 0.01, "decay": 0.90, "rain_sensitivity": 0.0, "scale": 100.0},
     "roads": {"bias": 0.01, "decay": 0.90, "rain_sensitivity": 0.0, "scale": 100.0},
-    "emergency_response": {
-        "bias": 0.008,
-        "decay": 0.92,
-        "rain_sensitivity": 0.0,
-        "scale": 60.0,
-    },
+    "emergency_response": {"bias": 0.008, "decay": 0.92, "rain_sensitivity": 0.0, "scale": 80.0},
+    "health": {"bias": 0.005, "decay": 0.93, "rain_sensitivity": 0.0, "scale": 100.0},
     "hospital": {"bias": 0.005, "decay": 0.93, "rain_sensitivity": 0.0, "scale": 100.0},
     "power": {"bias": 0.006, "decay": 0.96, "rain_sensitivity": 0.0, "scale": 100.0},
     "comms": {"bias": 0.004, "decay": 0.95, "rain_sensitivity": 0.0, "scale": 100.0},
@@ -46,25 +45,23 @@ _SYSTEM_PARAMS = {
 
 def _system_params(sys_id: str) -> dict:
     return _SYSTEM_PARAMS.get(
-        sys_id, {"bias": 0.01, "decay": 0.9, "rain_sensitivity": 0.0, "scale": 100.0}
+        sys_id, {"bias": 0.01, "decay": 0.90, "rain_sensitivity": 0.0, "scale": 100.0}
     )
 
 
 def _sigmoid(x: float) -> float:
-    return 1.0 / (1.0 + math.exp(-x))
+    return 1.0 / (1.0 + math.exp(-max(-30.0, min(30.0, x))))
 
 
 def _parent_influence(edge, stress: dict[str, list[float]], t: int) -> float:
-    """Stress contributed by parent node at the edge's lag, 0 if not yet valid."""
     lag = int(round(edge.lag_hours))
     src_t = t - lag
-    if src_t < 0:
+    if src_t < 0 or edge.u not in stress:
         return 0.0
     return stress[edge.u][src_t]
 
 
 def _edge_active(edge, start_time_utc: datetime, t: int) -> bool:
-    """A time-windowed edge only transmits inside [active_start, active_end]."""
     if edge.active_start is None and edge.active_end is None:
         return True
     hour_dt = start_time_utc + timedelta(hours=t)
@@ -79,65 +76,62 @@ def _simulate_stress(
     config: CityConfig,
     graph,
     nodes: list[str],
-    rain_by_hour: dict[int, float],
+    rain_by_zone_hour: dict[str, dict[int, float]],
     duration_hours: int,
     family: str,
+    anchor_mode: str,
     rng: np.random.Generator,
 ) -> tuple[dict[str, list[float]], dict[str, list[float]]]:
-    """Run the latent-stress simulation hour by hour.
-
-    Returns ``(stress, rain_input)`` where each maps node id -> list of length
-    ``duration_hours + 1`` (hour 0 is the initial state at ``start_time_utc``).
-    """
+    """Run latent stress simulation hour by hour."""
     params = {s.id: _system_params(s.id) for s in config.systems}
-
-    stress: dict[str, list[float]] = {n: [0.1] * (duration_hours + 1) for n in nodes}
+    stress: dict[str, list[float]] = {n: [0.08] * (duration_hours + 1) for n in nodes}
     rain_input: dict[str, list[float]] = {n: [0.0] * (duration_hours + 1) for n in nodes}
 
-    # parents[v] = list of planted edges pointing into v
     parents: dict[str, list] = {}
     for e in graph.edges:
         parents.setdefault(e.v, []).append(e)
 
     start_time_utc = config.start_time_utc
+    is_anchored = anchor_mode.lower() == "on"
 
     for t in range(1, duration_hours + 1):
-        rain_mm = rain_by_hour.get(t, 0.0)
         for n in nodes:
             zone, sysid = n.split(":")
             p = params[sysid]
 
-            # Exogenous rain drives drainage nodes directly.
+            # Exogenous rain drives river_embankment / drainage
+            rain_mm = rain_by_zone_hour.get(zone, {}).get(t, 0.0)
             rain_in = 0.0
-            if sysid == "drainage":
-                rain_in = rain_mm * p["rain_sensitivity"] * 0.02
+            if sysid in ("river_embankment", "drainage"):
+                # Scale real mm/h to latent stress contribution
+                scale_mult = 1.6 if is_anchored else 1.0
+                rain_in = rain_mm * p["rain_sensitivity"] * 0.10 * scale_mult
             rain_input[n][t] = rain_in
 
             if family == "logistic_hazard":
-                # Smooth, differentiable hazard: sigmoid of bias + rain +
-                # weighted lagged parent stresses.
                 z = p["bias"] + rain_in
                 for e in parents.get(n, []):
                     if not _edge_active(e, start_time_utc, t):
                         continue
                     z += e.weight * _parent_influence(e, stress, t)
-                hazard = _sigmoid(z)
+                hazard = _sigmoid(z - 2.2)
                 new_s = p["decay"] * stress[n][t - 1] + (1.0 - p["decay"]) * hazard
+
+
             else:
-                # threshold_nonlinear: piecewise response -- a parent only
-                # transmits when its own stress exceeds 0.5, combined with tanh.
+                # threshold_nonlinear
                 z = p["bias"] + rain_in
                 for e in parents.get(n, []):
                     if not _edge_active(e, start_time_utc, t):
                         continue
                     su = _parent_influence(e, stress, t)
-                    if su > 0.5:
-                        z += e.weight * (su - 0.5)
+                    if su > 0.45:
+                        z += e.weight * (su - 0.45)
                 hazard = math.tanh(z) * 0.5
                 new_s = p["decay"] * stress[n][t - 1] + hazard
 
-            # Process noise (isolated RNG -- never global).
-            new_s += rng.normal(0.0, 0.02)
+            # Process noise
+            new_s += rng.normal(0.0, 0.015)
             stress[n][t] = max(0.0, min(1.0, new_s))
 
     return stress, rain_input
@@ -149,6 +143,7 @@ def _critical_episodes(
     """Detect contiguous CRITICAL runs per node and city-wide."""
     episodes: list[CriticalEpisode] = []
     city_critical_hours: set[int] = set()
+
     for node_id, series in stress.items():
         in_ep = False
         start_h = 0
@@ -168,11 +163,8 @@ def _critical_episodes(
                     in_ep = False
                     peak = 0.0
         if in_ep:
-            episodes.append(
-                CriticalEpisode(node_id, start_h, len(series) - 1, peak)
-            )
+            episodes.append(CriticalEpisode(node_id, start_h, len(series) - 1, peak))
 
-    # Merge city-wide critical hours into contiguous ranges.
     city_ranges: list[tuple[int, int]] = []
     sorted_hours = sorted(city_critical_hours)
     if sorted_hours:
@@ -195,16 +187,18 @@ def _build_observations(
     stress: dict[str, list[float]],
     start_time_utc: datetime,
     duration_hours: int,
-    generator_family: str,
+    anchor_mode: str,
+    rain_driver_label: str,
     rng: np.random.Generator,
 ) -> list[Observation]:
-    """Derive noisy observations from latent stress per StreamSpec."""
+    """Derive observations from stress according to StreamSpec."""
     observations: list[Observation] = []
 
     def hour_of(t: datetime) -> int:
         return int((t - start_time_utc).total_seconds() // 3600)
 
     obs_counter = 0
+    is_anchored = anchor_mode.lower() == "on"
 
     for stream in config.streams:
         sys_scale = _system_params(stream.system)["scale"]
@@ -217,38 +211,46 @@ def _build_observations(
                 break
 
             for zone in config.zones:
+                if zone.systems and stream.system not in zone.systems:
+                    continue
+
                 node_id = f"{zone.id}:{stream.system}"
                 base_value = stress.get(node_id, [0.1] * (duration_hours + 1))[h]
                 value = base_value * sys_scale
 
-                # Stream-level noise.
+                # Measurement noise
                 value += rng.normal(0.0, stream.noise_level * sys_scale * 0.1)
                 value = max(0.0, value)
 
-                flags: list[QualityFlag] = []
-                is_citizen = stream.source == "citizen_report"
+                flags: list[QualityFlag | str] = []
 
+                if stream.source_kind == SourceKind.SIMULATED:
+                    flags.append(QualityFlag.SIMULATED)
+                    flags.append(f"driver={rain_driver_label}")
+                elif stream.source_kind == SourceKind.REAL:
+                    flags.append(QualityFlag.REAL)
+
+                if is_anchored:
+                    flags.append(QualityFlag.ANCHORED)
+                    flags.append("anchored=true:calibrated_to_historical_outcomes")
+
+                is_citizen = stream.source == "citizen_report"
                 if is_citizen:
                     flags.append(QualityFlag.CITIZEN_REPORT)
-                    frr = getattr(stream, "false_report_rate", 0.0)
+                    frr = getattr(stream, "false_report_rate", 0.1)
                     if rng.random() < frr:
-                        # False report: value unrelated to latent stress.
                         value = float(rng.uniform(0.0, sys_scale))
                         flags.append(QualityFlag.LOW_CONFIDENCE)
 
-                # Random transport delay so arrival_time > event_time and the
-                # arrival order can differ from the event order.
                 delay_hours = float(
                     stream.typical_delay_hours
-                    + rng.uniform(
-                        0.0, max(stream.typical_delay_hours, 0.5) * 0.5
-                    )
+                    + rng.uniform(0.0, max(stream.typical_delay_hours, 0.5) * 0.5)
                 )
                 arrival_time = event_time + timedelta(hours=delay_hours)
 
                 observations.append(
                     Observation(
-                        obs_id=f"obs:{obs_counter}",
+                        obs_id=f"sim:{obs_counter}",
                         source=stream.source,
                         source_kind=stream.source_kind,
                         zone=zone.id,
@@ -263,7 +265,6 @@ def _build_observations(
                 obs_counter += 1
             k += 1
 
-    # Deterministic release order regardless of generation order.
     observations.sort(key=lambda o: (o.arrival_time, o.event_time, o.obs_id))
     return observations
 
@@ -272,63 +273,55 @@ def generate_city(
     config: CityConfig,
     seed: int,
     duration_hours: int,
-    rain_series: Optional[dict[int, float]] = None,
+    rain_series: Optional[Union[dict[int, float], dict[str, dict[int, float]]]] = None,
     generator_family: str = "logistic_hazard",
+    anchor_mode: str = "off",
+    rain_driver_label: str = "real_rain:openmeteo",
 ) -> tuple[list[Observation], GroundTruth]:
-    """Generate a deterministic synthetic city stream and its ground truth.
-
-    Parameters
-    ----------
-    config:
-        Frozen city configuration (zones, systems, streams, thresholds).
-    seed:
-        Master seed. Every random draw uses ``np.random.default_rng(seed)``
-        derived from this, so the same seed yields byte-identical output.
-    duration_hours:
-        Number of simulated hours (step = 1 hour).
-    rain_series:
-        Exogenous rainfall mm per hour offset from ``start_time_utc``. If None,
-        a synthetic storm series is generated.
-    generator_family:
-        ``"logistic_hazard"`` or ``"threshold_nonlinear"`` -- different
-        functional forms so a later learner cannot simply match the generator.
-
-    Returns
-    -------
-    (observations, ground_truth)
-        ``observations`` is what goes on the replay stream. ``ground_truth``
-        contains the hidden planted graph, latent stress, and CRITICAL episodes
-        and must never be released to the model.
-    """
+    """Generate deterministic synthetic city stream and isolated ground truth."""
     if generator_family not in ("logistic_hazard", "threshold_nonlinear"):
-        raise ValueError(
-            f"unknown generator_family {generator_family!r}; "
-            "use 'logistic_hazard' or 'threshold_nonlinear'"
-        )
+        raise ValueError(f"unknown generator_family {generator_family!r}")
 
     rng = np.random.default_rng(seed)
     start_time_utc = config.start_time_utc
 
-    # Exogenous rainfall: synthetic storms if none supplied.
+    # Normalise rain_series to per-zone dict[zone, dict[hour, mm]]
+    rain_by_zone_hour: dict[str, dict[int, float]] = {}
+
     if rain_series is None:
-        rain_series = {}
-        t = 0
-        while t <= duration_hours:
-            if rng.random() < 1.0 / 24.0:  # ~1 storm start per day
-                storm_dur = int(rng.integers(3, 9))
-                intensity = float(rng.uniform(5.0, 40.0))
-                for hh in range(storm_dur):
-                    ht = t + hh
-                    if ht <= duration_hours:
-                        rain_series[ht] = rain_series.get(ht, 0.0) + intensity
-            t += 1
+        rain_driver_label = "synthetic_storm"
+        # Synthetic storms
+        for z in config.zones:
+            z_rain: dict[int, float] = {}
+            t = 0
+            while t <= duration_hours:
+                if rng.random() < 1.0 / 24.0:
+                    dur = int(rng.integers(3, 8))
+                    intensity = float(rng.uniform(5.0, 35.0))
+                    for hh in range(dur):
+                        if t + hh <= duration_hours:
+                            z_rain[t + hh] = z_rain.get(t + hh, 0.0) + intensity
+                t += 1
+            rain_by_zone_hour[z.id] = z_rain
+    elif all(isinstance(v, dict) for v in rain_series.values()):
+        # Already keyed by zone_id
+        rain_by_zone_hour = rain_series  # type: ignore
+    else:
+        # Single series provided for all zones
+        for z in config.zones:
+            rain_by_zone_hour[z.id] = dict(rain_series)  # type: ignore
 
     graph = build_planted_graph(config.zones, config.systems, start_time_utc, seed)
 
-    nodes = [f"{z.id}:{s.id}" for z in config.zones for s in config.systems]
+    nodes = []
+    for z in config.zones:
+        for s in config.systems:
+            if not z.systems or s.id in z.systems:
+                nodes.append(f"{z.id}:{s.id}")
 
     stress, rain_input = _simulate_stress(
-        config, graph, nodes, rain_series, duration_hours, generator_family, rng
+        config, graph, nodes, rain_by_zone_hour, duration_hours,
+        generator_family, anchor_mode, rng
     )
 
     episodes, city_ranges = _critical_episodes(
@@ -336,7 +329,8 @@ def generate_city(
     )
 
     observations = _build_observations(
-        config, stress, start_time_utc, duration_hours, generator_family, rng
+        config, stress, start_time_utc, duration_hours,
+        anchor_mode, rain_driver_label, rng
     )
 
     planted_edges_schema = edges_to_schema(graph.edges, start_time_utc)

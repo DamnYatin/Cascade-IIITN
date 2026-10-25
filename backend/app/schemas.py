@@ -75,6 +75,10 @@ class QualityFlag(str, Enum):
     CITIZEN_REPORT = "citizen_report"
     MISSING_ZONE_BLACKOUT = "missing_zone_blackout"
     LOW_CONFIDENCE = "low_confidence"
+    REAL = "real"
+    SIMULATED = "simulated"
+    ANCHORED = "anchored"
+    DISAGGREGATED = "disaggregated"
 
 
 class Zone(BaseModel):
@@ -85,6 +89,12 @@ class Zone(BaseModel):
     centroid_lat: float = Field(ge=-90, le=90)
     centroid_lon: float = Field(ge=-180, le=180)
     neighbours: list[str] = Field(default_factory=list)
+    systems: list[str] | None = Field(default=None, description="Optional system subset for this zone")
+    jurisdiction: str | None = Field(default=None)
+    role: str | None = Field(default=None)
+    river_links: list[dict[str, Any]] = Field(default_factory=list)
+    assets: dict[str, Any] | list[dict[str, Any]] = Field(default_factory=dict)
+
 
     @model_validator(mode="after")
     def _no_self_neighbour(self) -> "Zone":
@@ -188,8 +198,11 @@ class Observation(BaseModel):
     value: float
     event_time: datetime
     arrival_time: datetime
-    quality_flags: list[QualityFlag] = Field(default_factory=list)
+    quality_flags: list[QualityFlag | str] = Field(default_factory=list)
     node_id: str | None = Field(default=None, description="derived zone:system")
+
+
+
 
     @field_validator("event_time", "arrival_time")
     @classmethod
