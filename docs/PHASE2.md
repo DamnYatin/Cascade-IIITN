@@ -19,7 +19,7 @@
   - `backend/app/forecast/learner.py` (online sparse lagged RLS with forgetting, weak prior ridge, candidate parent restrictions, EdgeBook).
   - `backend/app/forecast/drift.py` (Page-Hinkley and two-window mean shift, River ADWIN optional adapter).
   - Tests: Label maturity (T3), edge recovery / decoy pairs (T15), drift adaptation (T16), edge flicker hysteresis (T17), prior overridability (T18).
-- [ ] **F4: Rain Outlook Models**
+- [x] **F4: Rain Outlook Models**
   - `backend/app/forecast/outlook.py` (`RainOutlook` protocol, `PersistenceDecayOutlook`, `BlockBootstrapOutlook`, `OracleOutlook` with strict diagnostic flag & env gating).
   - Tests: Oracle lockout (T5), outlook causality (T6).
 - [ ] **F5: Vectorised Monte Carlo Engine & Aggregations**
