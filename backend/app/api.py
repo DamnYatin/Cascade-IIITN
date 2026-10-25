@@ -1,10 +1,10 @@
-"""Minimal FastAPI surface for Phase 1.
+"""Minimal FastAPI surface for Phase 1 (Assam hero scenario).
 
 Endpoints:
   GET  /health
-  GET  /cities                     -> available city configs
+  GET  /cities                     -> available city configs (upper_assam, north_bank_assam)
   GET  /city/{city_id}             -> config summary
-  WS   /ws/stream?city=&seed=&speed=   -> StreamMessage JSON as clock advances
+  WS   /ws/stream?city=&seed=&speed=&hours=&rain_window=&anchor= -> StreamMessage JSON as clock advances
   POST /faults                     -> toggle a fault on a replay session
 
 Ground truth (backend.app.synth) is never exposed through this API; clients only
@@ -14,39 +14,53 @@ from __future__ import annotations
 
 import asyncio
 import json
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
+import yaml
 
 from .city_config import load_city_config
 from .replay.clock import ReplayClock
 from .replay.faults import FaultInjector, FaultSpec
 from .replay.stream import ReplayStream, StreamView
+from .schemas import StreamMessage
 from .synth.generator import generate_city
 
 APP_DIR = Path(__file__).resolve().parent.parent
 CONFIGS_DIR = APP_DIR.parent / "configs"
+WINDOWS_FILE = CONFIGS_DIR / "scenarios" / "assam_2026" / "windows.yaml"
 
-app = FastAPI(title="The 72-Hour Warning — Phase 1 Replay Backbone")
+app = FastAPI(title="The 72-Hour Warning — Assam Phase 1 Replay Backbone")
 
-# In-memory session registry: key = f"{city_id}:{seed}".
-# Keeps a WS connection and the POST /faults endpoint able to address the same
-# replay. Ground truth is stored in the session but never emitted over WS.
+# In-memory session registry: key = f"{city_id}:{seed}:{window}:{anchor}".
 _sessions: dict[str, "ReplaySession"] = {}
 
 
 class ReplaySession:
-    def __init__(self, config, seed: int, duration_hours: int = 168,
-                 rain_series=None, generator_family: str = "logistic_hazard"):
+    def __init__(
+        self,
+        config,
+        seed: int,
+        duration_hours: int = 72,
+        rain_series=None,
+        generator_family: str = "logistic_hazard",
+        anchor_mode: str = "off",
+        rain_driver_label: str = "real_rain:openmeteo",
+    ):
         self.config = config
         self.seed = seed
+        self.anchor_mode = anchor_mode
         self.observations, self.ground_truth = generate_city(
-            config, seed, duration_hours,
+            config,
+            seed,
+            duration_hours,
             rain_series=rain_series,
             generator_family=generator_family,
+            anchor_mode=anchor_mode,
+            rain_driver_label=rain_driver_label,
         )
         self.stream = ReplayStream(self.observations)
         self.clock = ReplayClock(config.start_time_utc)
@@ -67,14 +81,24 @@ def _step(session: ReplaySession, hours: float = 1.0) -> list:
     for obs in sorted(modified, key=lambda o: (o.arrival_time, o.event_time, o.obs_id)):
         if obs.arrival_time <= session.clock.now:
             released.append(obs)
-    released = [o for o in released if o.obs_id not in session._released_ids]
-    session._released_ids.update(o.obs_id for o in released)
-    return released
+    newly_released = [o for o in released if o.obs_id not in session._released_ids]
+    session._released_ids.update(o.obs_id for o in newly_released)
+    return newly_released
 
 
 def _load_config(city_id: str):
     path = CONFIGS_DIR / f"{city_id}.yaml"
+    if not path.exists():
+        raise FileNotFoundError(f"city config not found: {path}")
     return load_city_config(path)
+
+
+def _load_windows() -> dict:
+    if WINDOWS_FILE.exists():
+        with WINDOWS_FILE.open("r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+            return data.get("windows", {})
+    return {}
 
 
 class FaultIn(BaseModel):
@@ -98,8 +122,11 @@ def health():
 @app.get("/cities")
 def cities():
     out = []
-    if CONFIGS_DIR.exists():
-        for p in sorted(CONFIGS_DIR.glob("*.yaml")):
+    # Explicitly whitelist only upper_assam and north_bank_assam
+    allowed = ["upper_assam", "north_bank_assam"]
+    for city_id in allowed:
+        p = CONFIGS_DIR / f"{city_id}.yaml"
+        if p.exists():
             cfg = load_city_config(p)
             out.append({
                 "city_id": cfg.city_id,
@@ -125,9 +152,9 @@ def city(city_id: str):
 
 @app.post("/faults")
 def post_faults(city: str, seed: int, fault: FaultIn):
-    """Add a fault to the replay session for (city, seed), creating it if needed."""
+    """Add a fault to the replay session for (city, seed)."""
     cfg = _load_config(city)
-    key = f"{city}:{seed}"
+    key = f"{city}:{seed}:default:off"
     if key not in _sessions:
         _sessions[key] = ReplaySession(cfg, seed)
     session = _sessions[key]
@@ -147,35 +174,59 @@ def post_faults(city: str, seed: int, fault: FaultIn):
 async def ws_stream(websocket: WebSocket):
     await websocket.accept()
     try:
-        city = websocket.query_params.get("city", "mumbai")
+        city_id = websocket.query_params.get("city", "upper_assam")
         seed = int(websocket.query_params.get("seed", "1"))
         speed = float(websocket.query_params.get("speed", "1.0"))
-        hours = int(websocket.query_params.get("hours", "168"))
-        rain_window = websocket.query_params.get("rain_window", None)
+        hours = int(websocket.query_params.get("hours", "72"))
+        rain_window = websocket.query_params.get("rain_window", "peak")
+        anchor_mode = websocket.query_params.get("anchor", "off")
     except ValueError as exc:
         await websocket.close(code=4000, reason=str(exc))
         return
 
-    cfg = _load_config(city)
-    key = f"{city}:{seed}"
+    try:
+        cfg = _load_config(city_id)
+    except Exception as exc:
+        await websocket.close(code=4004, reason=f"Config error: {exc}")
+        return
+
+    windows = _load_windows()
+    if rain_window in windows:
+        w = windows[rain_window]
+        start_ts = datetime.fromisoformat(w["start_time_utc"].replace("Z", "+00:00"))
+        end_ts = datetime.fromisoformat(w["end_time_utc"].replace("Z", "+00:00"))
+        hours = min(hours, int((end_ts - start_ts).total_seconds() // 3600))
+        cfg = cfg.model_copy(update={"start_time_utc": start_ts})
+
+    key = f"{city_id}:{seed}:{rain_window}:{anchor_mode}"
     if key not in _sessions:
-        rain_series = None
-        if rain_window:
-            from .adapters.imd_rain import IMDRainAdapter, PRESETS
-            p = PRESETS[rain_window]
-            adapter = IMDRainAdapter(seed=seed)
-            dt_series = adapter.to_rain_series(
-                p["districts"][0], p["start"], p["end"], seed=seed
-            )
-            start_ts = cfg.start_time_utc
-            rain_series = {}
-            for dt, v in dt_series.items():
-                off = int((dt - start_ts).total_seconds() // 3600)
-                rain_series[off] = rain_series.get(off, 0.0) + v
+        rain_series_by_zone = None
+        if rain_window != "none":
+            from .adapters.openmeteo import OpenMeteoAdapter
+            try:
+                adapter = OpenMeteoAdapter(city_id=cfg.city_id)
+                end_eval_ts = cfg.start_time_utc + timedelta(hours=hours)
+                rain_series_by_zone = {}
+                for z in cfg.zones:
+                    s_dict = adapter.to_rain_series(z.id, cfg.start_time_utc, end_eval_ts)
+                    z_rain = {}
+                    for dt, v in s_dict.items():
+                        h_off = int((dt - cfg.start_time_utc).total_seconds() // 3600)
+                        if 0 <= h_off <= hours:
+                            z_rain[h_off] = v
+                    rain_series_by_zone[z.id] = z_rain
+            except Exception:
+                rain_series_by_zone = None
+
         _sessions[key] = ReplaySession(
-            cfg, seed, duration_hours=hours,
-            rain_series=rain_series,
+            cfg,
+            seed,
+            duration_hours=hours,
+            rain_series=rain_series_by_zone,
+            anchor_mode=anchor_mode,
+            rain_driver_label="real_rain:openmeteo" if rain_series_by_zone else "synthetic_storms",
         )
+
     session = _sessions[key]
     session.clock.speed = speed
 
@@ -190,10 +241,11 @@ async def ws_stream(websocket: WebSocket):
                 "clock_time": session.clock.now.isoformat(),
                 "observations": [o.model_dump() for o in released],
                 "meta": {
-                    "city": city,
+                    "city": city_id,
                     "seed": seed,
                     "released_count": len(released),
                     "faults": list(session.faults_applied),
+                    "anchor_mode": session.anchor_mode,
                 },
             }
             await websocket.send_text(json.dumps(msg, default=str))

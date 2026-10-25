@@ -3,6 +3,9 @@ data/
 *.h5
 *.GRD
 *.grd
+*.nc
+*.grib
+*.grib2
 *.pth
 *.pkl
 __pycache__/
@@ -10,9 +13,10 @@ __pycache__/
 node_modules/
 .venv/
 *.log
-*.json
-!scripts/*.py
-!backend/**/*.py
-!tests/**/*.py
-!configs/*.yaml
-!docs/*.md
+!configs/**/*.json
+!configs/**/*.yaml
+!tests/**/*.json
+!frontend/**/*.json
+!frontend/**/*.geojson
+!docs/**/*.md
+
