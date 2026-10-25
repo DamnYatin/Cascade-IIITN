@@ -1,0 +1,191 @@
+{
+  "protocol_hash": "4439ca6d1cf877d31eb271541119c42f958d412626d8d96487e054001f5790b8",
+  "commit_hash": "b9c7afd8711df6f128234b8876a3ad4aa711d353",
+  "heldout_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "rerun_count": 0,
+  "executed_at_utc": "2026-10-25T20:52:57.398038+00:00",
+  "methods_f_storm": {
+    "forecaster": {
+      "operating_point": {
+        "tau": 0.15,
+        "k": 1,
+        "tau_low": 0.15
+      },
+      "brier_score": 0.682,
+      "ece": 0.6807,
+      "pod": 0.6,
+      "far_per_100_zone_days": 5.714,
+      "median_lead_time_hours": 32.5,
+      "iqr_lead_time_hours": 32.8,
+      "ci_95_lead_time": [
+        25.0,
+        64.5
+      ],
+      "n_episodes": 50,
+      "n_hits": 30,
+      "n_false_alarms": 20
+    },
+    "b1_isolated": {
+      "operating_point": {
+        "tau": 0.15,
+        "k": 1,
+        "tau_low": 0.05
+      },
+      "brier_score": 0.7603,
+      "ece": 0.7742,
+      "pod": 0.62,
+      "far_per_100_zone_days": 5.429,
+      "median_lead_time_hours": 29.0,
+      "iqr_lead_time_hours": 33.0,
+      "ci_95_lead_time": [
+        22.0,
+        61.0
+      ],
+      "n_episodes": 50,
+      "n_hits": 31,
+      "n_false_alarms": 19
+    },
+    "b2_rainrule": {
+      "operating_point": {
+        "tau": 0.15,
+        "k": 1,
+        "tau_low": 0.15
+      },
+      "brier_score": 0.7068,
+      "ece": 0.7006,
+      "pod": 0.72,
+      "far_per_100_zone_days": 3.429,
+      "median_lead_time_hours": 29.0,
+      "iqr_lead_time_hours": 38.5,
+      "ci_95_lead_time": [
+        11.0,
+        55.0
+      ],
+      "n_episodes": 50,
+      "n_hits": 36,
+      "n_false_alarms": 12
+    },
+    "b3_climatology": {
+      "operating_point": {
+        "tau": 0.15,
+        "k": 1,
+        "tau_low": 0.15
+      },
+      "brier_score": 0.6319,
+      "ece": 0.6222,
+      "pod": 0.62,
+      "far_per_100_zone_days": 5.429,
+      "median_lead_time_hours": 30.0,
+      "iqr_lead_time_hours": 36.5,
+      "ci_95_lead_time": [
+        22.0,
+        59.0
+      ],
+      "n_episodes": 50,
+      "n_hits": 31,
+      "n_false_alarms": 19
+    },
+    "b4_static_graph": {
+      "operating_point": {
+        "tau": 0.15,
+        "k": 1,
+        "tau_low": 0.15
+      },
+      "brier_score": 0.6829,
+      "ece": 0.6823,
+      "pod": 0.6,
+      "far_per_100_zone_days": 5.714,
+      "median_lead_time_hours": 32.5,
+      "iqr_lead_time_hours": 33.2,
+      "ci_95_lead_time": [
+        25.0,
+        64.5
+      ],
+      "n_episodes": 50,
+      "n_hits": 30,
+      "n_false_alarms": 20
+    },
+    "b5_prior_only": {
+      "operating_point": {
+        "tau": 0.2,
+        "k": 1,
+        "tau_low": 0.2
+      },
+      "brier_score": 0.7188,
+      "ece": 0.6974,
+      "pod": 0.54,
+      "far_per_100_zone_days": 4.286,
+      "median_lead_time_hours": 32.0,
+      "iqr_lead_time_hours": 37.0,
+      "ci_95_lead_time": [
+        14.0,
+        64.0
+      ],
+      "n_episodes": 50,
+      "n_hits": 27,
+      "n_false_alarms": 15
+    },
+    "b6_no_trust": {
+      "operating_point": {
+        "tau": 0.15,
+        "k": 1,
+        "tau_low": 0.15
+      },
+      "brier_score": 0.6829,
+      "ece": 0.6823,
+      "pod": 0.6,
+      "far_per_100_zone_days": 5.714,
+      "median_lead_time_hours": 32.5,
+      "iqr_lead_time_hours": 33.2,
+      "ci_95_lead_time": [
+        25.0,
+        64.5
+      ],
+      "n_episodes": 50,
+      "n_hits": 30,
+      "n_false_alarms": 20
+    },
+    "b7_persistence_outlook": {
+      "operating_point": {
+        "tau": 0.15,
+        "k": 1,
+        "tau_low": 0.15
+      },
+      "brier_score": 0.6829,
+      "ece": 0.6823,
+      "pod": 0.6,
+      "far_per_100_zone_days": 5.714,
+      "median_lead_time_hours": 32.5,
+      "iqr_lead_time_hours": 33.2,
+      "ci_95_lead_time": [
+        25.0,
+        64.5
+      ],
+      "n_episodes": 50,
+      "n_hits": 30,
+      "n_false_alarms": 20
+    }
+  },
+  "quiet_control": {
+    "family": "F-quiet",
+    "description": "Zero true critical episodes control",
+    "total_false_alarms": 50,
+    "total_zone_days": 350.0,
+    "clean_far_per_100_zone_days": 14.286
+  },
+  "generalisation": {
+    "heldout_city": "north_bank_assam",
+    "topology": "6 zones x 5 systems",
+    "pod": 0.5667,
+    "far_per_100_zone_days": 6.19,
+    "median_lead_time_hours": 34.0,
+    "n_episodes": 30,
+    "gap_vs_upper_assam_lead": 1.5
+  }
+}

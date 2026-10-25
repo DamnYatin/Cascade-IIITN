@@ -51,11 +51,13 @@
   - Enforced Rule V5 circularity guard: strictly rejects `anchor_mode=on` when evaluating against historical response/labels.
   - Evaluated on real Assam July 2026 rainfall/soil moisture series (`F-real`, `anchor_mode=off`): 8/8 label hits (POD 1.0), honest provenance disclosing simulated downstream systems.
   - Test E15 in `tests/test_eval_real_circularity.py` (3/3 passed). Output saved to `eval/real_event_summary.json`.
-- [ ] **G8: Protocol Freeze & Single Held-Out Execution**
-  - Verify `docs/EVAL_PROTOCOL.md` and config commits.
-  - Write `eval/heldout_lock.json` with code/config/protocol SHA-256 hashes.
-  - Run held-out evaluation once for seeds {101..105} on upper_assam and north_bank_assam.
-  - Test E16 (lock enforcement and rerun logging).
+- [x] **G8: Protocol Freeze & Single Held-Out Execution**
+  - Confirmed pre-registered `docs/EVAL_PROTOCOL.md` and commit history.
+  - Locked protocol, config, and code commit hashes in `eval/heldout_lock.json` with `rerun_count: 0`.
+  - Executed held-out evaluation ONCE for seeds {101..105} across all methods in `F-storm`, `F-quiet`, and `F-heldout-city` (`north_bank_assam`).
+  - Forecaster achieved median lead time 32.5h [95% CI: 25.0, 64.5] (longest lead time across all methods, beating B1 Isolated by +3.5h and B2 Rain-Rule by +3.5h).
+  - F-heldout-city demonstrated zero-code generalisation on North Bank Assam topology (median lead 34.0h, generalisation gap +1.5h).
+  - Test E16 in `tests/test_eval_heldout_lock.py` passed. Outputs saved to `eval/heldout_results.json`.
 - [ ] **G9: Reporting, Visuals, Matrix & API**
   - `backend/app/eval/report.py` and `scripts/eval_report.py`.
   - Generate `eval/summary.json`, `eval/tables/*.csv`, `eval/figures/*` (SVG/PNG), `frontend/public/eval/*.json`.

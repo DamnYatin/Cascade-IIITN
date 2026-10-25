@@ -1,0 +1,19 @@
+{
+  "code_commit_hash": "b9c7afd8711df6f128234b8876a3ad4aa711d353",
+  "config_hashes": {
+    "forecast_tuned": "3372e1f57dce3ef6",
+    "north_bank_assam": "bc2d876bbf1d988b",
+    "upper_assam": "343d212a0c254e6a"
+  },
+  "heldout_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "locked": true,
+  "protocol_hash": "4439ca6d1cf877d31eb271541119c42f958d412626d8d96487e054001f5790b8",
+  "rerun_count": 0,
+  "timestamp_utc": "2026-10-25T20:43:04.213949+00:00"
+}
