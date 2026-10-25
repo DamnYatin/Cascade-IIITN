@@ -11,7 +11,7 @@
   - `backend/app/forecast/features.py` (causal feature builder, robust scaling, saturation gain).
   - `backend/app/forecast/ledger.py` (bounded ring-buffer evidence ledger).
   - Causal normalisation tests (T4), import/file isolation tests (T2, T5).
-- [ ] **F2: Source Trust, Outlier Gating & State Estimator**
+- [x] **F2: Source Trust, Outlier Gating & State Estimator**
   - `backend/app/forecast/trust.py` (Beta reliability, outlier gate, flatline detector, citizen-report aggregation, evidence quality).
   - `backend/app/forecast/estimator.py` (scalar linear-Gaussian filter, late-arrival buffer re-filtering).
   - Adversity & late-arrival tests (T19–T22).
