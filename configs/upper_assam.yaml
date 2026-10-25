@@ -1,0 +1,660 @@
+city_id: upper_assam
+start_time_utc: '2026-07-05T00:00:00Z'
+critical_stress_threshold: 0.8
+zones:
+- id: mon_nl
+  name: Mon (Nagaland)
+  jurisdiction: Nagaland
+  role: upstream_driver
+  centroid_lat: 26.6725
+  centroid_lon: 95.023
+  neighbours:
+  - charaideo
+  - sivasagar
+  systems:
+  - river_embankment
+  - transport
+  - emergency_response
+  river_links:
+  - target: charaideo
+    river: Disang
+    source: report [S1]/[S24]
+    confidence: 0.95
+    description: Disang surge from Mon hills directly inundates Charaideo lowlands
+      within ~90 min.
+  - target: sivasagar
+    river: Dikhow
+    source: report [S1]/[S24]
+    confidence: 0.95
+    description: Dikhow headwaters in Nagaland discharge through Sivasagar embankment
+      systems.
+  assets:
+    hospitals_clinics: 7
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 147.0
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: mokokchung_nl
+  name: Mokokchung (Nagaland)
+  jurisdiction: Nagaland
+  role: upstream_driver
+  centroid_lat: 26.4796
+  centroid_lon: 94.5379
+  neighbours:
+  - jorhat
+  - sivasagar
+  - wokha_nl
+  systems:
+  - river_embankment
+  - transport
+  - emergency_response
+  river_links:
+  - target: jorhat
+    river: Jhanji / Melak
+    source: report [S1]/[S24]
+    confidence: 0.85
+    description: Jhanji river links Mokokchung catchment directly to Jorhat southern
+      boundary.
+  - target: sivasagar
+    river: Tiru / Dikhow tributary
+    source: report [S1]/[S24]
+    confidence: 0.85
+    description: Tributaries from Mokokchung feed lower Dikhow floodplain.
+  assets:
+    hospitals_clinics: 5
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 139.3
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: wokha_nl
+  name: Wokha (Nagaland)
+  jurisdiction: Nagaland
+  role: upstream_driver
+  centroid_lat: 26.2034
+  centroid_lon: 94.2016
+  neighbours:
+  - golaghat
+  - jorhat
+  - mokokchung_nl
+  systems:
+  - river_embankment
+  - transport
+  - emergency_response
+  river_links:
+  - target: golaghat
+    river: Dhansiri (South)
+    source: report [S1]/[S24]
+    confidence: 0.9
+    description: Dhansiri headwaters flow north through Wokha valleys into Golaghat
+      (Numaligarh).
+  assets:
+    hospitals_clinics: 5
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 110.9
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: charaideo
+  name: Charaideo
+  jurisdiction: Assam
+  role: core_floodplain
+  centroid_lat: 27.0634
+  centroid_lon: 95.0541
+  neighbours:
+  - mon_nl
+  - sivasagar
+  systems:
+  - river_embankment
+  - transport
+  - power
+  - comms
+  - health
+  - emergency_response
+  river_links: []
+  assets:
+    hospitals_clinics: 3
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 89.2
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: sivasagar
+  name: Sivasagar
+  jurisdiction: Assam
+  role: core_floodplain
+  centroid_lat: 26.961
+  centroid_lon: 94.6607
+  neighbours:
+  - charaideo
+  - jorhat
+  - mokokchung_nl
+  - mon_nl
+  systems:
+  - river_embankment
+  - transport
+  - power
+  - comms
+  - health
+  - emergency_response
+  river_links: []
+  assets:
+    hospitals_clinics: 5
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 110.2
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: jorhat
+  name: Jorhat
+  jurisdiction: Assam
+  role: core_floodplain
+  centroid_lat: 26.697
+  centroid_lon: 94.276
+  neighbours:
+  - golaghat
+  - mokokchung_nl
+  - sivasagar
+  - wokha_nl
+  systems:
+  - river_embankment
+  - transport
+  - power
+  - comms
+  - health
+  - emergency_response
+  river_links: []
+  assets:
+    hospitals_clinics: 6
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 123.8
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: golaghat
+  name: Golaghat
+  jurisdiction: Assam
+  role: core_floodplain
+  centroid_lat: 26.4426
+  centroid_lon: 93.8279
+  neighbours:
+  - jorhat
+  - karbi_anglong
+  - wokha_nl
+  systems:
+  - river_embankment
+  - transport
+  - power
+  - comms
+  - health
+  - emergency_response
+  river_links: []
+  assets:
+    hospitals_clinics: 11
+    power_substations: 4
+    railway_stations: 2
+    primary_road_km: 218.8
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: karbi_anglong
+  name: Karbi Anglong
+  jurisdiction: Assam
+  role: impacted_hills_plains
+  centroid_lat: 26.1519
+  centroid_lon: 93.4071
+  neighbours:
+  - golaghat
+  systems:
+  - river_embankment
+  - transport
+  - power
+  - comms
+  - health
+  - emergency_response
+  river_links: []
+  assets:
+    hospitals_clinics: 26
+    power_substations: 9
+    railway_stations: 6
+    primary_road_km: 290.4
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: kamrup_metropolitan
+  name: Kamrup Metropolitan (Guwahati)
+  jurisdiction: Assam
+  role: urban_epicentre
+  centroid_lat: 26.0975
+  centroid_lon: 91.8445
+  neighbours:
+  - morigaon
+  systems:
+  - river_embankment
+  - transport
+  - power
+  - comms
+  - health
+  - emergency_response
+  river_links: []
+  assets:
+    hospitals_clinics: 4
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 130.7
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+- id: morigaon
+  name: Morigaon
+  jurisdiction: Assam
+  role: downstream_floodplain
+  centroid_lat: 26.278
+  centroid_lon: 92.2803
+  neighbours:
+  - kamrup_metropolitan
+  systems:
+  - river_embankment
+  - transport
+  - power
+  - comms
+  - health
+  - emergency_response
+  river_links: []
+  assets:
+    hospitals_clinics: 5
+    power_substations: 2
+    railway_stations: 1
+    primary_road_km: 101.8
+    major_rivers:
+    - Dikhow
+    - Disang
+    - Dhansiri
+systems:
+- id: river_embankment
+  name: River & Embankment Network
+  capacity: 100.0
+  critical_threshold: 80.0
+  unit: percent_capacity
+- id: transport
+  name: Transport (Roads & Rail)
+  capacity: 100.0
+  critical_threshold: 75.0
+  unit: congestion_index
+- id: power
+  name: Power Distribution Grid
+  capacity: 100.0
+  critical_threshold: 80.0
+  unit: outage_percent
+- id: comms
+  name: Telecommunications Network
+  capacity: 100.0
+  critical_threshold: 80.0
+  unit: site_down_percent
+- id: health
+  name: Health Infrastructure (Hospitals & Clinics)
+  capacity: 100.0
+  critical_threshold: 85.0
+  unit: bed_occupancy_percent
+- id: emergency_response
+  name: Emergency Relief & Rescue (NDRF/SDRF/Army)
+  capacity: 100.0
+  critical_threshold: 80.0
+  unit: strain_index
+streams:
+- source: rain_imerg_late
+  system: river_embankment
+  cadence_hours: 1.0
+  typical_delay_hours: 14.0
+  noise_level: 0.05
+  source_kind: real
+- source: rain_openmeteo
+  system: river_embankment
+  cadence_hours: 1.0
+  typical_delay_hours: 24.0
+  noise_level: 0.05
+  source_kind: real
+- source: river_level_sim
+  system: river_embankment
+  cadence_hours: 1.0
+  typical_delay_hours: 1.0
+  noise_level: 0.08
+  source_kind: simulated
+- source: road_congestion_sim
+  system: transport
+  cadence_hours: 1.0
+  typical_delay_hours: 0.5
+  noise_level: 0.1
+  source_kind: simulated
+- source: power_outage_sim
+  system: power
+  cadence_hours: 1.0
+  typical_delay_hours: 0.5
+  noise_level: 0.05
+  source_kind: simulated
+- source: comms_telecom_sim
+  system: comms
+  cadence_hours: 1.0
+  typical_delay_hours: 1.0
+  noise_level: 0.05
+  source_kind: simulated
+- source: hospital_strain_sim
+  system: health
+  cadence_hours: 2.0
+  typical_delay_hours: 2.0
+  noise_level: 0.05
+  source_kind: simulated
+- source: citizen_report
+  system: emergency_response
+  cadence_hours: 0.5
+  typical_delay_hours: 0.25
+  noise_level: 0.25
+  source_kind: simulated
+  false_report_rate: 0.12
+domain_prior_edges:
+- u: mon_nl:river_embankment
+  v: mon_nl:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: mon_nl:transport
+  v: mon_nl:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: mon_nl:river_embankment
+  v: charaideo:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: mon_nl:river_embankment
+  v: sivasagar:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: mokokchung_nl:river_embankment
+  v: mokokchung_nl:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: mokokchung_nl:transport
+  v: mokokchung_nl:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: mokokchung_nl:river_embankment
+  v: jorhat:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: mokokchung_nl:river_embankment
+  v: sivasagar:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: mokokchung_nl:river_embankment
+  v: wokha_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: wokha_nl:river_embankment
+  v: wokha_nl:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: wokha_nl:transport
+  v: wokha_nl:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: wokha_nl:river_embankment
+  v: golaghat:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: wokha_nl:river_embankment
+  v: jorhat:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: wokha_nl:river_embankment
+  v: mokokchung_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: charaideo:river_embankment
+  v: charaideo:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: charaideo:transport
+  v: charaideo:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: charaideo:emergency_response
+  v: charaideo:health
+  lag_hours: 3.0
+  weight: 0.6
+  confidence: 0.65
+- u: charaideo:power
+  v: charaideo:health
+  lag_hours: 1.0
+  weight: 0.5
+  confidence: 0.55
+- u: charaideo:river_embankment
+  v: mon_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: charaideo:river_embankment
+  v: sivasagar:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: sivasagar:river_embankment
+  v: sivasagar:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: sivasagar:transport
+  v: sivasagar:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: sivasagar:emergency_response
+  v: sivasagar:health
+  lag_hours: 3.0
+  weight: 0.6
+  confidence: 0.65
+- u: sivasagar:power
+  v: sivasagar:health
+  lag_hours: 1.0
+  weight: 0.5
+  confidence: 0.55
+- u: sivasagar:river_embankment
+  v: charaideo:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: sivasagar:river_embankment
+  v: jorhat:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: sivasagar:river_embankment
+  v: mokokchung_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: sivasagar:river_embankment
+  v: mon_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: jorhat:river_embankment
+  v: jorhat:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: jorhat:transport
+  v: jorhat:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: jorhat:emergency_response
+  v: jorhat:health
+  lag_hours: 3.0
+  weight: 0.6
+  confidence: 0.65
+- u: jorhat:power
+  v: jorhat:health
+  lag_hours: 1.0
+  weight: 0.5
+  confidence: 0.55
+- u: jorhat:river_embankment
+  v: golaghat:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: jorhat:river_embankment
+  v: mokokchung_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: jorhat:river_embankment
+  v: sivasagar:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: jorhat:river_embankment
+  v: wokha_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: golaghat:river_embankment
+  v: golaghat:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: golaghat:transport
+  v: golaghat:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: golaghat:emergency_response
+  v: golaghat:health
+  lag_hours: 3.0
+  weight: 0.6
+  confidence: 0.65
+- u: golaghat:power
+  v: golaghat:health
+  lag_hours: 1.0
+  weight: 0.5
+  confidence: 0.55
+- u: golaghat:river_embankment
+  v: jorhat:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: golaghat:river_embankment
+  v: karbi_anglong:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: golaghat:river_embankment
+  v: wokha_nl:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: karbi_anglong:river_embankment
+  v: karbi_anglong:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: karbi_anglong:transport
+  v: karbi_anglong:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: karbi_anglong:emergency_response
+  v: karbi_anglong:health
+  lag_hours: 3.0
+  weight: 0.6
+  confidence: 0.65
+- u: karbi_anglong:power
+  v: karbi_anglong:health
+  lag_hours: 1.0
+  weight: 0.5
+  confidence: 0.55
+- u: karbi_anglong:river_embankment
+  v: golaghat:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: kamrup_metropolitan:river_embankment
+  v: kamrup_metropolitan:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: kamrup_metropolitan:transport
+  v: kamrup_metropolitan:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: kamrup_metropolitan:emergency_response
+  v: kamrup_metropolitan:health
+  lag_hours: 3.0
+  weight: 0.6
+  confidence: 0.65
+- u: kamrup_metropolitan:power
+  v: kamrup_metropolitan:health
+  lag_hours: 1.0
+  weight: 0.5
+  confidence: 0.55
+- u: kamrup_metropolitan:river_embankment
+  v: morigaon:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
+- u: morigaon:river_embankment
+  v: morigaon:transport
+  lag_hours: 2.0
+  weight: 0.5
+  confidence: 0.7
+- u: morigaon:transport
+  v: morigaon:emergency_response
+  lag_hours: 2.5
+  weight: 0.4
+  confidence: 0.6
+- u: morigaon:emergency_response
+  v: morigaon:health
+  lag_hours: 3.0
+  weight: 0.6
+  confidence: 0.65
+- u: morigaon:power
+  v: morigaon:health
+  lag_hours: 1.0
+  weight: 0.5
+  confidence: 0.55
+- u: morigaon:river_embankment
+  v: kamrup_metropolitan:river_embankment
+  lag_hours: 4.0
+  weight: 0.3
+  confidence: 0.5
