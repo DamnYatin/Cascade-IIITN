@@ -229,8 +229,7 @@ def run_single_evaluation(
             for ep in eps
         ]
 
-    # Active learned edges from final snapshot
-    final_edges = snapshot.top_edges
+    # Active learned edges from final snapshot (already populated in loop if not baseline)
 
     result_data = {
         "cache_key": cache_key,

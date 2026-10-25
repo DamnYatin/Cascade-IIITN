@@ -90,7 +90,7 @@ def build_scenario_instance(
         seed=seed,
         duration_hours=duration_hours,
         rain_series=rain_by_zone,
-        generator_family="logistic_hazard",
+        generator_family="threshold_nonlinear",
         anchor_mode=anchor_mode,
         rain_driver_label=rain_label,
     )

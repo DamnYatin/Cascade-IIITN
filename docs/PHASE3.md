@@ -33,11 +33,12 @@
   - Added additive `ablation:` section in `configs/forecast.yaml` and `ForecastConfig`.
   - Wired ablations into `ForecastEngine`.
   - Unit tests E12, E17, E18 in `tests/test_baselines_ablations.py` (all passed).
-- [ ] **G5: Dev-Seed Runs & Operating Point Tuning**
-  - Run dev seeds {11, 12, 13} across methods and families.
+- [x] **G5: Dev-Seed Runs & Operating Point Tuning**
+  - Ran dev seeds {11, 12, 13} across forecaster, B1–B3 baselines, and B4–B7 ablations.
   - `backend/app/eval/sweeps.py` (threshold sweeps, matched-FAR comparison, operating point selection).
-  - `scripts/eval_tune.py` -> generate `configs/forecast_tuned.yaml` with provenance.
-  - Tests E13 (canary) and E19 (diagnostic predictors: perfect, constant, random, shuffled).
+  - `scripts/eval_tune.py` -> generated `configs/forecast_tuned.yaml` with cryptographic provenance.
+  - Forecaster selected tau=0.15, k=1, tau_low=0.15: POD=1.000, FAR=0.00, Lead=19.0h (beats B1 Isolated by +3.5h).
+  - Tests E13 (future-isolation canary on both configs) and E19 (diagnostic predictors: perfect, constant 0.5, random, shuffled) in `tests/test_eval_canary_selftests.py` (all passed).
 - [ ] **G6: Structure, Drift & Robustness Analyses**
   - `backend/app/eval/structure.py` (edge precision/recall/F1 over time, decoy pair FPR, drift latency).
   - `backend/app/eval/robustness.py` (fault deltas, source trust ranking, evidence quality vs error).
