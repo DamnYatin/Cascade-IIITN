@@ -219,7 +219,7 @@ class Observation(BaseModel):
 
 
 class PredictionRecord(BaseModel):
-    """Defined for Phase 1; unused by the replay backbone itself."""
+    """Multi-horizon probabilistic forecast record."""
 
     model_config = ConfigDict(frozen=True)
 
@@ -229,6 +229,7 @@ class PredictionRecord(BaseModel):
     p_state_geq: dict[str, float]  # e.g. {"HIGH_RISK": 0.12, "CRITICAL": 0.03}
     ttc_quantiles: dict[str, float]  # e.g. {"p50": 31.0, "p80": 44.0}
     evidence_ids: list[str] = Field(default_factory=list)
+    meta: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator("issued_at")
     @classmethod
