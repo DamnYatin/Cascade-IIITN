@@ -1,0 +1,129 @@
+city_id: heldout
+name: Held-out inland city (synthetic, Phase 1 generalization check)
+start_time_utc: "2021-07-01T00:00:00Z"
+critical_stress_threshold: 0.70
+
+# --- zones (6; different count & topology from mumbai) ---
+zones:
+  - id: central
+    name: Central district
+    centroid_lat: 18.5200
+    centroid_lon: 73.8560
+    neighbours: [north, south]
+  - id: north
+    name: North district
+    centroid_lat: 18.6200
+    centroid_lon: 73.8200
+    neighbours: [central, east]
+  - id: south
+    name: South district
+    centroid_lat: 18.4200
+    centroid_lon: 73.9000
+    neighbours: [central, west]
+  - id: east
+    name: East district
+    centroid_lat: 18.5500
+    centroid_lon: 73.9500
+    neighbours: [north]
+  - id: west
+    name: West district
+    centroid_lat: 18.4800
+    centroid_lon: 73.7400
+    neighbours: [south]
+  - id: industrial
+    name: Industrial belt
+    centroid_lat: 18.7000
+    centroid_lon: 73.7000
+    neighbours: [north]
+
+# --- systems (6; same ids, different thresholds/capacities) ---
+systems:
+  - id: drainage
+    name: Storm-water drainage
+    capacity: 90.0
+    critical_threshold: 70.0
+    unit: stress_index
+  - id: roads
+    name: Road network
+    capacity: 100.0
+    critical_threshold: 80.0
+    unit: stress_index
+  - id: emergency_response
+    name: Emergency response
+    capacity: 50.0
+    critical_threshold: 45.0
+    unit: stress_index
+  - id: hospital
+    name: Hospital occupancy
+    capacity: 90.0
+    critical_threshold: 80.0
+    unit: stress_index
+  - id: power
+    name: Power grid
+    capacity: 100.0
+    critical_threshold: 85.0
+    unit: stress_index
+  - id: comms
+    name: Telecom / comms
+    capacity: 100.0
+    critical_threshold: 75.0
+    unit: stress_index
+
+# --- streams (same systems, different cadence/noise) ---
+streams:
+  - source: drainage_sensor
+    system: drainage
+    cadence_hours: 1.0
+    typical_delay_hours: 1.5
+    noise_level: 0.08
+    source_kind: simulated
+  - source: roads_sensor
+    system: roads
+    cadence_hours: 2.0
+    typical_delay_hours: 1.0
+    noise_level: 0.06
+    source_kind: simulated
+  - source: emergency_calls
+    system: emergency_response
+    cadence_hours: 1.0
+    typical_delay_hours: 3.0
+    noise_level: 0.12
+    source_kind: simulated
+  - source: hospital_occupancy
+    system: hospital
+    cadence_hours: 3.0
+    typical_delay_hours: 2.0
+    noise_level: 0.05
+    source_kind: simulated
+  - source: power_load
+    system: power
+    cadence_hours: 1.0
+    typical_delay_hours: 0.5
+    noise_level: 0.04
+    source_kind: simulated
+  - source: comms_load
+    system: comms
+    cadence_hours: 1.0
+    typical_delay_hours: 0.5
+    noise_level: 0.04
+    source_kind: simulated
+  - source: citizen_report
+    system: roads
+    cadence_hours: 6.0
+    typical_delay_hours: 4.0
+    noise_level: 0.35
+    source_kind: simulated
+    false_report_rate: 0.35
+
+# --- weak domain prior (different edges from mumbai) ---
+domain_prior_edges:
+  - u: central:drainage
+    v: central:roads
+    lag_hours: 2.0
+    weight: 0.5
+    confidence: 0.3
+  - u: north:roads
+    v: north:emergency_response
+    lag_hours: 2.5
+    weight: 0.4
+    confidence: 0.3

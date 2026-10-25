@@ -1,0 +1,154 @@
+city_id: mumbai
+name: Mumbai Metropolitan Region (synthetic, Phase 1)
+start_time_utc: "2019-06-01T00:00:00Z"
+critical_stress_threshold: 0.8
+
+# --- zones (10) with neighbour adjacency (MMR) ---
+zones:
+  - id: mumbai_city
+    name: Mumbai City (Colaba/Fort)
+    centroid_lat: 18.9300
+    centroid_lon: 72.8300
+    neighbours: [mumbai_suburban_east]
+  - id: mumbai_suburban_east
+    name: Mumbai Suburban East (Kurla/Ghatkopar)
+    centroid_lat: 19.0700
+    centroid_lon: 72.9000
+    neighbours: [mumbai_city, thane, mumbai_suburban_west]
+  - id: mumbai_suburban_west
+    name: Mumbai Suburban West (Bandra/Andheri)
+    centroid_lat: 19.0600
+    centroid_lon: 72.8400
+    neighbours: [mumbai_suburban_east, thane]
+  - id: thane
+    name: Thane
+    centroid_lat: 19.2180
+    centroid_lon: 72.9780
+    neighbours: [mumbai_suburban_east, mumbai_suburban_west, navi_mumbai, kalyan]
+  - id: navi_mumbai
+    name: Navi Mumbai (Vashi/Belapur)
+    centroid_lat: 19.0300
+    centroid_lon: 73.0200
+    neighbours: [thane, panvel]
+  - id: kalyan
+    name: Kalyan-Dombivali
+    centroid_lat: 19.2400
+    centroid_lon: 73.1300
+    neighbours: [thane, dombivali]
+  - id: dombivali
+    name: Dombivali
+    centroid_lat: 19.2100
+    centroid_lon: 73.1000
+    neighbours: [kalyan]
+  - id: vasai
+    name: Vasai-Virar
+    centroid_lat: 19.4200
+    centroid_lon: 72.8100
+    neighbours: []
+  - id: virar
+    name: Virar
+    centroid_lat: 19.4400
+    centroid_lon: 72.7900
+    neighbours: [vasai]
+  - id: panvel
+    name: Panvel
+    centroid_lat: 18.9900
+    centroid_lon: 73.1100
+    neighbours: [navi_mumbai]
+
+# --- systems (6) ---
+systems:
+  - id: drainage
+    name: Storm-water drainage
+    capacity: 100.0
+    critical_threshold: 80.0
+    unit: stress_index
+  - id: roads
+    name: Road network
+    capacity: 100.0
+    critical_threshold: 75.0
+    unit: stress_index
+  - id: emergency_response
+    name: Emergency response (ambulance/police)
+    capacity: 60.0
+    critical_threshold: 50.0
+    unit: stress_index
+  - id: hospital
+    name: Hospital occupancy
+    capacity: 100.0
+    critical_threshold: 85.0
+    unit: stress_index
+  - id: power
+    name: Power grid
+    capacity: 100.0
+    critical_threshold: 90.0
+    unit: stress_index
+  - id: comms
+    name: Telecom / comms
+    capacity: 100.0
+    critical_threshold: 80.0
+    unit: stress_index
+
+# --- observation streams (one spec per system; applied per zone) ---
+streams:
+  - source: drainage_sensor
+    system: drainage
+    cadence_hours: 1.0
+    typical_delay_hours: 1.0
+    noise_level: 0.05
+    source_kind: simulated
+  - source: roads_sensor
+    system: roads
+    cadence_hours: 1.0
+    typical_delay_hours: 1.0
+    noise_level: 0.05
+    source_kind: simulated
+  - source: emergency_calls
+    system: emergency_response
+    cadence_hours: 2.0
+    typical_delay_hours: 2.0
+    noise_level: 0.10
+    source_kind: simulated
+  - source: hospital_occupancy
+    system: hospital
+    cadence_hours: 3.0
+    typical_delay_hours: 1.0
+    noise_level: 0.05
+    source_kind: simulated
+  - source: power_load
+    system: power
+    cadence_hours: 1.0
+    typical_delay_hours: 0.5
+    noise_level: 0.03
+    source_kind: simulated
+  - source: comms_load
+    system: comms
+    cadence_hours: 1.0
+    typical_delay_hours: 0.5
+    noise_level: 0.03
+    source_kind: simulated
+  - source: citizen_report
+    system: roads
+    cadence_hours: 4.0
+    typical_delay_hours: 3.0
+    noise_level: 0.30
+    source_kind: simulated
+    false_report_rate: 0.20
+
+# --- weak domain prior (NOT ground truth; data may override) ---
+domain_prior_edges:
+  - u: mumbai_city:drainage
+    v: mumbai_city:roads
+    lag_hours: 1.5
+    weight: 0.6
+    confidence: 0.4
+  - u: mumbai_city:roads
+    v: mumbai_city:emergency_response
+    lag_hours: 2.0
+    weight: 0.5
+    confidence: 0.4
+  - u: thane:drainage
+    v: thane:roads
+    lag_hours: 1.5
+    weight: 0.6
+    confidence: 0.4
