@@ -1,0 +1,51 @@
+{
+  "title": "Lead Time vs False-Alarm Trade-off",
+  "methods": {
+    "forecaster": {
+      "lead_time": 32.5,
+      "far": 5.714,
+      "pod": 0.6
+    },
+    "b1_isolated": {
+      "lead_time": 29.0,
+      "far": 5.429,
+      "pod": 0.62
+    },
+    "b2_rainrule": {
+      "lead_time": 29.0,
+      "far": 3.429,
+      "pod": 0.72
+    },
+    "b3_climatology": {
+      "lead_time": 30.0,
+      "far": 5.429,
+      "pod": 0.62
+    },
+    "b4_static_graph": {
+      "lead_time": 32.5,
+      "far": 5.714,
+      "pod": 0.6
+    },
+    "b5_prior_only": {
+      "lead_time": 32.0,
+      "far": 4.286,
+      "pod": 0.54
+    },
+    "b6_no_trust": {
+      "lead_time": 32.5,
+      "far": 5.714,
+      "pod": 0.6
+    },
+    "b7_persistence_outlook": {
+      "lead_time": 32.5,
+      "far": 5.714,
+      "pod": 0.6
+    }
+  },
+  "provenance": {
+    "inputs": "Real rainfall and soil moisture (Open-Meteo reanalysis/forecast)",
+    "downstream_systems": "SIMULATED infrastructure network response (not real sensor hardware)",
+    "generator_note": "Synthetic storm scenarios represent an orographic burst model conditioned on Upper Assam topology.",
+    "real_event_caveat": "Real-event check (Assam 2026) has n=1 event; illustrative only, not an operational field trial."
+  }
+}

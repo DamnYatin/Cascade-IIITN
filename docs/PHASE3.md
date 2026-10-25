@@ -58,12 +58,13 @@
   - Forecaster achieved median lead time 32.5h [95% CI: 25.0, 64.5] (longest lead time across all methods, beating B1 Isolated by +3.5h and B2 Rain-Rule by +3.5h).
   - F-heldout-city demonstrated zero-code generalisation on North Bank Assam topology (median lead 34.0h, generalisation gap +1.5h).
   - Test E16 in `tests/test_eval_heldout_lock.py` passed. Outputs saved to `eval/heldout_results.json`.
-- [ ] **G9: Reporting, Visuals, Matrix & API**
+- [x] **G9: Reporting, Visuals, Matrix & API**
   - `backend/app/eval/report.py` and `scripts/eval_report.py`.
-  - Generate `eval/summary.json`, `eval/tables/*.csv`, `eval/figures/*` (SVG/PNG), `frontend/public/eval/*.json`.
-  - Write `docs/EVALUATION.md` and `docs/REQUIREMENTS_MATRIX.md`.
-  - Add read-only API endpoints (`/eval/summary`, `/eval/reliability`, `/eval/curves`, `/eval/matrix`).
-  - Test E21.
+  - Generated machine-readable `eval/summary.json`, `eval/tables/*.csv`, and self-contained SVG figures in `eval/figures/` (`reliability.svg`, `lead_vs_far.svg`, `edge_recovery.svg`).
+  - Exported versioned frontend JSON assets with full provenance to `frontend/public/eval/` (`summary.json`, `reliability.json`, `curves.json`, `matrix.json`).
+  - Generated comprehensive `docs/EVALUATION.md` (limitations, plain caveats, what is simulated vs real) and `docs/REQUIREMENTS_MATRIX.md` (requirements 6 & 7 verified as "not yet (Phase 4)").
+  - Implemented read-only FastAPI evaluation endpoints in `backend/app/api.py`: `GET /eval/summary`, `GET /eval/reliability`, `GET /eval/curves`, `GET /eval/matrix`.
+  - Unit test E21 in `tests/test_eval_report_matrix_api.py` (3/3 passed).
 - [ ] **G10: Final Verification & Clean History**
   - Run full test suite twice consecutively and once randomly (`pytest-randomly`).
   - Update `tests/PHASE3_TEST_REPORT.md` from live execution outputs.
