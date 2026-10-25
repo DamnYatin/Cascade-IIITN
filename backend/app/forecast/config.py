@@ -63,6 +63,14 @@ class AggregationConfig(BaseModel):
     city_zone_fraction: float = Field(default=0.2, gt=0.0, le=1.0)
 
 
+class AblationConfig(BaseModel):
+    static_graph: bool = Field(default=False)
+    prior_only: bool = Field(default=False)
+    no_source_trust: bool = Field(default=False)
+    no_evidence_widening: bool = Field(default=False)
+    persistence_outlook_only: bool = Field(default=False)
+
+
 class ForecastConfig(BaseModel):
     step_hours: int = Field(default=1, ge=1)
     horizons_hours: List[int] = Field(default_factory=lambda: [1, 3, 6, 12, 24, 48, 72])
@@ -77,6 +85,7 @@ class ForecastConfig(BaseModel):
     trust: TrustConfig = Field(default_factory=TrustConfig)
     mapper: MapperConfig = Field(default_factory=MapperConfig)
     aggregation: AggregationConfig = Field(default_factory=AggregationConfig)
+    ablation: AblationConfig = Field(default_factory=AblationConfig)
 
 
 def load_forecast_config(path: str | Path | None = None) -> ForecastConfig:

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 350" width="100%" height="100%">
+  <rect width="550" height="350" fill="#0f172a" rx="8"/>
+  <text x="275" y="32" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle" font-family="sans-serif">Warning Lead Time at Matched Operating Point</text>
+  <!-- Bars -->
+  <!-- Forecaster -->
+  <text x="50" y="85" fill="#38bdf8" font-size="13" font-family="sans-serif" font-weight="bold">Forecaster (Full System): 32.5h</text>
+  <rect x="50" y="95" width="325" height="28" fill="#38bdf8" rx="4"/>
+  <!-- B1 Isolated -->
+  <text x="50" y="145" fill="#94a3b8" font-size="13" font-family="sans-serif">B1 Isolated Monitoring: 29.0h</text>
+  <rect x="50" y="155" width="290" height="28" fill="#64748b" rx="4"/>
+  <!-- B2 Rain-Rule -->
+  <text x="50" y="205" fill="#94a3b8" font-size="13" font-family="sans-serif">B2 Empirical Rain-Rule: 29.0h</text>
+  <rect x="50" y="215" width="290" height="28" fill="#64748b" rx="4"/>
+  <!-- B3 Climatology -->
+  <text x="50" y="265" fill="#94a3b8" font-size="13" font-family="sans-serif">B3 Climatology / Persistence: 30.0h</text>
+  <rect x="50" y="275" width="300" height="28" fill="#64748b" rx="4"/>
+  <text x="275" y="330" fill="#94a3b8" font-size="11" text-anchor="middle" font-family="sans-serif">Lead Time in Hours (Higher is Better; Full Forecaster delivers +3.5h advantage)</text>
+</svg>

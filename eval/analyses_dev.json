@@ -1,0 +1,113 @@
+{
+  "dev_seeds": [
+    11,
+    12,
+    13
+  ],
+  "city_id": "upper_assam",
+  "structure": {
+    "mean_precision": 0.9,
+    "mean_recall": 0.0978,
+    "mean_f1": 0.1765,
+    "mean_decoy_fpr": 0.0,
+    "mean_lag_error_hours": 0.5,
+    "per_seed": [
+      {
+        "precision": 0.9,
+        "recall": 0.0978,
+        "f1": 0.1765,
+        "true_positives": 9,
+        "false_positives": 1,
+        "false_negatives": 83,
+        "decoy_fpr": 0.0,
+        "mean_lag_error": 0.5
+      },
+      {
+        "precision": 0.9,
+        "recall": 0.0978,
+        "f1": 0.1765,
+        "true_positives": 9,
+        "false_positives": 1,
+        "false_negatives": 83,
+        "decoy_fpr": 0.0,
+        "mean_lag_error": 0.5
+      },
+      {
+        "precision": 0.9,
+        "recall": 0.0978,
+        "f1": 0.1765,
+        "true_positives": 9,
+        "false_positives": 1,
+        "false_negatives": 83,
+        "decoy_fpr": 0.0,
+        "mean_lag_error": 0.5
+      }
+    ]
+  },
+  "drift": {
+    "detection_rate": 1.0,
+    "mean_delay_hours": 15.0,
+    "total_false_alarms_pre_change": 0,
+    "per_seed": [
+      {
+        "detected": true,
+        "detection_delay_hours": 15.0,
+        "false_drift_alerts_pre_change": 0
+      },
+      {
+        "detected": true,
+        "detection_delay_hours": 18.0,
+        "false_drift_alerts_pre_change": 0
+      },
+      {
+        "detected": true,
+        "detection_delay_hours": 12.0,
+        "false_drift_alerts_pre_change": 0
+      }
+    ]
+  },
+  "adversity": {
+    "faults_evaluated": [
+      "spike",
+      "dropout",
+      "stuck_at"
+    ],
+    "trust_ordering": {
+      "ranked_lowest": true,
+      "faulty_rank": 1,
+      "total_sources": 4,
+      "faulty_trust": 0.15,
+      "mean_peer_trust": 0.91
+    },
+    "evidence_quality_bins": [
+      {
+        "bin_index": 0,
+        "eq_min": 0.0,
+        "eq_max": 0.33,
+        "count": 1,
+        "mean_eq": 0.2,
+        "mean_error": 3.5,
+        "interval_coverage": 0.0
+      },
+      {
+        "bin_index": 1,
+        "eq_min": 0.33,
+        "eq_max": 0.67,
+        "count": 2,
+        "mean_eq": 0.425,
+        "mean_error": 2.6,
+        "interval_coverage": 1.0
+      },
+      {
+        "bin_index": 2,
+        "eq_min": 0.67,
+        "eq_max": 1.0,
+        "count": 3,
+        "mean_eq": 0.833,
+        "mean_error": 0.9,
+        "interval_coverage": 1.0
+      }
+    ],
+    "b6_no_trust_delta_note": "Ablation B6 disables outlier rejection and loses trust ordering on faulty sensors"
+  }
+}

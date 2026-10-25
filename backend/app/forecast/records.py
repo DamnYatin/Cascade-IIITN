@@ -46,6 +46,7 @@ class ForecastSnapshot(BaseModel):
     # System flags
     burn_in: bool = False
     calibrated: bool = False
+    calibration_source: str = "none"
     oracle: bool = False
     config_hash: str = ""
 

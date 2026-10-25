@@ -456,8 +456,11 @@ def test_import_isolation_no_synth_in_model_packages():
 
     for pkg_name in packages:
         mod = importlib.import_module(pkg_name)
-        pkg_path = Path(mod.__file__).parent
-        for py in pkg_path.glob("**/*.py"):
+        if hasattr(mod, "__path__"):
+            py_files = list(Path(mod.__file__).parent.glob("**/*.py"))
+        else:
+            py_files = [Path(mod.__file__)]
+        for py in py_files:
             text = py.read_text(encoding="utf-8")
             tree = ast.parse(text)
             for node in ast.walk(tree):

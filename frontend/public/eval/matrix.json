@@ -1,0 +1,51 @@
+{
+  "title": "Playbook Requirements Verification Matrix",
+  "updated_at_utc": "2026-10-25T21:03:38.417493+00:00",
+  "requirements": [
+    {
+      "id": 1,
+      "title": "Multi-Horizon Cascading Failure Forecaster",
+      "status": "DONE"
+    },
+    {
+      "id": 2,
+      "title": "Causal Dependency Graph Discovery",
+      "status": "DONE"
+    },
+    {
+      "id": 3,
+      "title": "Lead-Time Prediction for Infrastructure Cascades",
+      "status": "DONE"
+    },
+    {
+      "id": 4,
+      "title": "Online Adaptation & Drift Tracking",
+      "status": "DONE"
+    },
+    {
+      "id": 5,
+      "title": "Uncertainty Quantification & Adversity Resilience",
+      "status": "DONE"
+    },
+    {
+      "id": 6,
+      "title": "Counterfactual Explainability Engine",
+      "status": "not yet (Phase 4)"
+    },
+    {
+      "id": 7,
+      "title": "Intervention & Decision Optimisation",
+      "status": "not yet (Phase 4)"
+    },
+    {
+      "id": 8,
+      "title": "Zero-Code Geographic Generalisation",
+      "status": "DONE"
+    },
+    {
+      "id": 9,
+      "title": "Temporal Validation & Audit Protocol",
+      "status": "DONE"
+    }
+  ]
+}

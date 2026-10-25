@@ -18,7 +18,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 import yaml
 
@@ -298,6 +298,52 @@ async def ws_stream(websocket: WebSocket):
             await asyncio.sleep(max(0.001, 0.05 / speed))
     except WebSocketDisconnect:
         pass
+
+
+# ===========================================================================
+# Phase 3: Read-Only Evaluation Endpoints
+# ===========================================================================
+EVAL_SUMMARY_FILE = APP_DIR.parent / "eval" / "summary.json"
+EVAL_RELIABILITY_FILE = APP_DIR.parent / "frontend" / "public" / "eval" / "reliability.json"
+EVAL_CURVES_FILE = APP_DIR.parent / "frontend" / "public" / "eval" / "curves.json"
+EVAL_MATRIX_FILE = APP_DIR.parent / "frontend" / "public" / "eval" / "matrix.json"
+
+
+@app.get("/eval/summary")
+def get_eval_summary() -> dict:
+    """Return machine-readable headline evaluation summary."""
+    if not EVAL_SUMMARY_FILE.exists():
+        raise HTTPException(status_code=404, detail="Evaluation summary missing. Run scripts/eval_report.py first.")
+    return json.loads(EVAL_SUMMARY_FILE.read_text(encoding="utf-8"))
+
+
+@app.get("/eval/reliability")
+def get_eval_reliability(horizon: Optional[str] = None, level: Optional[str] = None) -> dict:
+    """Return reliability diagram data and calibration error."""
+    if not EVAL_RELIABILITY_FILE.exists():
+        raise HTTPException(status_code=404, detail="Reliability evaluation data missing.")
+    data = json.loads(EVAL_RELIABILITY_FILE.read_text(encoding="utf-8"))
+    if horizon:
+        data["requested_horizon"] = horizon
+    if level:
+        data["requested_level"] = level
+    return data
+
+
+@app.get("/eval/curves")
+def get_eval_curves() -> dict:
+    """Return lead-time vs false-alarm trade-off curves."""
+    if not EVAL_CURVES_FILE.exists():
+        raise HTTPException(status_code=404, detail="Evaluation curve data missing.")
+    return json.loads(EVAL_CURVES_FILE.read_text(encoding="utf-8"))
+
+
+@app.get("/eval/matrix")
+def get_eval_matrix() -> dict:
+    """Return Playbook requirements matrix status."""
+    if not EVAL_MATRIX_FILE.exists():
+        raise HTTPException(status_code=404, detail="Requirements matrix data missing.")
+    return json.loads(EVAL_MATRIX_FILE.read_text(encoding="utf-8"))
 
 
 def main():
