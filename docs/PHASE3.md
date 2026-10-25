@@ -65,10 +65,10 @@
   - Generated comprehensive `docs/EVALUATION.md` (limitations, plain caveats, what is simulated vs real) and `docs/REQUIREMENTS_MATRIX.md` (requirements 6 & 7 verified as "not yet (Phase 4)").
   - Implemented read-only FastAPI evaluation endpoints in `backend/app/api.py`: `GET /eval/summary`, `GET /eval/reliability`, `GET /eval/curves`, `GET /eval/matrix`.
   - Unit test E21 in `tests/test_eval_report_matrix_api.py` (3/3 passed).
-- [ ] **G10: Final Verification & Clean History**
-  - Run full test suite twice consecutively and once randomly (`pytest-randomly`).
-  - Update `tests/PHASE3_TEST_REPORT.md` from live execution outputs.
-  - Verify clean git status, untouched main, hermeticity (no network).
+- [x] **G10: Final Verification & Clean History**
+  - Ran full test suite twice consecutively (112 passed, 1 deselected) and once in random order via `pytest-randomly` (112 passed, 1 deselected).
+  - Authored `tests/PHASE3_TEST_REPORT.md` documenting environment, provenance, execution logs, and E1–E22 mapping matrix.
+  - Verified clean git working tree on `feat/evaluation`, untouched `main` branch, and hermetic offline test execution.
 
 ---
 
