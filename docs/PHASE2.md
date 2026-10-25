@@ -15,7 +15,7 @@
   - `backend/app/forecast/trust.py` (Beta reliability, outlier gate, flatline detector, citizen-report aggregation, evidence quality).
   - `backend/app/forecast/estimator.py` (scalar linear-Gaussian filter, late-arrival buffer re-filtering).
   - Adversity & late-arrival tests (T19–T22).
-- [ ] **F3: Dependency Learner, EdgeBook & Drift Detection**
+- [x] **F3: Dependency Learner, EdgeBook & Drift Detection**
   - `backend/app/forecast/learner.py` (online sparse lagged RLS with forgetting, weak prior ridge, candidate parent restrictions, EdgeBook).
   - `backend/app/forecast/drift.py` (Page-Hinkley and two-window mean shift, River ADWIN optional adapter).
   - Tests: Label maturity (T3), edge recovery / decoy pairs (T15), drift adaptation (T16), edge flicker hysteresis (T17), prior overridability (T18).
