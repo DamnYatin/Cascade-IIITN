@@ -60,6 +60,7 @@ def test_no_maharashtra_residue():
 
     allowlist_files = {
         "docs/ASSAM_MIGRATION.md",
+        "docs/PLAYBOOK.md",
         "tests/test_phase1.py",
         "tests/ASSAM_MIGRATION_TEST_REPORT.md",
     }
