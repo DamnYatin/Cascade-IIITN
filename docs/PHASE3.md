@@ -14,13 +14,13 @@
   - `backend/app/eval/metrics.py` (Brier, BSS, ECE, reliability bins, lead time, FAR, POD, TTC error/coverage, bootstrap).
   - `backend/app/eval/sweeps.py` (threshold evaluation, operating point selection, matched FAR interpolation).
   - Unit tests E1 to E6 in `tests/test_eval_metrics.py` (all 6 passed).
-- [ ] **G2: Scenarios, Protocol & Parallel Cached Runner**
+- [x] **G2: Scenarios, Protocol & Parallel Cached Runner**
   - `backend/app/eval/storm_rain.py` (spatially correlated lagged storm generator).
   - `backend/app/eval/scenarios.py` (scenario family builders: F-real, F-storm, F-quiet, F-drift, F-faulted, F-heldout-city).
   - `backend/app/eval/protocol.py` (seed sets, protocol specification, hash computation, held-out lock).
   - `backend/app/eval/runner.py` (parallel execution, disk cache keyed by run signature, resume support).
   - Pre-registered protocol document: `docs/EVAL_PROTOCOL.md`.
-  - Unit tests E7 and E20.
+  - Unit tests E7 and E20 in `tests/test_eval_scenarios_runner.py` (all passed).
 - [ ] **G3: Calibration & Observed Outcome Tracker**
   - `backend/app/forecast/outcomes.py` (`ObservedOutcomeTracker` without ground truth).
   - `backend/app/forecast/calibrate.py` (`FrozenIsotonicCalibrator` and `OnlineRollingCalibrator` with custom PAV algorithm).
