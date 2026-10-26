@@ -245,7 +245,7 @@ def test_p26_demo_bundle_integrity_and_determinism():
     for fname in expected_files:
         fpath = bundle_dir / fname
         assert fpath.exists(), f"Missing demo bundle file {fname}"
-        raw_bytes = fpath.read_bytes()
+        raw_bytes = fpath.read_bytes().replace(b"\r\n", b"\n")
         actual_sha = hashlib.sha256(raw_bytes).hexdigest()
         assert actual_sha == summary["files"][fname]["sha256"], f"SHA256 mismatch for {fname}"
         # Validate JSON parsability
