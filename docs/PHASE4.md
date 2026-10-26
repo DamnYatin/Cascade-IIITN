@@ -54,13 +54,14 @@
   - `scripts/build_demo_bundle.py` generating deterministic, offline JSON bundle in `frontend/public/phase4/` (242KB across 6 files) with UTF-8 byte hashes matching on Windows/Linux.
   - `scripts/export_schemas.py` exporting 14 canonical JSON Schemas to `frontend/public/schemas/` & generated `docs/API_CONTRACT.md`.
   - Verified tests P21 to P23, P25 to P27 in `tests/test_api_cli_bundle_contracts.py` (all 5 passed).
-- [ ] **H8: Phase 4 Evaluation Protocol, Truth Simulator & Benchmark Runs**
-  - Pre-register `docs/EVAL_PROTOCOL_P4.md` and commit.
-  - `backend/app/eval/truth_sim.py`, `backend/app/eval/explain_eval.py`, `backend/app/eval/plan_eval.py`.
-  - Unit tests P28 to P30.
-  - Dev runs on seeds {31, 32, 33}.
-  - Protocol freeze and held-out lock in `eval/heldout_lock_p4.json`.
-  - Single held-out run on seeds {201..205} + held-out topology (`north_bank_assam`).
+- [x] **H8: Phase 4 Evaluation Protocol, Truth Simulator & Benchmark Runs**
+  - Pre-registered `docs/EVAL_PROTOCOL_P4.md` and committed in commit `ec5c1ee` before any held-out evaluation was run.
+  - Implemented `backend/app/eval/truth_sim.py` (counterfactual latent generator re-simulation with identical CRN), `backend/app/eval/explain_eval.py`, and `backend/app/eval/plan_eval.py`.
+  - Added generator patch hook with proven bit-for-bit unpatched identity (P24).
+  - Verified unit tests P24, P28, P29, P30 in `tests/test_eval_phase4.py` (all 4 passed).
+  - Dev benchmark on seeds {31, 32, 33} completed and saved to `eval/dev_results_p4.json`.
+  - Single held-out run executed on seeds {201, 202, 203, 204, 205} and locked in `eval/heldout_lock_p4.json` (`rerun_count: 0`).
+  - Cross-topology transfer on `north_bank_assam` (seed 201) completed and recorded.
 - [ ] **H9: Phase 4 Reporting & Requirements Matrix Update**
   - Generate `docs/EVALUATION_P4.md`.
   - Update `docs/REQUIREMENTS_MATRIX.md` with Requirements 6 & 7 verified with real numbers, CIs, and honest caveats.
