@@ -1,0 +1,370 @@
+{
+  "partition": "dev",
+  "city_id": "upper_assam",
+  "seeds": [
+    31,
+    32,
+    33
+  ],
+  "n_seeds": 3,
+  "mean_solve_time_sec": 34.459,
+  "explanation": {
+    "dominant_parent_accuracy": {
+      "mean": 0.5,
+      "ci_lower": 0.5,
+      "ci_upper": 0.5
+    },
+    "link_f1": {
+      "mean": 0.5,
+      "ci_lower": 0.5,
+      "ci_upper": 0.5
+    },
+    "stage_order_correlation": {
+      "mean": 0.7,
+      "ci_lower": 0.7,
+      "ci_upper": 0.7
+    },
+    "stage_eta_mae_hours": {
+      "mean": 4.0,
+      "ci_lower": 4.0,
+      "ci_upper": 4.0
+    },
+    "root_cause_recall": {
+      "mean": 1.0,
+      "ci_lower": 1.0,
+      "ci_upper": 1.0
+    }
+  },
+  "counterfactual_fidelity": {
+    "sign_agreement_rate": {
+      "mean": 0.75,
+      "ci_lower": 0.75,
+      "ci_upper": 0.75
+    },
+    "rank_correlation": {
+      "mean": 0.0667,
+      "ci_lower": -0.4,
+      "ci_upper": 0.8
+    },
+    "calibration_slope": {
+      "mean": 0.85,
+      "ci_lower": 0.85,
+      "ci_upper": 0.85
+    }
+  },
+  "regret_hours": {
+    "proposed_planner": {
+      "mean": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0
+    },
+    "treat_highest_risk": {
+      "mean": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0
+    },
+    "random_feasible": {
+      "mean": 4.4,
+      "ci_lower": 4.2,
+      "ci_upper": 4.6
+    },
+    "do_nothing": {
+      "mean": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0
+    }
+  },
+  "records": [
+    {
+      "city_id": "upper_assam",
+      "seed": 31,
+      "solve_time_sec": 33.91904509998858,
+      "explanation": {
+        "dominant_parent_accuracy": 0.5,
+        "link_f1": 0.5,
+        "stage_order_correlation": 0.6999999999999998,
+        "stage_eta_mae_hours": 4.0,
+        "root_cause_recall": 1.0,
+        "faithfulness_gap": 0.15
+      },
+      "fidelity": {
+        "sign_agreement": 0.75,
+        "rank_correlation": -0.4,
+        "calibration_slope": 0.85,
+        "cascade_broken_rate": 1.0
+      },
+      "regret": {
+        "truth_oracle": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "proposed_planner": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "treat_highest_risk": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "static_priority": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "side_effect_blind": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "random_feasible": {
+          "realised_benefit": -4.6,
+          "regret_hours": 4.6,
+          "optimality_gap_pct": 0.0
+        },
+        "do_nothing": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        }
+      },
+      "value_of_lead_time": {
+        "cost_of_waiting_per_hour": 0.0,
+        "latest_effective_start_offset": 0.0,
+        "delay_curve": [
+          {
+            "delay_hours": 0.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 3.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 6.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 12.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 24.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          }
+        ]
+      }
+    },
+    {
+      "city_id": "upper_assam",
+      "seed": 32,
+      "solve_time_sec": 34.69063019999885,
+      "explanation": {
+        "dominant_parent_accuracy": 0.5,
+        "link_f1": 0.5,
+        "stage_order_correlation": 0.6999999999999998,
+        "stage_eta_mae_hours": 4.0,
+        "root_cause_recall": 1.0,
+        "faithfulness_gap": 0.15
+      },
+      "fidelity": {
+        "sign_agreement": 0.75,
+        "rank_correlation": -0.2,
+        "calibration_slope": 0.85,
+        "cascade_broken_rate": 1.0
+      },
+      "regret": {
+        "truth_oracle": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "proposed_planner": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "treat_highest_risk": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "static_priority": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "side_effect_blind": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "random_feasible": {
+          "realised_benefit": -4.4,
+          "regret_hours": 4.4,
+          "optimality_gap_pct": 0.0
+        },
+        "do_nothing": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        }
+      },
+      "value_of_lead_time": {
+        "cost_of_waiting_per_hour": 0.0,
+        "latest_effective_start_offset": 0.0,
+        "delay_curve": [
+          {
+            "delay_hours": 0.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 3.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 6.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 12.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 24.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          }
+        ]
+      }
+    },
+    {
+      "city_id": "upper_assam",
+      "seed": 33,
+      "solve_time_sec": 34.76625079999212,
+      "explanation": {
+        "dominant_parent_accuracy": 0.5,
+        "link_f1": 0.5,
+        "stage_order_correlation": 0.6999999999999998,
+        "stage_eta_mae_hours": 4.0,
+        "root_cause_recall": 1.0,
+        "faithfulness_gap": 0.15
+      },
+      "fidelity": {
+        "sign_agreement": 0.75,
+        "rank_correlation": 0.8,
+        "calibration_slope": 0.85,
+        "cascade_broken_rate": 1.0
+      },
+      "regret": {
+        "truth_oracle": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "proposed_planner": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "treat_highest_risk": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "static_priority": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "side_effect_blind": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        },
+        "random_feasible": {
+          "realised_benefit": -4.2,
+          "regret_hours": 4.2,
+          "optimality_gap_pct": 0.0
+        },
+        "do_nothing": {
+          "realised_benefit": 0.0,
+          "regret_hours": 0.0,
+          "optimality_gap_pct": 0.0
+        }
+      },
+      "value_of_lead_time": {
+        "cost_of_waiting_per_hour": 0.0,
+        "latest_effective_start_offset": 0.0,
+        "delay_curve": [
+          {
+            "delay_hours": 0.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 3.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 6.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 12.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          },
+          {
+            "delay_hours": 24.0,
+            "net_benefit": 0.0,
+            "delta_hours": 0.0,
+            "p_critical_72h": 1.0,
+            "cascade_broken": false
+          }
+        ]
+      }
+    }
+  ]
+}

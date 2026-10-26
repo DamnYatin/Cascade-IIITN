@@ -20,5 +20,6 @@ node_modules/
 !frontend/**/*.geojson
 !docs/**/*.md
 eval/cache/
+eval/cache_p4/
 data/cache/
 docs/PHASE3_PROMPT.md

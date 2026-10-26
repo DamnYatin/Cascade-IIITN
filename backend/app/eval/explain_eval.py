@@ -131,12 +131,41 @@ def evaluate_explanation_accuracy(
     # Extract predicted dominant parents from drivers and chain links
     pred_parents: Dict[str, str] = {}
     for driver in explanation.drivers:
-        if driver.dominant_parent:
-            pred_parents[driver.node_id] = driver.dominant_parent
+        if driver.evidence_receipt and driver.evidence_receipt.parent_node:
+            pred_parents[driver.evidence_receipt.node] = driver.evidence_receipt.parent_node
+        elif driver.driver_id.startswith("edge:"):
+            parts = driver.driver_id[5:].split("->")
+            if len(parts) == 2:
+                pred_parents[parts[1]] = parts[0]
 
-    for link in explanation.chain_links:
-        if link.v not in pred_parents:
-            pred_parents[link.v] = link.u
+    # Extract predicted links and stages from chain_tree
+    tree_links = set()
+    stages = []
+
+    def _walk_tree(node_dict: Dict[str, Any], depth: int):
+        if not isinstance(node_dict, dict):
+            return
+        curr = node_dict.get("node")
+        if not curr:
+            return
+        etas = node_dict.get("etas", {})
+        eta_h = None
+        if isinstance(etas, dict):
+            cond = etas.get("conditional", {})
+            if isinstance(cond, dict):
+                eta_h = cond.get("p50")
+        stages.append({"node_id": curr, "eta_hours": eta_h, "depth": depth})
+
+        for b in node_dict.get("branches", []):
+            parent_node = b.get("node")
+            if parent_node and curr:
+                tree_links.add((parent_node, curr))
+                if curr not in pred_parents:
+                    pred_parents[curr] = parent_node
+            _walk_tree(b, depth + 1)
+
+    if explanation.chain_tree:
+        _walk_tree(explanation.chain_tree, 0)
 
     for node, true_u in true_parents.items():
         if node in pred_parents:
@@ -147,13 +176,7 @@ def evaluate_explanation_accuracy(
     dom_acc = (correct_parents / total_evaluated_parents) if total_evaluated_parents > 0 else 0.5
 
     # 2. Chain link precision / recall / F1
-    pred_links = set((l.u, l.v) for l in explanation.chain_links)
-    if not pred_links and explanation.failure_chain_tree:
-        for st in explanation.failure_chain_tree.get("stages", []):
-            u_node = st.get("node_id")
-            for ch in st.get("children", []):
-                pred_links.add((u_node, ch.get("node_id")))
-
+    pred_links = tree_links
     if pred_links and true_links:
         tp = len(pred_links.intersection(true_links))
         prec = tp / len(pred_links)
@@ -174,7 +197,6 @@ def evaluate_explanation_accuracy(
     eta_errors = []
     pred_ranks = []
     true_ranks = []
-    stages = explanation.failure_chain_tree.get("stages", []) if explanation.failure_chain_tree else []
 
     for rank_idx, stage in enumerate(stages):
         n = stage.get("node_id")
@@ -212,7 +234,13 @@ def evaluate_explanation_accuracy(
         # First stage or root of tree
         pred_roots.add(stages[0].get("node_id"))
     for d in explanation.drivers[:3]:
-        pred_roots.add(d.node_id)
+        if d.evidence_receipt and d.evidence_receipt.node:
+            pred_roots.add(d.evidence_receipt.node)
+        elif ":" in d.driver_id:
+            parts = d.driver_id.split(":", 1)
+            pred_roots.add(parts[1])
+        else:
+            pred_roots.add(d.driver_id)
 
     root_recall = len(pred_roots.intersection(true_roots)) / len(true_roots) if true_roots else 1.0
 
