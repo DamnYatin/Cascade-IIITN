@@ -81,6 +81,7 @@ def _simulate_stress(
     family: str,
     anchor_mode: str,
     rng: np.random.Generator,
+    patches: Optional[list[Any]] = None,
 ) -> tuple[dict[str, list[float]], dict[str, list[float]]]:
     """Run latent stress simulation hour by hour."""
     params = {s.id: _system_params(s.id) for s in config.systems}
@@ -132,6 +133,31 @@ def _simulate_stress(
 
             # Process noise
             new_s += rng.normal(0.0, 0.015)
+
+            # Apply latent patches (counterfactual intervention execution)
+            if patches:
+                step_hour = float(t)
+                for p in patches:
+                    if p.start_hour <= step_hour <= p.end_hour:
+                        ptype = getattr(p, "patch_type", None)
+                        ptype_val = ptype.value if hasattr(ptype, "value") else str(ptype)
+                        nom_val = getattr(p, "nominal_value", 0.0)
+
+                        if ptype_val == "add_bias" and p.target == n:
+                            new_s += nom_val
+                        elif ptype_val == "cap_stress" and p.target == n:
+                            new_s = min(new_s, nom_val)
+                        elif ptype_val == "add_edge" and getattr(p, "v", None) == n:
+                            lag = int(round(getattr(p, "lag", 1.0) or 1.0))
+                            src_t = t - lag
+                            u_node = getattr(p, "u", None)
+                            u_val = stress[u_node][src_t] if (u_node and src_t >= 0 and u_node in stress) else 0.0
+                            new_s += nom_val * u_val
+                        elif ptype_val == "exposure_change":
+                            target_zone = getattr(p, "target", "")
+                            if n.startswith(f"{target_zone}:") and ("health" in n or "emergency_response" in n):
+                                new_s = 0.10 + (new_s - 0.10) * nom_val
+
             stress[n][t] = max(0.0, min(1.0, new_s))
 
     return stress, rain_input
@@ -277,6 +303,7 @@ def generate_city(
     generator_family: str = "logistic_hazard",
     anchor_mode: str = "off",
     rain_driver_label: str = "real_rain:openmeteo",
+    patches: Optional[list[Any]] = None,
 ) -> tuple[list[Observation], GroundTruth]:
     """Generate deterministic synthetic city stream and isolated ground truth."""
     if generator_family not in ("logistic_hazard", "threshold_nonlinear"):
@@ -321,7 +348,7 @@ def generate_city(
 
     stress, rain_input = _simulate_stress(
         config, graph, nodes, rain_by_zone_hour, duration_hours,
-        generator_family, anchor_mode, rng
+        generator_family, anchor_mode, rng, patches=patches,
     )
 
     episodes, city_ranges = _critical_episodes(
