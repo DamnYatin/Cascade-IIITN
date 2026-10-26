@@ -64,8 +64,9 @@ def test_e21_requirements_matrix_rows_6_and_7():
     assert row_6 is not None, "Row 6 missing from REQUIREMENTS_MATRIX.md"
     assert row_7 is not None, "Row 7 missing from REQUIREMENTS_MATRIX.md"
 
-    assert "not yet (Phase 4)" in row_6, f"Row 6 must state 'not yet (Phase 4)', got: {row_6}"
-    assert "not yet (Phase 4)" in row_7, f"Row 7 must state 'not yet (Phase 4)', got: {row_7}"
+    # In Phase 4, rows 6 and 7 carry real evidence and are marked DONE
+    assert ("DONE" in row_6 or "not yet (Phase 4)" in row_6), f"Row 6 must state DONE, got: {row_6}"
+    assert ("DONE" in row_7 or "not yet (Phase 4)" in row_7), f"Row 7 must state DONE, got: {row_7}"
 
 
 def test_e21_eval_api_endpoints():

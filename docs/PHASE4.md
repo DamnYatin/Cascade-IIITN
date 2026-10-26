@@ -67,10 +67,10 @@
   - Updated `docs/REQUIREMENTS_MATRIX.md` marking Requirements 6 & 7 as completed with real evidence.
   - Authored `docs/EXPLAINER.md` (method, equations, attribution additivity, confidence formula, abstention rules, hedging rules, and text lints).
   - Authored `docs/INTERVENTIONS.md` (action catalog, Assumptions Register with provenance, multi-objective net benefit formulation, and tuning instructions).
-- [ ] **H10: Final Verification & Clean Repository Discipline**
-  - Run full test suite twice consecutively and once with `pytest-randomly`.
-  - Author `tests/PHASE4_TEST_REPORT.md`.
-  - Verify clean git status on `feat/explain-intervene`, main untouched, zero untracked garbage.
+- [x] **H10: Final Verification & Clean Repository Discipline**
+  - Ran full test suite twice consecutively (150 passed, 1 deselected) and once with randomized order (`--randomly-seed=20261026`, 150 passed, 1 deselected).
+  - Authored `tests/PHASE4_TEST_REPORT.md` from actual test execution runs (+38 new tests, 150 total).
+  - Verified git status clean on `feat/explain-intervene`, main untouched, zero untracked garbage.
 
 ---
 
