@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5f2e8;
+  --surface: #f8f6ef;
+  --surface-muted: #eee9da;
+  --navy: #10224a;
+  --navy-deep: #0b1737;
+  --text-primary: #08090c;
+  --text-secondary: #41434a;
+  --text-muted: #636159;
+  --border: #c9c1ab;
+  --border-subtle: #ded8c9;
+  --accent-gold: #f4c52f;
+  --accent-gold-soft: #f9df72;
+  --normal: #42b883;
+  --watch: #64cbe3;
+  --high-risk: #e8bd45;
+  --critical: #f17d75;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Global focus-visible styles for keyboard navigation (WCAG 2.1 AA) */
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Dark surface elements get a lighter focus ring */
+.bg-navy-deep :focus-visible,
+.bg-navy :focus-visible {
+  outline-color: var(--accent-gold);
+}
+
+/* Tabular numerals for streaming data so numbers do not jitter */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eee9da;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9c1ab;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9d9682;
+}
+
+/* Marker-style golden highlight stroke from screenshot */
+.marker-gold {
+  position: relative;
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.marker-gold::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 1px;
+  height: 9px;
+  background-color: #f4c52f;
+  z-index: -1;
+  opacity: 0.95;
+  border-radius: 2px;
+}
+
+/* Slightly thinner marker variant for body/meta text */
+.marker-gold-sm {
+  position: relative;
+  display: inline-block;
+}
+
+.marker-gold-sm::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 0px;
+  height: 6px;
+  background-color: #f4c52f;
+  z-index: -1;
+  opacity: 0.95;
+  border-radius: 2px;
+}
+
+/* Card surfaces */
+.card-cream {
+  background-color: #f8f6ef;
+  border: 1px solid #c9c1ab;
+  border-radius: 0.75rem;
+}
+
+.card-navy {
+  background-color: #0b1737;
+  border: 1px solid #1e2c4f;
+  color: #f5f2e8;
+  border-radius: 0.75rem;
+}
+
+/* Skip navigation link for keyboard/screen-reader users */
+.skip-nav {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  z-index: 9999;
+  background-color: #f4c52f;
+  color: #08090c;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-nav:focus {
+  top: 0;
+  outline: 2px solid #10224a;
+  outline-offset: 2px;
+}
+
+/* ===========================
+   Reduced-motion accessibility
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep opacity transitions for state changes, but instant */
+  .transition-all,
+  .transition-colors,
+  .transition-transform {
+    transition-property: opacity !important;
+    transition-duration: 0.01ms !important;
+  }
+}
