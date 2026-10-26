@@ -1,0 +1,45 @@
+{
+  "description": "An adverse impact on infrastructure stress caused by an action or propagated cascade.",
+  "properties": {
+    "delta_p_critical": {
+      "description": "Increase in P(critical) induced by action",
+      "title": "Delta P Critical",
+      "type": "number"
+    },
+    "delta_p_high": {
+      "description": "Increase in P(high_risk) induced by action",
+      "title": "Delta P High",
+      "type": "number"
+    },
+    "description": {
+      "description": "Description of the adverse side-effect mechanism",
+      "title": "Description",
+      "type": "string"
+    },
+    "effect_type": {
+      "description": "'explicit_patch' | 'propagated_cascade'",
+      "title": "Effect Type",
+      "type": "string"
+    },
+    "harm_score": {
+      "description": "Harm score used in net benefit objective penalty",
+      "title": "Harm Score",
+      "type": "number"
+    },
+    "node": {
+      "description": "Affected infrastructure node",
+      "title": "Node",
+      "type": "string"
+    }
+  },
+  "required": [
+    "node",
+    "effect_type",
+    "delta_p_critical",
+    "delta_p_high",
+    "description",
+    "harm_score"
+  ],
+  "title": "SideEffect",
+  "type": "object"
+}

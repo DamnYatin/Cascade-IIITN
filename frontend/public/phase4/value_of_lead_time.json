@@ -1,0 +1,44 @@
+{
+  "cost_of_waiting_per_hour": 0.486,
+  "delay_curve": [
+    {
+      "cascade_broken": false,
+      "delay_hours": 0.0,
+      "delta_hours": 14.28,
+      "net_benefit": 12.7329,
+      "p_critical_72h": 1.0
+    },
+    {
+      "cascade_broken": false,
+      "delay_hours": 3.0,
+      "delta_hours": 12.99,
+      "net_benefit": 11.4429,
+      "p_critical_72h": 1.0
+    },
+    {
+      "cascade_broken": false,
+      "delay_hours": 6.0,
+      "delta_hours": 11.54,
+      "net_benefit": 9.9929,
+      "p_critical_72h": 1.0
+    },
+    {
+      "cascade_broken": false,
+      "delay_hours": 12.0,
+      "delta_hours": 8.45,
+      "net_benefit": 6.9029,
+      "p_critical_72h": 1.0
+    },
+    {
+      "cascade_broken": false,
+      "delay_hours": 24.0,
+      "delta_hours": 4.09,
+      "net_benefit": 2.5429,
+      "p_critical_72h": 1.0
+    }
+  ],
+  "initial_benefit": 12.733,
+  "latest_effective_start_delay_hours": 12.0,
+  "plan_id": "plan_f1892b3d",
+  "target_threshold_benefit": 6.366
+}

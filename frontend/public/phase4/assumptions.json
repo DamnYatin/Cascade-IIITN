@@ -1,0 +1,869 @@
+{
+  "assumptions": [
+    {
+      "action_id": "deploy_dewatering_pumps",
+      "assumed_value": 2.0,
+      "description": "Activation lead time required for Deploy High-Capacity Dewatering Pumps",
+      "grounded_in": [
+        "[S36]"
+      ],
+      "parameter_id": "deploy_dewatering_pumps.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "action_id": "deploy_dewatering_pumps",
+      "assumed_value": 4.5,
+      "description": "Cost_lakh cost per unit for Deploy High-Capacity Dewatering Pumps",
+      "grounded_in": [
+        "[S36]"
+      ],
+      "parameter_id": "deploy_dewatering_pumps.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        3.6,
+        5.625
+      ]
+    },
+    {
+      "action_id": "deploy_dewatering_pumps",
+      "assumed_value": 2.0,
+      "description": "Crews cost per unit for Deploy High-Capacity Dewatering Pumps",
+      "grounded_in": [
+        "[S36]"
+      ],
+      "parameter_id": "deploy_dewatering_pumps.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        1.6,
+        2.5
+      ]
+    },
+    {
+      "action_id": "deploy_dewatering_pumps",
+      "assumed_value": 2.0,
+      "description": "Pumps cost per unit for Deploy High-Capacity Dewatering Pumps",
+      "grounded_in": [
+        "[S36]"
+      ],
+      "parameter_id": "deploy_dewatering_pumps.cost.pumps",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        1.6,
+        2.5
+      ]
+    },
+    {
+      "action_id": "deploy_dewatering_pumps",
+      "assumed_value": 0.6,
+      "description": "Benefit magnitude (scale_term) on {zone}:river_embankment",
+      "grounded_in": [
+        "[S36]"
+      ],
+      "parameter_id": "deploy_dewatering_pumps.benefit_0_scale_term",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b120% parametric uncertainty.",
+      "uncertainty_range": [
+        0.48,
+        0.72
+      ]
+    },
+    {
+      "action_id": "deploy_dewatering_pumps",
+      "assumed_value": 0.05,
+      "description": "Negative side-effect magnitude on {zone}:power",
+      "grounded_in": [
+        "[S36]"
+      ],
+      "parameter_id": "deploy_dewatering_pumps.side_effect_0_add_bias",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "action_id": "embankment_sandbagging",
+      "assumed_value": 4.0,
+      "description": "Activation lead time required for Embankment Reinforcement and Sandbagging",
+      "grounded_in": [
+        "[S13]",
+        "[S16]",
+        "[S24]"
+      ],
+      "parameter_id": "embankment_sandbagging.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        2.0,
+        6.0
+      ]
+    },
+    {
+      "action_id": "embankment_sandbagging",
+      "assumed_value": 6.0,
+      "description": "Cost_lakh cost per unit for Embankment Reinforcement and Sandbagging",
+      "grounded_in": [
+        "[S13]",
+        "[S16]",
+        "[S24]"
+      ],
+      "parameter_id": "embankment_sandbagging.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        4.8,
+        7.5
+      ]
+    },
+    {
+      "action_id": "embankment_sandbagging",
+      "assumed_value": 4.0,
+      "description": "Crews cost per unit for Embankment Reinforcement and Sandbagging",
+      "grounded_in": [
+        "[S13]",
+        "[S16]",
+        "[S24]"
+      ],
+      "parameter_id": "embankment_sandbagging.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        3.2,
+        5.0
+      ]
+    },
+    {
+      "action_id": "embankment_sandbagging",
+      "assumed_value": 0.5,
+      "description": "Benefit magnitude (scale_term) on {zone}:river_embankment",
+      "grounded_in": [
+        "[S13]",
+        "[S16]",
+        "[S24]"
+      ],
+      "parameter_id": "embankment_sandbagging.benefit_0_scale_term",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b125% parametric uncertainty.",
+      "uncertainty_range": [
+        0.375,
+        0.625
+      ]
+    },
+    {
+      "action_id": "embankment_sandbagging",
+      "assumed_value": 0.08,
+      "description": "Negative side-effect magnitude on {zone}:transport",
+      "grounded_in": [
+        "[S13]",
+        "[S16]",
+        "[S24]"
+      ],
+      "parameter_id": "embankment_sandbagging.side_effect_0_add_bias",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.08,
+        0.08
+      ]
+    },
+    {
+      "action_id": "traffic_diversion",
+      "assumed_value": 1.0,
+      "description": "Activation lead time required for Traffic Diversion & Controlled Arterial Closure",
+      "grounded_in": [
+        "[S12]",
+        "[S19]"
+      ],
+      "parameter_id": "traffic_diversion.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "action_id": "traffic_diversion",
+      "assumed_value": 1.5,
+      "description": "Cost_lakh cost per unit for Traffic Diversion & Controlled Arterial Closure",
+      "grounded_in": [
+        "[S12]",
+        "[S19]"
+      ],
+      "parameter_id": "traffic_diversion.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        1.2,
+        1.875
+      ]
+    },
+    {
+      "action_id": "traffic_diversion",
+      "assumed_value": 2.0,
+      "description": "Crews cost per unit for Traffic Diversion & Controlled Arterial Closure",
+      "grounded_in": [
+        "[S12]",
+        "[S19]"
+      ],
+      "parameter_id": "traffic_diversion.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        1.6,
+        2.5
+      ]
+    },
+    {
+      "action_id": "traffic_diversion",
+      "assumed_value": 0.4,
+      "description": "Benefit magnitude (scale_edge) on {zone}:transport",
+      "grounded_in": [
+        "[S12]",
+        "[S19]"
+      ],
+      "parameter_id": "traffic_diversion.benefit_0_scale_edge",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b10% parametric uncertainty.",
+      "uncertainty_range": [
+        0.4,
+        0.4
+      ]
+    },
+    {
+      "action_id": "traffic_diversion",
+      "assumed_value": 0.12,
+      "description": "Negative side-effect magnitude on {zone}:emergency_response",
+      "grounded_in": [
+        "[S12]",
+        "[S19]"
+      ],
+      "parameter_id": "traffic_diversion.side_effect_0_add_bias",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.12,
+        0.12
+      ]
+    },
+    {
+      "action_id": "rail_service_diversion",
+      "assumed_value": 3.0,
+      "description": "Activation lead time required for Rail Traffic Diversion & Track Protection",
+      "grounded_in": [
+        "[S14]",
+        "[S19]"
+      ],
+      "parameter_id": "rail_service_diversion.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        1.5,
+        4.5
+      ]
+    },
+    {
+      "action_id": "rail_service_diversion",
+      "assumed_value": 3.0,
+      "description": "Cost_lakh cost per unit for Rail Traffic Diversion & Track Protection",
+      "grounded_in": [
+        "[S14]",
+        "[S19]"
+      ],
+      "parameter_id": "rail_service_diversion.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        2.4,
+        3.75
+      ]
+    },
+    {
+      "action_id": "rail_service_diversion",
+      "assumed_value": 1.0,
+      "description": "Crews cost per unit for Rail Traffic Diversion & Track Protection",
+      "grounded_in": [
+        "[S14]",
+        "[S19]"
+      ],
+      "parameter_id": "rail_service_diversion.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        0.8,
+        1.25
+      ]
+    },
+    {
+      "action_id": "rail_service_diversion",
+      "assumed_value": 0.65,
+      "description": "Benefit magnitude (cap_stress) on {zone}:transport",
+      "grounded_in": [
+        "[S14]",
+        "[S19]"
+      ],
+      "parameter_id": "rail_service_diversion.benefit_0_cap_stress",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b10% parametric uncertainty.",
+      "uncertainty_range": [
+        0.65,
+        0.65
+      ]
+    },
+    {
+      "action_id": "rail_service_diversion",
+      "assumed_value": 0.05,
+      "description": "Negative side-effect magnitude on {zone}:transport",
+      "grounded_in": [
+        "[S14]",
+        "[S19]"
+      ],
+      "parameter_id": "rail_service_diversion.side_effect_0_add_bias",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "action_id": "backup_power_deployment",
+      "assumed_value": 2.0,
+      "description": "Activation lead time required for Backup Mobile Generators & Feeder Priority Restoration",
+      "grounded_in": [
+        "[S14]",
+        "[S21]",
+        "[S37]"
+      ],
+      "parameter_id": "backup_power_deployment.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "action_id": "backup_power_deployment",
+      "assumed_value": 5.0,
+      "description": "Cost_lakh cost per unit for Backup Mobile Generators & Feeder Priority Restoration",
+      "grounded_in": [
+        "[S14]",
+        "[S21]",
+        "[S37]"
+      ],
+      "parameter_id": "backup_power_deployment.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        4.0,
+        6.25
+      ]
+    },
+    {
+      "action_id": "backup_power_deployment",
+      "assumed_value": 2.0,
+      "description": "Crews cost per unit for Backup Mobile Generators & Feeder Priority Restoration",
+      "grounded_in": [
+        "[S14]",
+        "[S21]",
+        "[S37]"
+      ],
+      "parameter_id": "backup_power_deployment.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        1.6,
+        2.5
+      ]
+    },
+    {
+      "action_id": "backup_power_deployment",
+      "assumed_value": 2.0,
+      "description": "Generators cost per unit for Backup Mobile Generators & Feeder Priority Restoration",
+      "grounded_in": [
+        "[S14]",
+        "[S21]",
+        "[S37]"
+      ],
+      "parameter_id": "backup_power_deployment.cost.generators",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        1.6,
+        2.5
+      ]
+    },
+    {
+      "action_id": "backup_power_deployment",
+      "assumed_value": 0.5,
+      "description": "Benefit magnitude (cap_stress) on {zone}:power",
+      "grounded_in": [
+        "[S14]",
+        "[S21]",
+        "[S37]"
+      ],
+      "parameter_id": "backup_power_deployment.benefit_0_cap_stress",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b10% parametric uncertainty.",
+      "uncertainty_range": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "action_id": "mobile_comms_tower",
+      "assumed_value": 3.0,
+      "description": "Activation lead time required for Cell-on-Wheels (COW) Mobile Communications Unit",
+      "grounded_in": [],
+      "parameter_id": "mobile_comms_tower.activation_delay",
+      "provenance": "assumed",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        1.5,
+        4.5
+      ]
+    },
+    {
+      "action_id": "mobile_comms_tower",
+      "assumed_value": 3.5,
+      "description": "Cost_lakh cost per unit for Cell-on-Wheels (COW) Mobile Communications Unit",
+      "grounded_in": [],
+      "parameter_id": "mobile_comms_tower.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        2.8,
+        4.375
+      ]
+    },
+    {
+      "action_id": "mobile_comms_tower",
+      "assumed_value": 1.0,
+      "description": "Crews cost per unit for Cell-on-Wheels (COW) Mobile Communications Unit",
+      "grounded_in": [],
+      "parameter_id": "mobile_comms_tower.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        0.8,
+        1.25
+      ]
+    },
+    {
+      "action_id": "mobile_comms_tower",
+      "assumed_value": 1.0,
+      "description": "Generators cost per unit for Cell-on-Wheels (COW) Mobile Communications Unit",
+      "grounded_in": [],
+      "parameter_id": "mobile_comms_tower.cost.generators",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        0.8,
+        1.25
+      ]
+    },
+    {
+      "action_id": "mobile_comms_tower",
+      "assumed_value": 0.5,
+      "description": "Benefit magnitude (scale_term) on {zone}:comms",
+      "grounded_in": [],
+      "parameter_id": "mobile_comms_tower.benefit_0_scale_term",
+      "provenance": "assumed",
+      "sensitivity_notes": "Model assumption with \u00b10% parametric uncertainty.",
+      "uncertainty_range": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "action_id": "medical_surge_supplies",
+      "assumed_value": 4.0,
+      "description": "Activation lead time required for Medical Surge Capacity & Pre-Positioned Critical Supplies",
+      "grounded_in": [
+        "[S1]",
+        "[S33]",
+        "[S41]"
+      ],
+      "parameter_id": "medical_surge_supplies.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        2.0,
+        6.0
+      ]
+    },
+    {
+      "action_id": "medical_surge_supplies",
+      "assumed_value": 7.0,
+      "description": "Cost_lakh cost per unit for Medical Surge Capacity & Pre-Positioned Critical Supplies",
+      "grounded_in": [
+        "[S1]",
+        "[S33]",
+        "[S41]"
+      ],
+      "parameter_id": "medical_surge_supplies.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        5.6,
+        8.75
+      ]
+    },
+    {
+      "action_id": "medical_surge_supplies",
+      "assumed_value": 3.0,
+      "description": "Crews cost per unit for Medical Surge Capacity & Pre-Positioned Critical Supplies",
+      "grounded_in": [
+        "[S1]",
+        "[S33]",
+        "[S41]"
+      ],
+      "parameter_id": "medical_surge_supplies.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        2.4,
+        3.75
+      ]
+    },
+    {
+      "action_id": "medical_surge_supplies",
+      "assumed_value": 0.6,
+      "description": "Benefit magnitude (cap_stress) on {zone}:health",
+      "grounded_in": [
+        "[S1]",
+        "[S33]",
+        "[S41]"
+      ],
+      "parameter_id": "medical_surge_supplies.benefit_0_cap_stress",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b10% parametric uncertainty.",
+      "uncertainty_range": [
+        0.6,
+        0.6
+      ]
+    },
+    {
+      "action_id": "rescue_boat_prepositioning",
+      "assumed_value": 2.0,
+      "description": "Activation lead time required for NDRF / SDRF Rescue Boat & Ambulance Pre-Positioning",
+      "grounded_in": [
+        "[S11]",
+        "[S19]",
+        "[S22]"
+      ],
+      "parameter_id": "rescue_boat_prepositioning.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "action_id": "rescue_boat_prepositioning",
+      "assumed_value": 3.0,
+      "description": "Boats cost per unit for NDRF / SDRF Rescue Boat & Ambulance Pre-Positioning",
+      "grounded_in": [
+        "[S11]",
+        "[S19]",
+        "[S22]"
+      ],
+      "parameter_id": "rescue_boat_prepositioning.cost.boats",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        2.4,
+        3.75
+      ]
+    },
+    {
+      "action_id": "rescue_boat_prepositioning",
+      "assumed_value": 4.0,
+      "description": "Cost_lakh cost per unit for NDRF / SDRF Rescue Boat & Ambulance Pre-Positioning",
+      "grounded_in": [
+        "[S11]",
+        "[S19]",
+        "[S22]"
+      ],
+      "parameter_id": "rescue_boat_prepositioning.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        3.2,
+        5.0
+      ]
+    },
+    {
+      "action_id": "rescue_boat_prepositioning",
+      "assumed_value": 3.0,
+      "description": "Crews cost per unit for NDRF / SDRF Rescue Boat & Ambulance Pre-Positioning",
+      "grounded_in": [
+        "[S11]",
+        "[S19]",
+        "[S22]"
+      ],
+      "parameter_id": "rescue_boat_prepositioning.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        2.4,
+        3.75
+      ]
+    },
+    {
+      "action_id": "rescue_boat_prepositioning",
+      "assumed_value": 0.45,
+      "description": "Benefit magnitude (scale_term) on {zone}:emergency_response",
+      "grounded_in": [
+        "[S11]",
+        "[S19]",
+        "[S22]"
+      ],
+      "parameter_id": "rescue_boat_prepositioning.benefit_0_scale_term",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b120% parametric uncertainty.",
+      "uncertainty_range": [
+        0.36,
+        0.54
+      ]
+    },
+    {
+      "action_id": "rescue_boat_prepositioning",
+      "assumed_value": 0.04,
+      "description": "Negative side-effect magnitude on {zone}:transport",
+      "grounded_in": [
+        "[S11]",
+        "[S19]",
+        "[S22]"
+      ],
+      "parameter_id": "rescue_boat_prepositioning.side_effect_0_add_bias",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.04,
+        0.04
+      ]
+    },
+    {
+      "action_id": "staged_population_evacuation",
+      "assumed_value": 6.0,
+      "description": "Activation lead time required for Staged Pre-Emptive Evacuation to High-Ground Relief Camps",
+      "grounded_in": [
+        "[S5]",
+        "[S11]",
+        "[S45]"
+      ],
+      "parameter_id": "staged_population_evacuation.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        3.0,
+        9.0
+      ]
+    },
+    {
+      "action_id": "staged_population_evacuation",
+      "assumed_value": 4.0,
+      "description": "Boats cost per unit for Staged Pre-Emptive Evacuation to High-Ground Relief Camps",
+      "grounded_in": [
+        "[S5]",
+        "[S11]",
+        "[S45]"
+      ],
+      "parameter_id": "staged_population_evacuation.cost.boats",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        3.2,
+        5.0
+      ]
+    },
+    {
+      "action_id": "staged_population_evacuation",
+      "assumed_value": 12.0,
+      "description": "Cost_lakh cost per unit for Staged Pre-Emptive Evacuation to High-Ground Relief Camps",
+      "grounded_in": [
+        "[S5]",
+        "[S11]",
+        "[S45]"
+      ],
+      "parameter_id": "staged_population_evacuation.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        9.6,
+        15.0
+      ]
+    },
+    {
+      "action_id": "staged_population_evacuation",
+      "assumed_value": 5.0,
+      "description": "Crews cost per unit for Staged Pre-Emptive Evacuation to High-Ground Relief Camps",
+      "grounded_in": [
+        "[S5]",
+        "[S11]",
+        "[S45]"
+      ],
+      "parameter_id": "staged_population_evacuation.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        4.0,
+        6.25
+      ]
+    },
+    {
+      "action_id": "staged_population_evacuation",
+      "assumed_value": 0.35,
+      "description": "Benefit magnitude (exposure_change) on {zone}",
+      "grounded_in": [
+        "[S5]",
+        "[S11]",
+        "[S45]"
+      ],
+      "parameter_id": "staged_population_evacuation.benefit_0_exposure_change",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b120% parametric uncertainty.",
+      "uncertainty_range": [
+        0.28,
+        0.42
+      ]
+    },
+    {
+      "action_id": "staged_population_evacuation",
+      "assumed_value": 0.25,
+      "description": "Negative side-effect magnitude on {zone}:transport",
+      "grounded_in": [
+        "[S5]",
+        "[S11]",
+        "[S45]"
+      ],
+      "parameter_id": "staged_population_evacuation.side_effect_0_add_edge",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "action_id": "staged_population_evacuation",
+      "assumed_value": 0.08,
+      "description": "Negative side-effect magnitude on {zone}:health",
+      "grounded_in": [
+        "[S5]",
+        "[S11]",
+        "[S45]"
+      ],
+      "parameter_id": "staged_population_evacuation.side_effect_1_add_bias",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.08,
+        0.08
+      ]
+    },
+    {
+      "action_id": "early_school_closure",
+      "assumed_value": 1.0,
+      "description": "Activation lead time required for Early Educational Institution Closure & Bus Stand-Down",
+      "grounded_in": [
+        "[S17]",
+        "[S18]",
+        "[S34]",
+        "[S50]"
+      ],
+      "parameter_id": "early_school_closure.activation_delay",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Higher delay directly reduces time window where cascade can be averted.",
+      "uncertainty_range": [
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "action_id": "early_school_closure",
+      "assumed_value": 0.5,
+      "description": "Cost_lakh cost per unit for Early Educational Institution Closure & Bus Stand-Down",
+      "grounded_in": [
+        "[S17]",
+        "[S18]",
+        "[S34]",
+        "[S50]"
+      ],
+      "parameter_id": "early_school_closure.cost.cost_lakh",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        0.4,
+        0.625
+      ]
+    },
+    {
+      "action_id": "early_school_closure",
+      "assumed_value": 1.0,
+      "description": "Crews cost per unit for Early Educational Institution Closure & Bus Stand-Down",
+      "grounded_in": [
+        "[S17]",
+        "[S18]",
+        "[S34]",
+        "[S50]"
+      ],
+      "parameter_id": "early_school_closure.cost.crews",
+      "provenance": "expert_estimate_needed",
+      "sensitivity_notes": "Determines feasible deployment count under fixed budget limits.",
+      "uncertainty_range": [
+        0.8,
+        1.25
+      ]
+    },
+    {
+      "action_id": "early_school_closure",
+      "assumed_value": 0.75,
+      "description": "Benefit magnitude (scale_term) on {zone}:transport",
+      "grounded_in": [
+        "[S17]",
+        "[S18]",
+        "[S34]",
+        "[S50]"
+      ],
+      "parameter_id": "early_school_closure.benefit_0_scale_term",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Model assumption with \u00b10% parametric uncertainty.",
+      "uncertainty_range": [
+        0.75,
+        0.75
+      ]
+    },
+    {
+      "action_id": "early_school_closure",
+      "assumed_value": 0.02,
+      "description": "Negative side-effect magnitude on {zone}:emergency_response",
+      "grounded_in": [
+        "[S17]",
+        "[S18]",
+        "[S34]",
+        "[S50]"
+      ],
+      "parameter_id": "early_school_closure.side_effect_0_add_bias",
+      "provenance": "grounded_category",
+      "sensitivity_notes": "Adverse impact that penalises net benefit objective.",
+      "uncertainty_range": [
+        0.02,
+        0.02
+      ]
+    }
+  ],
+  "catalog_version": "1.0.0"
+}

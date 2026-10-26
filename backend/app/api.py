@@ -16,7 +16,7 @@ import asyncio
 import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
@@ -37,6 +37,7 @@ app = FastAPI(title="The 72-Hour Warning — Assam Phase 1 Replay Backbone")
 
 # In-memory session registry: key = f"{city_id}:{seed}:{window}:{anchor}".
 _sessions: dict[str, "ReplaySession"] = {}
+_risk_change_logs: dict[str, Any] = {}
 
 
 class ReplaySession:
@@ -203,6 +204,8 @@ async def ws_stream(websocket: WebSocket):
         rain_window = websocket.query_params.get("rain_window", "peak")
         anchor_mode = websocket.query_params.get("anchor", "off")
         forecast_mode = int(websocket.query_params.get("forecast", "0"))
+        explain_mode = int(websocket.query_params.get("explain", "0"))
+        plan_mode = int(websocket.query_params.get("plan", "0"))
     except ValueError as exc:
         await websocket.close(code=4000, reason=str(exc))
         return
@@ -253,9 +256,9 @@ async def ws_stream(websocket: WebSocket):
     session = _sessions[key]
     session.clock.speed = speed
 
-    # Optional forecast engine if forecast_mode == 1
+    # Optional forecast engine if forecast_mode == 1 or explain/plan requested
     forecast_engine = None
-    if forecast_mode == 1:
+    if forecast_mode == 1 or explain_mode == 1 or plan_mode == 1:
         from .forecast.engine import ForecastEngine
         from .forecast.config import ForecastConfig
 
@@ -287,13 +290,58 @@ async def ws_stream(websocket: WebSocket):
             await websocket.send_text(json.dumps(msg, default=str))
 
             if forecast_engine is not None:
-                snap = forecast_engine.step(session.clock.now, session.view)
-                f_msg = {
-                    "type": "forecast",
-                    "clock_time": session.clock.now.isoformat(),
-                    "forecast": snap.to_canonical_dict(),
-                }
-                await websocket.send_text(json.dumps(f_msg, default=str))
+                snap = forecast_engine.step(
+                    session.clock.now,
+                    session.view,
+                    enable_trace=bool(explain_mode == 1),
+                )
+                if forecast_mode == 1:
+                    f_msg = {
+                        "type": "forecast",
+                        "clock_time": session.clock.now.isoformat(),
+                        "forecast": snap.to_canonical_dict(),
+                    }
+                    await websocket.send_text(json.dumps(f_msg, default=str))
+
+                if explain_mode == 1:
+                    from .explain.coordinator import explain_snapshot
+                    exp_rec = explain_snapshot(forecast_engine, subject="city")
+                    e_msg = {
+                        "type": "explanation",
+                        "clock_time": session.clock.now.isoformat(),
+                        "explanation": exp_rec.canonical_dict(),
+                    }
+                    await websocket.send_text(json.dumps(e_msg, default=str))
+
+                if plan_mode == 1:
+                    from .intervene.actions import load_interventions_config, filter_actions_for_city
+                    from .intervene.solver import solve_interventions, generate_candidate_pool
+                    icfg = load_interventions_config()
+                    acts = filter_actions_for_city(icfg.actions, cfg)
+                    acts_by_id = {a.id: a for a in acts}
+                    zone_ids = [z.id for z in cfg.zones]
+                    candidates = generate_candidate_pool(acts, zone_ids=zone_ids)
+                    plans, _ = solve_interventions(
+                        candidates=candidates,
+                        actions_by_id=acts_by_id,
+                        budgets=icfg.default_budgets,
+                        model=forecast_engine.last_forward_model,
+                        initial_beliefs=forecast_engine.last_initial_beliefs,
+                        baseline_rollouts=forecast_engine.last_rollout_results,
+                        noise_bank=forecast_engine.last_noise_bank,
+                        decision_time=session.clock.now,
+                        method="greedy",
+                        screening_rollouts=50,
+                        full_rollouts=50,
+                        horizon=24,
+                    )
+                    best_plan = plans[0] if plans else None
+                    p_msg = {
+                        "type": "plan",
+                        "clock_time": session.clock.now.isoformat(),
+                        "plan": best_plan.canonical_dict() if best_plan else None,
+                    }
+                    await websocket.send_text(json.dumps(p_msg, default=str))
 
             await asyncio.sleep(max(0.001, 0.05 / speed))
     except WebSocketDisconnect:
@@ -344,6 +392,256 @@ def get_eval_matrix() -> dict:
     if not EVAL_MATRIX_FILE.exists():
         raise HTTPException(status_code=404, detail="Requirements matrix data missing.")
     return json.loads(EVAL_MATRIX_FILE.read_text(encoding="utf-8"))
+
+
+# ===========================================================================
+# Phase 4: Causal Explanation & Counterfactual Intervention Endpoints
+# ===========================================================================
+
+@app.get("/explain/latest")
+def get_explain_latest(
+    city: str = "upper_assam",
+    seed: int = 1,
+    zone: Optional[str] = None,
+    rain_window: str = "peak",
+    anchor: str = "off",
+):
+    """Return current failure chain, branching tree, and causal drivers for a zone or the city."""
+    cfg = _load_config(city)
+    key = f"{city}:{seed}:{rain_window}:{anchor}"
+    if key not in _sessions:
+        _sessions[key] = ReplaySession(cfg, seed, duration_hours=24, anchor_mode=anchor)
+    session = _sessions[key]
+
+    from .forecast.engine import ForecastEngine
+    from .forecast.config import ForecastConfig
+    from .explain.coordinator import explain_snapshot
+    from .explain.log import RiskChangeLog
+
+    engine = ForecastEngine(
+        city_config=cfg,
+        forecast_config=ForecastConfig(rollouts=100),
+        global_seed=seed,
+        anchor_mode=anchor,
+    )
+    _ = engine.step(session.clock.now, session.view, enable_trace=True)
+
+    subject = zone if zone else "city"
+    record = explain_snapshot(engine, subject=subject)
+
+    log_key = f"{city}:{seed}"
+    if log_key not in _risk_change_logs:
+        _risk_change_logs[log_key] = RiskChangeLog()
+    _risk_change_logs[log_key].append(record)
+
+    return record.canonical_dict()
+
+
+@app.get("/explain/changes")
+def get_explain_changes(
+    city: str = "upper_assam",
+    seed: int = 1,
+    limit: int = 10,
+    subject: Optional[str] = None,
+):
+    """Return bounded risk-change log entries for a replay session."""
+    log_key = f"{city}:{seed}"
+    if log_key not in _risk_change_logs:
+        return {"changes": []}
+    log = _risk_change_logs[log_key]
+    entries = log.get_changes(subject=subject, limit=limit)
+    return {"changes": [e.canonical_dict() for e in entries]}
+
+
+@app.get("/explain/link")
+def get_explain_link(
+    u: str,
+    v: str,
+    city: str = "upper_assam",
+    seed: int = 1,
+    rain_window: str = "peak",
+    anchor: str = "off",
+):
+    """Return evidence receipt and paired removal counterfactual for a directed link u -> v."""
+    cfg = _load_config(city)
+    key = f"{city}:{seed}:{rain_window}:{anchor}"
+    if key not in _sessions:
+        _sessions[key] = ReplaySession(cfg, seed, duration_hours=24, anchor_mode=anchor)
+    session = _sessions[key]
+
+    from .forecast.engine import ForecastEngine
+    from .forecast.config import ForecastConfig
+    from .explain.receipts import build_evidence_receipt
+    from .explain.chains import evaluate_link_removal_counterfactual
+
+    engine = ForecastEngine(
+        city_config=cfg,
+        forecast_config=ForecastConfig(rollouts=100),
+        global_seed=seed,
+        anchor_mode=anchor,
+    )
+    _ = engine.step(session.clock.now, session.view, enable_trace=True)
+
+    receipt = build_evidence_receipt(
+        node=v,
+        parent_node=u,
+        issued_at=session.clock.now,
+        ledger=engine.ledger,
+        edge_book=engine.learner.edge_book,
+    )
+
+    delta_p, delta_ttc = evaluate_link_removal_counterfactual(
+        u=u,
+        v=v,
+        model=engine.learner.get_model(),
+        initial_beliefs={n: (st.mean, st.variance) for n, st in engine.estimator.states.items()},
+        baseline_results=engine.last_rollout_results,
+        noise_bank=engine.last_noise_bank,
+        global_seed=seed,
+        horizon=48,
+        n_rollouts=100,
+    )
+    receipt.paired_removal_effect = {
+        "delta_p_critical": delta_p,
+        "delta_median_ttc": delta_ttc,
+    }
+
+    return receipt.canonical_dict()
+
+
+@app.get("/intervene/actions")
+def get_intervene_actions(city: str = "upper_assam"):
+    """Return available action library and Assumptions Register for a city."""
+    cfg = _load_config(city)
+    from .intervene.actions import load_interventions_config, filter_actions_for_city, build_assumptions_register
+    icfg = load_interventions_config()
+    filtered = filter_actions_for_city(icfg.actions, cfg)
+    assumptions = build_assumptions_register(filtered)
+    return {
+        "city_id": city,
+        "actions": [a.canonical_dict() for a in filtered],
+        "assumptions": [asm.canonical_dict() for asm in assumptions],
+        "default_budgets": icfg.default_budgets,
+        "objective": icfg.objective,
+    }
+
+
+class PlanRequest(BaseModel):
+    city: str = "upper_assam"
+    seed: int = 1
+    rain_window: str = "peak"
+    anchor: str = "off"
+    budgets: Optional[dict[str, float]] = None
+    method: str = "greedy"
+    mode: str = "fast"
+    horizon: int = 48
+
+
+@app.post("/intervene/plan")
+def post_intervene_plan(req: PlanRequest):
+    """Solve for ranked budget-feasible intervention plans."""
+    cfg = _load_config(req.city)
+    key = f"{req.city}:{req.seed}:{req.rain_window}:{req.anchor}"
+    if key not in _sessions:
+        _sessions[key] = ReplaySession(cfg, req.seed, duration_hours=24, anchor_mode=req.anchor)
+    session = _sessions[key]
+
+    from .forecast.engine import ForecastEngine
+    from .forecast.config import ForecastConfig
+    from .intervene.actions import load_interventions_config, filter_actions_for_city
+    from .intervene.solver import solve_interventions, generate_candidate_pool
+
+    engine = ForecastEngine(
+        city_config=cfg,
+        forecast_config=ForecastConfig(rollouts=100),
+        global_seed=req.seed,
+        anchor_mode=req.anchor,
+    )
+    _ = engine.step(session.clock.now, session.view, enable_trace=True)
+
+    icfg = load_interventions_config()
+    budgets = req.budgets if req.budgets is not None else icfg.default_budgets
+    acts = filter_actions_for_city(icfg.actions, cfg)
+    acts_by_id = {a.id: a for a in acts}
+    zone_ids = [z.id for z in cfg.zones]
+    candidates = generate_candidate_pool(acts, zone_ids=zone_ids)
+
+    screening_n = 50 if req.mode == "fast" else 100
+    full_n = 100 if req.mode == "fast" else 300
+
+    plans, elapsed = solve_interventions(
+        candidates=candidates,
+        actions_by_id=acts_by_id,
+        budgets=budgets,
+        model=engine.learner.get_model(),
+        initial_beliefs={n: (st.mean, st.variance) for n, st in engine.estimator.states.items()},
+        baseline_rollouts=engine.last_rollout_results,
+        noise_bank=engine.last_noise_bank,
+        decision_time=session.clock.now,
+        method=req.method,
+        screening_rollouts=screening_n,
+        full_rollouts=full_n,
+        horizon=req.horizon,
+    )
+
+    return {
+        "city": req.city,
+        "elapsed_seconds": round(elapsed, 4),
+        "plans": [p.canonical_dict() for p in plans],
+    }
+
+
+class EvaluatePlanRequest(BaseModel):
+    city: str = "upper_assam"
+    seed: int = 1
+    rain_window: str = "peak"
+    anchor: str = "off"
+    plan: dict[str, Any]
+    horizon: int = 48
+
+
+@app.post("/intervene/evaluate")
+def post_intervene_evaluate(req: EvaluatePlanRequest):
+    """Evaluate paired counterfactual outcomes of an explicit intervention plan vs do-nothing."""
+    cfg = _load_config(req.city)
+    key = f"{req.city}:{req.seed}:{req.rain_window}:{req.anchor}"
+    if key not in _sessions:
+        _sessions[key] = ReplaySession(cfg, req.seed, duration_hours=24, anchor_mode=req.anchor)
+    session = _sessions[key]
+
+    from .forecast.engine import ForecastEngine
+    from .forecast.config import ForecastConfig
+    from .intervene.actions import load_interventions_config, filter_actions_for_city
+    from .intervene.evaluate import evaluate_plan
+    from .intervene.records import InterventionPlan
+
+    engine = ForecastEngine(
+        city_config=cfg,
+        forecast_config=ForecastConfig(rollouts=100),
+        global_seed=req.seed,
+        anchor_mode=req.anchor,
+    )
+    _ = engine.step(session.clock.now, session.view, enable_trace=True)
+
+    icfg = load_interventions_config()
+    acts = filter_actions_for_city(icfg.actions, cfg)
+    acts_by_id = {a.id: a for a in acts}
+
+    plan_obj = InterventionPlan(**req.plan)
+    outcome = evaluate_plan(
+        plan=plan_obj,
+        model=engine.learner.get_model(),
+        initial_beliefs={n: (st.mean, st.variance) for n, st in engine.estimator.states.items()},
+        baseline_rollouts=engine.last_rollout_results,
+        actions_by_id=acts_by_id,
+        noise_bank=engine.last_noise_bank,
+        global_seed=req.seed,
+        horizon=req.horizon,
+        n_rollouts=100,
+        budgets=icfg.default_budgets,
+    )
+
+    return outcome.canonical_dict()
 
 
 def main():

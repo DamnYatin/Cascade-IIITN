@@ -112,6 +112,7 @@ class ForecastEngine:
         self,
         clock_time: datetime,
         stream_view: StreamView,
+        enable_trace: bool = False,
     ) -> ForecastSnapshot:
         """Advance forecaster clock to clock_time, process available observations, and issue snapshot."""
         # 1. Filter newly released observations from stream_view (arrival_time <= clock_time)
@@ -255,7 +256,15 @@ class ForecastEngine:
             issue_time=clock_time,
             stress_levels=self.forecast_config.stress_levels,
             rain_outlook_by_zone=rain_outlook_samples,
+            enable_trace=enable_trace,
         )
+
+        self.last_rollout_results = rollout_res
+        self.last_noise_bank = noise_bank
+        self.last_forward_model = forward_model
+        self.last_initial_beliefs = current_beliefs
+        self.last_rain_outlook_samples = rain_outlook_samples
+        self.last_clock_time = clock_time
 
         # 7. Aggregate rollouts
         agg = aggregate_rollouts(
@@ -389,7 +398,7 @@ class ForecastEngine:
 
         is_oracle_active = getattr(self.rain_outlook, "is_oracle", False)
 
-        return ForecastSnapshot(
+        snapshot = ForecastSnapshot(
             issued_at=clock_time,
             city_id=self.city_config.city_id,
             city_risk_state=city_state,
@@ -409,3 +418,5 @@ class ForecastEngine:
             oracle=is_oracle_active,
             config_hash=self.config_hash,
         )
+        self.last_snapshot = snapshot
+        return snapshot

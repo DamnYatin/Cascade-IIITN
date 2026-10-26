@@ -1,0 +1,247 @@
+{
+  "$defs": {
+    "EffectPatch": {
+      "description": "Specification of a single parameter perturbation applied inside Monte Carlo rollouts.",
+      "properties": {
+        "distribution": {
+          "default": "constant",
+          "description": "'constant' | 'triangular' | 'beta'",
+          "title": "Distribution",
+          "type": "string"
+        },
+        "lag": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Propagation lag in hours if adding an edge",
+          "title": "Lag"
+        },
+        "param_value": {
+          "description": "Nominal perturbation magnitude (e.g. multiplier or delta)",
+          "title": "Param Value",
+          "type": "number"
+        },
+        "patch_type": {
+          "$ref": "#/$defs/PatchType",
+          "description": "Type of structural or parameter intervention"
+        },
+        "target": {
+          "description": "Target node identifier, system name, or zone",
+          "title": "Target",
+          "type": "string"
+        },
+        "term": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Specific hazard update term for scale_term",
+          "title": "Term"
+        },
+        "u": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Source node for scale_edge or add_edge",
+          "title": "U"
+        },
+        "uncertainty_spread": {
+          "default": 0.0,
+          "description": "Fractional dispersion around nominal value in [0, 1]",
+          "title": "Uncertainty Spread",
+          "type": "number"
+        },
+        "v": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Target node for scale_edge or add_edge",
+          "title": "V"
+        }
+      },
+      "required": [
+        "patch_type",
+        "target",
+        "param_value"
+      ],
+      "title": "EffectPatch",
+      "type": "object"
+    },
+    "PatchType": {
+      "enum": [
+        "scale_term",
+        "add_bias",
+        "scale_edge",
+        "add_edge",
+        "cap_stress",
+        "exposure_change"
+      ],
+      "title": "PatchType",
+      "type": "string"
+    },
+    "ProvenanceType": {
+      "enum": [
+        "assumed",
+        "expert_estimate_needed",
+        "grounded_category"
+      ],
+      "title": "ProvenanceType",
+      "type": "string"
+    }
+  },
+  "description": "Definition of an intervention category in the action library.",
+  "properties": {
+    "activation_delay": {
+      "default": 0.0,
+      "description": "Hours required for action to take physical effect",
+      "title": "Activation Delay",
+      "type": "number"
+    },
+    "availability_by_zone": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Eligible zones (None = all zones)",
+      "title": "Availability By Zone"
+    },
+    "benefit_patches": {
+      "description": "Intended positive intervention effects",
+      "items": {
+        "$ref": "#/$defs/EffectPatch"
+      },
+      "title": "Benefit Patches",
+      "type": "array"
+    },
+    "duration": {
+      "default": 72.0,
+      "description": "Duration in hours over which action remains active",
+      "title": "Duration",
+      "type": "number"
+    },
+    "earliest_start_offset": {
+      "default": 0.0,
+      "description": "Hours after decision time before action can start",
+      "title": "Earliest Start Offset",
+      "type": "number"
+    },
+    "exclusivity_group": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Mutually exclusive group identifier",
+      "title": "Exclusivity Group"
+    },
+    "grounded_in": {
+      "description": "Source tags from historical flood reports",
+      "items": {
+        "type": "string"
+      },
+      "title": "Grounded In",
+      "type": "array"
+    },
+    "id": {
+      "description": "Unique action identifier",
+      "title": "Id",
+      "type": "string"
+    },
+    "max_units": {
+      "default": 1,
+      "description": "Maximum units deployable simultaneously",
+      "title": "Max Units",
+      "type": "integer"
+    },
+    "name": {
+      "description": "Human-readable action title",
+      "title": "Name",
+      "type": "string"
+    },
+    "parameters": {
+      "additionalProperties": true,
+      "description": "Tunable parameters",
+      "title": "Parameters",
+      "type": "object"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ProvenanceType",
+      "default": "assumed",
+      "description": "Provenance classification"
+    },
+    "resource_costs": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "Resource requirements per unit deployed",
+      "title": "Resource Costs",
+      "type": "object"
+    },
+    "scope": {
+      "description": "Application scope: 'zone' | 'node' | 'city'",
+      "title": "Scope",
+      "type": "string"
+    },
+    "side_effect_patches": {
+      "description": "Direct negative side-effects",
+      "items": {
+        "$ref": "#/$defs/EffectPatch"
+      },
+      "title": "Side Effect Patches",
+      "type": "array"
+    },
+    "systems": {
+      "description": "Target city infrastructure systems",
+      "items": {
+        "type": "string"
+      },
+      "title": "Systems",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "systems",
+    "scope",
+    "benefit_patches",
+    "resource_costs"
+  ],
+  "title": "Action",
+  "type": "object"
+}

@@ -1,0 +1,367 @@
+{
+  "$defs": {
+    "ActionInstance": {
+      "description": "A concrete instantiated action assigned to a specific target and start time.",
+      "properties": {
+        "action_id": {
+          "description": "Reference to parent Action ID",
+          "title": "Action Id",
+          "type": "string"
+        },
+        "instance_id": {
+          "description": "Unique instance identifier",
+          "title": "Instance Id",
+          "type": "string"
+        },
+        "resource_costs": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Total resource costs for this instance",
+          "title": "Resource Costs",
+          "type": "object"
+        },
+        "start_time_offset": {
+          "description": "Commitment time offset in hours from decision point",
+          "title": "Start Time Offset",
+          "type": "number"
+        },
+        "target_node": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Assigned target node identifier",
+          "title": "Target Node"
+        },
+        "units": {
+          "default": 1,
+          "description": "Number of units deployed",
+          "title": "Units",
+          "type": "integer"
+        },
+        "zone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Assigned zone identifier",
+          "title": "Zone"
+        }
+      },
+      "required": [
+        "instance_id",
+        "action_id",
+        "start_time_offset"
+      ],
+      "title": "ActionInstance",
+      "type": "object"
+    },
+    "PlanOutcome": {
+      "description": "Paired evaluation outcomes of an intervention plan versus doing nothing.",
+      "properties": {
+        "broken_links": {
+          "description": "Baseline chain links disrupted by plan",
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Broken Links",
+          "type": "array"
+        },
+        "cascade_broken": {
+          "description": "True if critical risk drops below threshold or key link broken",
+          "title": "Cascade Broken",
+          "type": "boolean"
+        },
+        "ci_lower": {
+          "default": 0.0,
+          "description": "Bootstrap 95% CI lower bound of net benefit",
+          "title": "Ci Lower",
+          "type": "number"
+        },
+        "ci_upper": {
+          "default": 0.0,
+          "description": "Bootstrap 95% CI upper bound of net benefit",
+          "title": "Ci Upper",
+          "type": "number"
+        },
+        "cvar_critical_zone_hours": {
+          "description": "90th percentile tail risk of critical zone-hours",
+          "title": "Cvar Critical Zone Hours",
+          "type": "number"
+        },
+        "delta_critical_zone_hours": {
+          "description": "Saved cascade-critical zone-hours (primary loss reduction)",
+          "title": "Delta Critical Zone Hours",
+          "type": "number"
+        },
+        "delta_p_critical_24h": {
+          "description": "Reduction in 24h critical risk (positive = benefit)",
+          "title": "Delta P Critical 24H",
+          "type": "number"
+        },
+        "delta_p_critical_72h": {
+          "description": "Reduction in 72h critical risk (positive = benefit)",
+          "title": "Delta P Critical 72H",
+          "type": "number"
+        },
+        "expected_critical_zone_hours_after": {
+          "description": "Intervention expected cascade-critical zone-hours",
+          "title": "Expected Critical Zone Hours After",
+          "type": "number"
+        },
+        "expected_critical_zone_hours_before": {
+          "description": "Baseline expected cascade-critical zone-hours",
+          "title": "Expected Critical Zone Hours Before",
+          "type": "number"
+        },
+        "net_benefit": {
+          "description": "Loss reduction minus weighted side-effects minus cost penalties",
+          "title": "Net Benefit",
+          "type": "number"
+        },
+        "p_critical_24h_after": {
+          "description": "Intervention P(critical within 24h)",
+          "title": "P Critical 24H After",
+          "type": "number"
+        },
+        "p_critical_24h_before": {
+          "description": "Baseline P(critical within 24h)",
+          "title": "P Critical 24H Before",
+          "type": "number"
+        },
+        "p_critical_72h_after": {
+          "description": "Intervention P(critical within 72h)",
+          "title": "P Critical 72H After",
+          "type": "number"
+        },
+        "p_critical_72h_before": {
+          "description": "Baseline P(critical within 72h)",
+          "title": "P Critical 72H Before",
+          "type": "number"
+        },
+        "plan_id": {
+          "description": "Associated plan identifier",
+          "title": "Plan Id",
+          "type": "string"
+        },
+        "side_effects": {
+          "description": "Identified harmful side-effects",
+          "items": {
+            "$ref": "#/$defs/SideEffect"
+          },
+          "title": "Side Effects",
+          "type": "array"
+        }
+      },
+      "required": [
+        "plan_id",
+        "p_critical_24h_before",
+        "p_critical_24h_after",
+        "delta_p_critical_24h",
+        "p_critical_72h_before",
+        "p_critical_72h_after",
+        "delta_p_critical_72h",
+        "expected_critical_zone_hours_before",
+        "expected_critical_zone_hours_after",
+        "delta_critical_zone_hours",
+        "cvar_critical_zone_hours",
+        "cascade_broken",
+        "net_benefit"
+      ],
+      "title": "PlanOutcome",
+      "type": "object"
+    },
+    "ResourceUse": {
+      "description": "Accounting of a single resource budget category.",
+      "properties": {
+        "budget_type": {
+          "description": "Resource name (e.g. 'crews', 'boats', 'pumps')",
+          "title": "Budget Type",
+          "type": "string"
+        },
+        "capacity": {
+          "description": "Total available budget limit",
+          "title": "Capacity",
+          "type": "number"
+        },
+        "used": {
+          "description": "Amount consumed by the plan",
+          "title": "Used",
+          "type": "number"
+        },
+        "utilization": {
+          "description": "Ratio of used / capacity",
+          "title": "Utilization",
+          "type": "number"
+        }
+      },
+      "required": [
+        "budget_type",
+        "used",
+        "capacity",
+        "utilization"
+      ],
+      "title": "ResourceUse",
+      "type": "object"
+    },
+    "SideEffect": {
+      "description": "An adverse impact on infrastructure stress caused by an action or propagated cascade.",
+      "properties": {
+        "delta_p_critical": {
+          "description": "Increase in P(critical) induced by action",
+          "title": "Delta P Critical",
+          "type": "number"
+        },
+        "delta_p_high": {
+          "description": "Increase in P(high_risk) induced by action",
+          "title": "Delta P High",
+          "type": "number"
+        },
+        "description": {
+          "description": "Description of the adverse side-effect mechanism",
+          "title": "Description",
+          "type": "string"
+        },
+        "effect_type": {
+          "description": "'explicit_patch' | 'propagated_cascade'",
+          "title": "Effect Type",
+          "type": "string"
+        },
+        "harm_score": {
+          "description": "Harm score used in net benefit objective penalty",
+          "title": "Harm Score",
+          "type": "number"
+        },
+        "node": {
+          "description": "Affected infrastructure node",
+          "title": "Node",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node",
+        "effect_type",
+        "delta_p_critical",
+        "delta_p_high",
+        "description",
+        "harm_score"
+      ],
+      "title": "SideEffect",
+      "type": "object"
+    }
+  },
+  "description": "A ranked, budget-feasible intervention schedule with paired counterfactual outcomes.",
+  "properties": {
+    "actions": {
+      "description": "Scheduled actions",
+      "items": {
+        "$ref": "#/$defs/ActionInstance"
+      },
+      "title": "Actions",
+      "type": "array"
+    },
+    "decision_time": {
+      "description": "Decision timestamp in UTC",
+      "format": "date-time",
+      "title": "Decision Time",
+      "type": "string"
+    },
+    "feasibility": {
+      "default": true,
+      "description": "Whether plan satisfies all constraints",
+      "title": "Feasibility",
+      "type": "boolean"
+    },
+    "infeasibility_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Reason if infeasible",
+      "title": "Infeasibility Reason"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PlanOutcome"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Paired counterfactual outcome vs do-nothing"
+    },
+    "plan_id": {
+      "description": "Deterministic plan identifier",
+      "title": "Plan Id",
+      "type": "string"
+    },
+    "provenance_banner": {
+      "default": "ESTIMATES UNDER LEARNED MODEL WITH ASSUMED ACTION EFFECTS. DOWNSTREAM STREAMS ARE SIMULATED.",
+      "description": "Mandatory honesty disclosure banner",
+      "title": "Provenance Banner",
+      "type": "string"
+    },
+    "resource_use": {
+      "description": "Budget utilization by resource",
+      "items": {
+        "$ref": "#/$defs/ResourceUse"
+      },
+      "title": "Resource Use",
+      "type": "array"
+    },
+    "selection_rank": {
+      "default": 0,
+      "description": "Rank assigned by solver (1 = recommended best plan)",
+      "title": "Selection Rank",
+      "type": "integer"
+    },
+    "selection_rationale": {
+      "default": "",
+      "description": "Marginal gain explanations for actions added",
+      "title": "Selection Rationale",
+      "type": "string"
+    },
+    "total_cost": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "Aggregate resource consumption",
+      "title": "Total Cost",
+      "type": "object"
+    }
+  },
+  "required": [
+    "plan_id",
+    "decision_time"
+  ],
+  "title": "InterventionPlan",
+  "type": "object"
+}

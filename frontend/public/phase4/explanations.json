@@ -1,0 +1,1847 @@
+[
+  {
+    "abstentions": [
+      "No coherent cascade above threshold."
+    ],
+    "chain_tree": {
+      "branches": [
+        {
+          "branches": [],
+          "etas": {
+            "conditional": {
+              "mean": null,
+              "p10": null,
+              "p50": null,
+              "p90": null
+            },
+            "probability_within_horizon": 0.0,
+            "unconditional": {
+              "censored_probability": 1.0,
+              "p10": null,
+              "p50": null,
+              "p90": null
+            }
+          },
+          "incoming_link": {
+            "active_hours": 0.0,
+            "confidence": 0.8,
+            "lag_hours": 2.0,
+            "p_link": 1.0,
+            "paired_removal_delta_p": null,
+            "paired_removal_delta_ttc": null,
+            "parent_stress": 0.15,
+            "parent_variance": 0.065,
+            "u": "mokokchung_nl:river_embankment",
+            "v": "mokokchung_nl:transport",
+            "weight": 0.5
+          },
+          "level": "critical",
+          "node": "mokokchung_nl:river_embankment",
+          "timing_stats": {
+            "mean": 1.0,
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "sample_size": 14
+          }
+        }
+      ],
+      "etas": {
+        "conditional": {
+          "mean": 6.7143,
+          "p10": 3.0,
+          "p50": 4.0,
+          "p90": 6.7
+        },
+        "probability_within_horizon": 0.14,
+        "unconditional": {
+          "censored_probability": 0.86,
+          "p10": 5.0,
+          "p50": null,
+          "p90": null
+        }
+      },
+      "level": "critical",
+      "node": "mokokchung_nl:transport"
+    },
+    "concurrent_clusters": [
+      {
+        "ci_lower": 0.1299,
+        "ci_upper": 0.1868,
+        "cluster_id": "cluster_charaideo:power_charaideo:emergency_response_to_charaideo:health",
+        "converging_nodes": [
+          "charaideo:health"
+        ],
+        "independent_p_critical": 0.84,
+        "interaction_delta": 0.16,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "charaideo:power",
+          "charaideo:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": 0.1399,
+        "ci_upper": 0.1968,
+        "cluster_id": "cluster_sivasagar:power_sivasagar:emergency_response_to_sivasagar:health",
+        "converging_nodes": [
+          "sivasagar:health"
+        ],
+        "independent_p_critical": 0.83,
+        "interaction_delta": 0.17,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "sivasagar:power",
+          "sivasagar:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": 0.0999,
+        "ci_upper": 0.1568,
+        "cluster_id": "cluster_jorhat:power_jorhat:emergency_response_to_jorhat:health",
+        "converging_nodes": [
+          "jorhat:health"
+        ],
+        "independent_p_critical": 0.87,
+        "interaction_delta": 0.13,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "jorhat:power",
+          "jorhat:emergency_response"
+        ]
+      }
+    ],
+    "confidence": 0.525,
+    "confidence_category": "medium",
+    "disclosure_strings": [
+      "PROVENANCE: Real inputs are rainfall and soil moisture. Downstream systems are simulated.",
+      "CAUSAL HONESTY: Learned dependencies are causal candidates under the model, not proven causes."
+    ],
+    "drivers": [
+      {
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "contribution": 0.0,
+        "direction": "decreases_risk",
+        "driver_id": "observation_group:mokokchung_nl:transport",
+        "driver_type": "observation_group",
+        "evidence_receipt": {
+          "arrival_times": [],
+          "drift_events": [],
+          "edge_confidence": null,
+          "edge_first_seen": null,
+          "edge_update_count": null,
+          "edge_weight": null,
+          "node": "mokokchung_nl:transport",
+          "observation_ids": [],
+          "paired_removal_effect": null,
+          "parent_node": null,
+          "provenance_note": "Parent stream is a synthetic infrastructure simulation; estimates under the learned model.",
+          "quality_flags": [],
+          "simulated_parent_flag": true,
+          "source_kinds": [],
+          "sources": [],
+          "trusts": []
+        },
+        "label": "Fresh sensor observations for mokokchung_nl:transport"
+      }
+    ],
+    "id": "expl_67de72c2002d",
+    "issued_at": "2026-07-05T00:00:00+00:00",
+    "loops": [],
+    "probability_after": 1.0,
+    "probability_before": 0.95,
+    "provenance_mix": {
+      "real_percentage": 0.0,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 0.0,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "risk_state_from": "NORMAL",
+    "risk_state_to": "CRITICAL",
+    "subject": "city",
+    "subject_kind": "city",
+    "template_id": "tpl_standard_cascade_v1",
+    "text": "In city, Fresh sensor observations for mokokchung_nl:transport is estimated to raise stress; this is the largest contributor to the rise in P(critical within 72h) from 95.0% to 100.0% (paired estimate, n=100). The model links incoming stress from mokokchung_nl:river_embankment to city with an estimated median propagation lag of 1.0 hours. Confidence is assessed as medium (0.53): No coherent cascade above threshold. Estimates under the learned model; downstream infrastructure responses are simulated."
+  },
+  {
+    "abstentions": [
+      "No coherent cascade above threshold."
+    ],
+    "chain_tree": {
+      "branches": [
+        {
+          "branches": [
+            {
+              "branches": [],
+              "etas": {
+                "conditional": {
+                  "mean": null,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                },
+                "probability_within_horizon": 0.0,
+                "unconditional": {
+                  "censored_probability": 1.0,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                }
+              },
+              "incoming_link": {
+                "active_hours": 0.0,
+                "confidence": 0.8,
+                "lag_hours": 2.0,
+                "p_link": 0.9091,
+                "paired_removal_delta_p": null,
+                "paired_removal_delta_ttc": null,
+                "parent_stress": 0.0875,
+                "parent_variance": 0.0381,
+                "u": "mon_nl:river_embankment",
+                "v": "mon_nl:transport",
+                "weight": 0.5
+              },
+              "level": "critical",
+              "node": "mon_nl:river_embankment",
+              "timing_stats": {
+                "mean": 1.0,
+                "p10": 1.0,
+                "p50": 1.0,
+                "p90": 1.0,
+                "sample_size": 10
+              }
+            }
+          ],
+          "etas": {
+            "conditional": {
+              "mean": 18.0909,
+              "p10": 5.0,
+              "p50": 8.0,
+              "p90": 56.0
+            },
+            "probability_within_horizon": 0.11,
+            "unconditional": {
+              "censored_probability": 0.89,
+              "p10": 66.8,
+              "p50": null,
+              "p90": null
+            }
+          },
+          "incoming_link": {
+            "active_hours": 0.0,
+            "confidence": 0.8,
+            "lag_hours": 2.0,
+            "p_link": 0.8526,
+            "paired_removal_delta_p": null,
+            "paired_removal_delta_ttc": null,
+            "parent_stress": 0.1482,
+            "parent_variance": 0.0231,
+            "u": "mon_nl:transport",
+            "v": "mon_nl:emergency_response",
+            "weight": 0.4
+          },
+          "level": "critical",
+          "node": "mon_nl:transport",
+          "timing_stats": {
+            "mean": 1.0,
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "sample_size": 81
+          }
+        }
+      ],
+      "etas": {
+        "conditional": {
+          "mean": 6.1368,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 16.0
+        },
+        "probability_within_horizon": 0.95,
+        "unconditional": {
+          "censored_probability": 0.05,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 30.5
+        }
+      },
+      "level": "critical",
+      "node": "mon_nl:emergency_response"
+    },
+    "concurrent_clusters": [
+      {
+        "ci_lower": 0.0099,
+        "ci_upper": 0.0668,
+        "cluster_id": "cluster_charaideo:power_charaideo:emergency_response_to_charaideo:health",
+        "converging_nodes": [
+          "charaideo:health"
+        ],
+        "independent_p_critical": 0.96,
+        "interaction_delta": 0.04,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "charaideo:power",
+          "charaideo:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": 0.0299,
+        "ci_upper": 0.0868,
+        "cluster_id": "cluster_sivasagar:power_sivasagar:emergency_response_to_sivasagar:health",
+        "converging_nodes": [
+          "sivasagar:health"
+        ],
+        "independent_p_critical": 0.94,
+        "interaction_delta": 0.06,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "sivasagar:power",
+          "sivasagar:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0101,
+        "ci_upper": 0.0468,
+        "cluster_id": "cluster_jorhat:power_jorhat:emergency_response_to_jorhat:health",
+        "converging_nodes": [
+          "jorhat:health"
+        ],
+        "independent_p_critical": 0.98,
+        "interaction_delta": 0.02,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "jorhat:power",
+          "jorhat:emergency_response"
+        ]
+      }
+    ],
+    "confidence": 0.6322,
+    "confidence_category": "medium",
+    "disclosure_strings": [
+      "PROVENANCE: Real inputs are rainfall and soil moisture. Downstream systems are simulated.",
+      "CAUSAL HONESTY: Learned dependencies are causal candidates under the model, not proven causes."
+    ],
+    "drivers": [
+      {
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "contribution": 0.0,
+        "direction": "decreases_risk",
+        "driver_id": "observation_group:mon_nl:emergency_response",
+        "driver_type": "observation_group",
+        "evidence_receipt": {
+          "arrival_times": [
+            "2026-07-05T11:19:56.319808+00:00",
+            "2026-07-05T10:19:33.491102+00:00",
+            "2026-07-05T09:25:27.473762+00:00",
+            "2026-07-05T08:21:52.382561+00:00",
+            "2026-07-05T07:29:13.869699+00:00",
+            "2026-07-05T06:29:53.898714+00:00",
+            "2026-07-05T05:17:27.944943+00:00",
+            "2026-07-05T04:15:54.628033+00:00",
+            "2026-07-05T03:21:49.885156+00:00",
+            "2026-07-05T02:22:57.248271+00:00"
+          ],
+          "drift_events": [],
+          "edge_confidence": null,
+          "edge_first_seen": null,
+          "edge_update_count": null,
+          "edge_weight": null,
+          "node": "mon_nl:emergency_response",
+          "observation_ids": [
+            "sim:4421",
+            "sim:4401",
+            "sim:4381",
+            "sim:4361",
+            "sim:4341",
+            "sim:4321",
+            "sim:4301",
+            "sim:4281",
+            "sim:4261",
+            "sim:4241"
+          ],
+          "paired_removal_effect": null,
+          "parent_node": null,
+          "provenance_note": "Parent stream is a synthetic infrastructure simulation; estimates under the learned model.",
+          "quality_flags": [
+            "driver=synthetic_storm",
+            "QualityFlag.LOW_CONFIDENCE",
+            "QualityFlag.SIMULATED",
+            "QualityFlag.CITIZEN_REPORT"
+          ],
+          "simulated_parent_flag": true,
+          "source_kinds": [
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated"
+          ],
+          "sources": [
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report"
+          ],
+          "trusts": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "label": "Fresh sensor observations for mon_nl:emergency_response"
+      }
+    ],
+    "id": "expl_a50ea4e3c7e8",
+    "issued_at": "2026-07-05T12:00:00+00:00",
+    "loops": [],
+    "probability_after": 1.0,
+    "probability_before": 1.0,
+    "provenance_mix": {
+      "real_percentage": 0.0,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 100.0,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "risk_state_from": "CRITICAL",
+    "risk_state_to": "CRITICAL",
+    "subject": "city",
+    "subject_kind": "city",
+    "template_id": "tpl_standard_cascade_v1",
+    "text": "In city, Fresh sensor observations for mon_nl:emergency_response is estimated to raise stress; this is the largest contributor to the rise in P(critical within 72h) from 100.0% to 100.0% (paired estimate, n=100). The model links incoming stress from mon_nl:transport to city with an estimated median propagation lag of 1.0 hours. Confidence is assessed as medium (0.63): No coherent cascade above threshold. Estimates under the learned model; downstream infrastructure responses are simulated."
+  },
+  {
+    "abstentions": [
+      "No coherent cascade above threshold."
+    ],
+    "chain_tree": {
+      "branches": [
+        {
+          "branches": [
+            {
+              "branches": [],
+              "etas": {
+                "conditional": {
+                  "mean": null,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                },
+                "probability_within_horizon": 0.0,
+                "unconditional": {
+                  "censored_probability": 1.0,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                }
+              },
+              "incoming_link": {
+                "active_hours": 0.0,
+                "confidence": 0.8,
+                "lag_hours": 2.0,
+                "p_link": 0.8333,
+                "paired_removal_delta_p": null,
+                "paired_removal_delta_ttc": null,
+                "parent_stress": 0.2151,
+                "parent_variance": 0.0369,
+                "u": "mon_nl:river_embankment",
+                "v": "mon_nl:transport",
+                "weight": 0.5
+              },
+              "level": "critical",
+              "node": "mon_nl:river_embankment",
+              "timing_stats": {
+                "mean": 1.0,
+                "p10": 1.0,
+                "p50": 1.0,
+                "p90": 1.0,
+                "sample_size": 10
+              }
+            }
+          ],
+          "etas": {
+            "conditional": {
+              "mean": 8.4167,
+              "p10": 3.2,
+              "p50": 6.0,
+              "p90": 17.4
+            },
+            "probability_within_horizon": 0.12,
+            "unconditional": {
+              "censored_probability": 0.88,
+              "p10": 17.4,
+              "p50": null,
+              "p90": null
+            }
+          },
+          "incoming_link": {
+            "active_hours": 0.0,
+            "confidence": 0.8,
+            "lag_hours": 2.0,
+            "p_link": 0.9158,
+            "paired_removal_delta_p": null,
+            "paired_removal_delta_ttc": null,
+            "parent_stress": 0.1769,
+            "parent_variance": 0.0231,
+            "u": "mon_nl:transport",
+            "v": "mon_nl:emergency_response",
+            "weight": 0.4
+          },
+          "level": "critical",
+          "node": "mon_nl:transport",
+          "timing_stats": {
+            "mean": 1.0,
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "sample_size": 87
+          }
+        }
+      ],
+      "etas": {
+        "conditional": {
+          "mean": 5.4316,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 14.6
+        },
+        "probability_within_horizon": 0.95,
+        "unconditional": {
+          "censored_probability": 0.05,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 27.3
+        }
+      },
+      "level": "critical",
+      "node": "mon_nl:emergency_response"
+    },
+    "concurrent_clusters": [
+      {
+        "ci_lower": 0.0099,
+        "ci_upper": 0.0668,
+        "cluster_id": "cluster_charaideo:power_charaideo:emergency_response_to_charaideo:health",
+        "converging_nodes": [
+          "charaideo:health"
+        ],
+        "independent_p_critical": 0.96,
+        "interaction_delta": 0.04,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "charaideo:power",
+          "charaideo:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_sivasagar:power_sivasagar:emergency_response_to_sivasagar:health",
+        "converging_nodes": [
+          "sivasagar:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "sivasagar:power",
+          "sivasagar:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0101,
+        "ci_upper": 0.0468,
+        "cluster_id": "cluster_jorhat:power_jorhat:emergency_response_to_jorhat:health",
+        "converging_nodes": [
+          "jorhat:health"
+        ],
+        "independent_p_critical": 0.98,
+        "interaction_delta": 0.02,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "jorhat:power",
+          "jorhat:emergency_response"
+        ]
+      }
+    ],
+    "confidence": 0.6363,
+    "confidence_category": "medium",
+    "disclosure_strings": [
+      "PROVENANCE: Real inputs are rainfall and soil moisture. Downstream systems are simulated.",
+      "CAUSAL HONESTY: Learned dependencies are causal candidates under the model, not proven causes."
+    ],
+    "drivers": [
+      {
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "contribution": 0.0,
+        "direction": "decreases_risk",
+        "driver_id": "observation_group:mon_nl:emergency_response",
+        "driver_type": "observation_group",
+        "evidence_receipt": {
+          "arrival_times": [
+            "2026-07-05T23:23:09.618944+00:00",
+            "2026-07-05T22:25:08.351141+00:00",
+            "2026-07-05T21:23:46.949015+00:00",
+            "2026-07-05T20:20:05.541335+00:00",
+            "2026-07-05T19:19:42.967461+00:00",
+            "2026-07-05T18:17:12.170400+00:00",
+            "2026-07-05T17:18:15.015393+00:00",
+            "2026-07-05T16:17:25.952320+00:00",
+            "2026-07-05T15:16:50.830575+00:00",
+            "2026-07-05T14:21:27.320456+00:00"
+          ],
+          "drift_events": [],
+          "edge_confidence": null,
+          "edge_first_seen": null,
+          "edge_update_count": null,
+          "edge_weight": null,
+          "node": "mon_nl:emergency_response",
+          "observation_ids": [
+            "sim:4661",
+            "sim:4641",
+            "sim:4621",
+            "sim:4601",
+            "sim:4581",
+            "sim:4561",
+            "sim:4541",
+            "sim:4521",
+            "sim:4501",
+            "sim:4481"
+          ],
+          "paired_removal_effect": null,
+          "parent_node": null,
+          "provenance_note": "Parent stream is a synthetic infrastructure simulation; estimates under the learned model.",
+          "quality_flags": [
+            "driver=synthetic_storm",
+            "QualityFlag.LOW_CONFIDENCE",
+            "QualityFlag.SIMULATED",
+            "QualityFlag.CITIZEN_REPORT"
+          ],
+          "simulated_parent_flag": true,
+          "source_kinds": [
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated"
+          ],
+          "sources": [
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report"
+          ],
+          "trusts": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "label": "Fresh sensor observations for mon_nl:emergency_response"
+      }
+    ],
+    "id": "expl_b90aaa6efa96",
+    "issued_at": "2026-07-06T00:00:00+00:00",
+    "loops": [],
+    "probability_after": 1.0,
+    "probability_before": 1.0,
+    "provenance_mix": {
+      "real_percentage": 4.8421,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 95.1579,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "risk_state_from": "CRITICAL",
+    "risk_state_to": "CRITICAL",
+    "subject": "city",
+    "subject_kind": "city",
+    "template_id": "tpl_standard_cascade_v1",
+    "text": "In city, Fresh sensor observations for mon_nl:emergency_response is estimated to raise stress; this is the largest contributor to the rise in P(critical within 72h) from 100.0% to 100.0% (paired estimate, n=100). The model links incoming stress from mon_nl:transport to city with an estimated median propagation lag of 1.0 hours. Confidence is assessed as medium (0.64): No coherent cascade above threshold. Estimates under the learned model; downstream infrastructure responses are simulated."
+  },
+  {
+    "abstentions": [
+      "No coherent cascade above threshold."
+    ],
+    "chain_tree": {
+      "branches": [
+        {
+          "branches": [
+            {
+              "branches": [],
+              "etas": {
+                "conditional": {
+                  "mean": null,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                },
+                "probability_within_horizon": 0.0,
+                "unconditional": {
+                  "censored_probability": 1.0,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                }
+              },
+              "incoming_link": {
+                "active_hours": 0.0,
+                "confidence": 0.8,
+                "lag_hours": 2.0,
+                "p_link": 1.0,
+                "paired_removal_delta_p": null,
+                "paired_removal_delta_ttc": null,
+                "parent_stress": 0.1921,
+                "parent_variance": 0.0369,
+                "u": "mon_nl:river_embankment",
+                "v": "mon_nl:transport",
+                "weight": 0.5
+              },
+              "level": "critical",
+              "node": "mon_nl:river_embankment",
+              "timing_stats": {
+                "mean": 1.0,
+                "p10": 1.0,
+                "p50": 1.0,
+                "p90": 1.0,
+                "sample_size": 13
+              }
+            }
+          ],
+          "etas": {
+            "conditional": {
+              "mean": 15.7692,
+              "p10": 4.0,
+              "p50": 6.0,
+              "p90": 58.2
+            },
+            "probability_within_horizon": 0.13,
+            "unconditional": {
+              "censored_probability": 0.87,
+              "p10": 10.6,
+              "p50": null,
+              "p90": null
+            }
+          },
+          "incoming_link": {
+            "active_hours": 0.0,
+            "confidence": 0.8,
+            "lag_hours": 2.0,
+            "p_link": 0.9271,
+            "paired_removal_delta_p": null,
+            "paired_removal_delta_ttc": null,
+            "parent_stress": 0.1489,
+            "parent_variance": 0.0231,
+            "u": "mon_nl:transport",
+            "v": "mon_nl:emergency_response",
+            "weight": 0.4
+          },
+          "level": "critical",
+          "node": "mon_nl:transport",
+          "timing_stats": {
+            "mean": 1.0,
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "sample_size": 89
+          }
+        }
+      ],
+      "etas": {
+        "conditional": {
+          "mean": 5.5104,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 10.5
+        },
+        "probability_within_horizon": 0.96,
+        "unconditional": {
+          "censored_probability": 0.04,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 23.8
+        }
+      },
+      "level": "critical",
+      "node": "mon_nl:emergency_response"
+    },
+    "concurrent_clusters": [
+      {
+        "ci_lower": 0.0899,
+        "ci_upper": 0.1468,
+        "cluster_id": "cluster_charaideo:power_charaideo:emergency_response_to_charaideo:health",
+        "converging_nodes": [
+          "charaideo:health"
+        ],
+        "independent_p_critical": 0.88,
+        "interaction_delta": 0.12,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "charaideo:power",
+          "charaideo:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_sivasagar:power_sivasagar:emergency_response_to_sivasagar:health",
+        "converging_nodes": [
+          "sivasagar:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "sivasagar:power",
+          "sivasagar:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_jorhat:power_jorhat:emergency_response_to_jorhat:health",
+        "converging_nodes": [
+          "jorhat:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "jorhat:power",
+          "jorhat:emergency_response"
+        ]
+      }
+    ],
+    "confidence": 0.6366,
+    "confidence_category": "medium",
+    "disclosure_strings": [
+      "PROVENANCE: Real inputs are rainfall and soil moisture. Downstream systems are simulated.",
+      "CAUSAL HONESTY: Learned dependencies are causal candidates under the model, not proven causes."
+    ],
+    "drivers": [
+      {
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "contribution": 0.0,
+        "direction": "decreases_risk",
+        "driver_id": "observation_group:mon_nl:emergency_response",
+        "driver_type": "observation_group",
+        "evidence_receipt": {
+          "arrival_times": [
+            "2026-07-06T11:21:41.729203+00:00",
+            "2026-07-06T10:20:02.143830+00:00",
+            "2026-07-06T09:15:08.524412+00:00",
+            "2026-07-06T08:18:14.300642+00:00",
+            "2026-07-06T07:25:04.455476+00:00",
+            "2026-07-06T06:20:20.073101+00:00",
+            "2026-07-06T05:26:18.328828+00:00",
+            "2026-07-06T04:25:39.755584+00:00",
+            "2026-07-06T03:21:44.854907+00:00",
+            "2026-07-06T02:26:43.212547+00:00"
+          ],
+          "drift_events": [],
+          "edge_confidence": null,
+          "edge_first_seen": null,
+          "edge_update_count": null,
+          "edge_weight": null,
+          "node": "mon_nl:emergency_response",
+          "observation_ids": [
+            "sim:4901",
+            "sim:4881",
+            "sim:4861",
+            "sim:4841",
+            "sim:4821",
+            "sim:4801",
+            "sim:4781",
+            "sim:4761",
+            "sim:4741",
+            "sim:4721"
+          ],
+          "paired_removal_effect": null,
+          "parent_node": null,
+          "provenance_note": "Parent stream is a synthetic infrastructure simulation; estimates under the learned model.",
+          "quality_flags": [
+            "driver=synthetic_storm",
+            "QualityFlag.LOW_CONFIDENCE",
+            "QualityFlag.SIMULATED",
+            "QualityFlag.CITIZEN_REPORT"
+          ],
+          "simulated_parent_flag": true,
+          "source_kinds": [
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated"
+          ],
+          "sources": [
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report"
+          ],
+          "trusts": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "label": "Fresh sensor observations for mon_nl:emergency_response"
+      }
+    ],
+    "id": "expl_8ebf5c326368",
+    "issued_at": "2026-07-06T12:00:00+00:00",
+    "loops": [],
+    "probability_after": 1.0,
+    "probability_before": 1.0,
+    "provenance_mix": {
+      "real_percentage": 10.8885,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 89.1115,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "risk_state_from": "CRITICAL",
+    "risk_state_to": "CRITICAL",
+    "subject": "city",
+    "subject_kind": "city",
+    "template_id": "tpl_standard_cascade_v1",
+    "text": "In city, Fresh sensor observations for mon_nl:emergency_response is estimated to raise stress; this is the largest contributor to the rise in P(critical within 72h) from 100.0% to 100.0% (paired estimate, n=100). The model links incoming stress from mon_nl:transport to city with an estimated median propagation lag of 1.0 hours. Confidence is assessed as medium (0.64): No coherent cascade above threshold. Estimates under the learned model; downstream infrastructure responses are simulated."
+  },
+  {
+    "abstentions": [
+      "No coherent cascade above threshold."
+    ],
+    "chain_tree": {
+      "branches": [
+        {
+          "branches": [
+            {
+              "branches": [],
+              "etas": {
+                "conditional": {
+                  "mean": null,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                },
+                "probability_within_horizon": 0.0,
+                "unconditional": {
+                  "censored_probability": 1.0,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                }
+              },
+              "incoming_link": {
+                "active_hours": 0.0,
+                "confidence": 0.8,
+                "lag_hours": 2.0,
+                "p_link": 0.8,
+                "paired_removal_delta_p": null,
+                "paired_removal_delta_ttc": null,
+                "parent_stress": 0.1833,
+                "parent_variance": 0.0369,
+                "u": "mon_nl:river_embankment",
+                "v": "mon_nl:transport",
+                "weight": 0.5
+              },
+              "level": "critical",
+              "node": "mon_nl:river_embankment",
+              "timing_stats": {
+                "mean": 1.0,
+                "p10": 1.0,
+                "p50": 1.0,
+                "p90": 1.0,
+                "sample_size": 8
+              }
+            }
+          ],
+          "etas": {
+            "conditional": {
+              "mean": 11.8,
+              "p10": 4.9,
+              "p50": 6.0,
+              "p90": 25.5
+            },
+            "probability_within_horizon": 0.1,
+            "unconditional": {
+              "censored_probability": 0.9,
+              "p10": 69.6,
+              "p50": null,
+              "p90": null
+            }
+          },
+          "incoming_link": {
+            "active_hours": 0.0,
+            "confidence": 0.8,
+            "lag_hours": 2.0,
+            "p_link": 0.91,
+            "paired_removal_delta_p": null,
+            "paired_removal_delta_ttc": null,
+            "parent_stress": 0.1887,
+            "parent_variance": 0.0231,
+            "u": "mon_nl:transport",
+            "v": "mon_nl:emergency_response",
+            "weight": 0.4
+          },
+          "level": "critical",
+          "node": "mon_nl:transport",
+          "timing_stats": {
+            "mean": 1.0,
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "sample_size": 91
+          }
+        }
+      ],
+      "etas": {
+        "conditional": {
+          "mean": 3.87,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 8.0
+        },
+        "probability_within_horizon": 1.0,
+        "unconditional": {
+          "censored_probability": 0.0,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 8.0
+        }
+      },
+      "level": "critical",
+      "node": "mon_nl:emergency_response"
+    },
+    "concurrent_clusters": [
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_charaideo:power_charaideo:emergency_response_to_charaideo:health",
+        "converging_nodes": [
+          "charaideo:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "charaideo:power",
+          "charaideo:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0101,
+        "ci_upper": 0.0468,
+        "cluster_id": "cluster_sivasagar:power_sivasagar:emergency_response_to_sivasagar:health",
+        "converging_nodes": [
+          "sivasagar:health"
+        ],
+        "independent_p_critical": 0.98,
+        "interaction_delta": 0.02,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "sivasagar:power",
+          "sivasagar:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_jorhat:power_jorhat:emergency_response_to_jorhat:health",
+        "converging_nodes": [
+          "jorhat:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "jorhat:power",
+          "jorhat:emergency_response"
+        ]
+      }
+    ],
+    "confidence": 0.6367,
+    "confidence_category": "medium",
+    "disclosure_strings": [
+      "PROVENANCE: Real inputs are rainfall and soil moisture. Downstream systems are simulated.",
+      "CAUSAL HONESTY: Learned dependencies are causal candidates under the model, not proven causes."
+    ],
+    "drivers": [
+      {
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "contribution": 0.0,
+        "direction": "decreases_risk",
+        "driver_id": "observation_group:mon_nl:emergency_response",
+        "driver_type": "observation_group",
+        "evidence_receipt": {
+          "arrival_times": [
+            "2026-07-06T23:17:41.594587+00:00",
+            "2026-07-06T22:19:07.919467+00:00",
+            "2026-07-06T21:29:21.023467+00:00",
+            "2026-07-06T20:22:03.028931+00:00",
+            "2026-07-06T19:24:41.888352+00:00",
+            "2026-07-06T18:24:45.608869+00:00",
+            "2026-07-06T17:25:33.913064+00:00",
+            "2026-07-06T16:29:40.527063+00:00",
+            "2026-07-06T15:26:21.386041+00:00",
+            "2026-07-06T14:16:02.184482+00:00"
+          ],
+          "drift_events": [],
+          "edge_confidence": null,
+          "edge_first_seen": null,
+          "edge_update_count": null,
+          "edge_weight": null,
+          "node": "mon_nl:emergency_response",
+          "observation_ids": [
+            "sim:5141",
+            "sim:5121",
+            "sim:5101",
+            "sim:5081",
+            "sim:5061",
+            "sim:5041",
+            "sim:5021",
+            "sim:5001",
+            "sim:4981",
+            "sim:4961"
+          ],
+          "paired_removal_effect": null,
+          "parent_node": null,
+          "provenance_note": "Parent stream is a synthetic infrastructure simulation; estimates under the learned model.",
+          "quality_flags": [
+            "driver=synthetic_storm",
+            "QualityFlag.LOW_CONFIDENCE",
+            "QualityFlag.SIMULATED",
+            "QualityFlag.CITIZEN_REPORT"
+          ],
+          "simulated_parent_flag": true,
+          "source_kinds": [
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated"
+          ],
+          "sources": [
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report"
+          ],
+          "trusts": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "label": "Fresh sensor observations for mon_nl:emergency_response"
+      }
+    ],
+    "id": "expl_656efc5c1c8e",
+    "issued_at": "2026-07-07T00:00:00+00:00",
+    "loops": [],
+    "probability_after": 1.0,
+    "probability_before": 1.0,
+    "provenance_mix": {
+      "real_percentage": 15.3203,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 84.6797,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "risk_state_from": "CRITICAL",
+    "risk_state_to": "CRITICAL",
+    "subject": "city",
+    "subject_kind": "city",
+    "template_id": "tpl_standard_cascade_v1",
+    "text": "In city, Fresh sensor observations for mon_nl:emergency_response is estimated to raise stress; this is the largest contributor to the rise in P(critical within 72h) from 100.0% to 100.0% (paired estimate, n=100). The model links incoming stress from mon_nl:transport to city with an estimated median propagation lag of 1.0 hours. Confidence is assessed as medium (0.64): No coherent cascade above threshold. Estimates under the learned model; downstream infrastructure responses are simulated."
+  },
+  {
+    "abstentions": [
+      "No coherent cascade above threshold."
+    ],
+    "chain_tree": {
+      "branches": [
+        {
+          "branches": [
+            {
+              "branches": [],
+              "etas": {
+                "conditional": {
+                  "mean": null,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                },
+                "probability_within_horizon": 0.0,
+                "unconditional": {
+                  "censored_probability": 1.0,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                }
+              },
+              "incoming_link": {
+                "active_hours": 0.0,
+                "confidence": 0.8,
+                "lag_hours": 2.0,
+                "p_link": 1.0,
+                "paired_removal_delta_p": null,
+                "paired_removal_delta_ttc": null,
+                "parent_stress": 0.142,
+                "parent_variance": 0.0369,
+                "u": "mon_nl:river_embankment",
+                "v": "mon_nl:transport",
+                "weight": 0.5
+              },
+              "level": "critical",
+              "node": "mon_nl:river_embankment",
+              "timing_stats": {
+                "mean": 1.0,
+                "p10": 1.0,
+                "p50": 1.0,
+                "p90": 1.0,
+                "sample_size": 7
+              }
+            }
+          ],
+          "etas": {
+            "conditional": {
+              "mean": 8.4286,
+              "p10": 5.6,
+              "p50": 7.0,
+              "p90": 13.0
+            },
+            "probability_within_horizon": 0.07,
+            "unconditional": {
+              "censored_probability": 0.93,
+              "p10": null,
+              "p50": null,
+              "p90": null
+            }
+          },
+          "incoming_link": {
+            "active_hours": 0.0,
+            "confidence": 0.8,
+            "lag_hours": 2.0,
+            "p_link": 0.8969,
+            "paired_removal_delta_p": null,
+            "paired_removal_delta_ttc": null,
+            "parent_stress": 0.1329,
+            "parent_variance": 0.0231,
+            "u": "mon_nl:transport",
+            "v": "mon_nl:emergency_response",
+            "weight": 0.4
+          },
+          "level": "critical",
+          "node": "mon_nl:transport",
+          "timing_stats": {
+            "mean": 1.0,
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "sample_size": 87
+          }
+        }
+      ],
+      "etas": {
+        "conditional": {
+          "mean": 5.3918,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 10.4
+        },
+        "probability_within_horizon": 0.97,
+        "unconditional": {
+          "censored_probability": 0.03,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 30.0
+        }
+      },
+      "level": "critical",
+      "node": "mon_nl:emergency_response"
+    },
+    "concurrent_clusters": [
+      {
+        "ci_lower": 0.0799,
+        "ci_upper": 0.1368,
+        "cluster_id": "cluster_charaideo:power_charaideo:emergency_response_to_charaideo:health",
+        "converging_nodes": [
+          "charaideo:health"
+        ],
+        "independent_p_critical": 0.89,
+        "interaction_delta": 0.11,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "charaideo:power",
+          "charaideo:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_sivasagar:power_sivasagar:emergency_response_to_sivasagar:health",
+        "converging_nodes": [
+          "sivasagar:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "sivasagar:power",
+          "sivasagar:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_jorhat:power_jorhat:emergency_response_to_jorhat:health",
+        "converging_nodes": [
+          "jorhat:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "jorhat:power",
+          "jorhat:emergency_response"
+        ]
+      }
+    ],
+    "confidence": 0.6367,
+    "confidence_category": "medium",
+    "disclosure_strings": [
+      "PROVENANCE: Real inputs are rainfall and soil moisture. Downstream systems are simulated.",
+      "CAUSAL HONESTY: Learned dependencies are causal candidates under the model, not proven causes."
+    ],
+    "drivers": [
+      {
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "contribution": 0.0,
+        "direction": "decreases_risk",
+        "driver_id": "observation_group:mon_nl:emergency_response",
+        "driver_type": "observation_group",
+        "evidence_receipt": {
+          "arrival_times": [
+            "2026-07-07T11:29:54.210837+00:00",
+            "2026-07-07T10:28:05.483277+00:00",
+            "2026-07-07T09:16:10.267359+00:00",
+            "2026-07-07T08:19:38.859391+00:00",
+            "2026-07-07T07:24:33.088365+00:00",
+            "2026-07-07T06:27:51.462748+00:00",
+            "2026-07-07T05:29:02.220026+00:00",
+            "2026-07-07T04:15:17.749521+00:00",
+            "2026-07-07T03:26:49.645673+00:00",
+            "2026-07-07T02:20:40.021823+00:00"
+          ],
+          "drift_events": [],
+          "edge_confidence": null,
+          "edge_first_seen": null,
+          "edge_update_count": null,
+          "edge_weight": null,
+          "node": "mon_nl:emergency_response",
+          "observation_ids": [
+            "sim:5381",
+            "sim:5361",
+            "sim:5341",
+            "sim:5321",
+            "sim:5301",
+            "sim:5281",
+            "sim:5261",
+            "sim:5241",
+            "sim:5221",
+            "sim:5201"
+          ],
+          "paired_removal_effect": null,
+          "parent_node": null,
+          "provenance_note": "Parent stream is a synthetic infrastructure simulation; estimates under the learned model.",
+          "quality_flags": [
+            "driver=synthetic_storm",
+            "QualityFlag.LOW_CONFIDENCE",
+            "QualityFlag.SIMULATED",
+            "QualityFlag.CITIZEN_REPORT"
+          ],
+          "simulated_parent_flag": true,
+          "source_kinds": [
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated"
+          ],
+          "sources": [
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report"
+          ],
+          "trusts": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "label": "Fresh sensor observations for mon_nl:emergency_response"
+      }
+    ],
+    "id": "expl_6ed3730eb9b6",
+    "issued_at": "2026-07-07T12:00:00+00:00",
+    "loops": [],
+    "probability_after": 1.0,
+    "probability_before": 1.0,
+    "provenance_mix": {
+      "real_percentage": 17.5253,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 82.4747,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "risk_state_from": "CRITICAL",
+    "risk_state_to": "CRITICAL",
+    "subject": "city",
+    "subject_kind": "city",
+    "template_id": "tpl_standard_cascade_v1",
+    "text": "In city, Fresh sensor observations for mon_nl:emergency_response is estimated to raise stress; this is the largest contributor to the rise in P(critical within 72h) from 100.0% to 100.0% (paired estimate, n=100). The model links incoming stress from mon_nl:transport to city with an estimated median propagation lag of 1.0 hours. Confidence is assessed as medium (0.64): No coherent cascade above threshold. Estimates under the learned model; downstream infrastructure responses are simulated."
+  },
+  {
+    "abstentions": [
+      "No coherent cascade above threshold."
+    ],
+    "chain_tree": {
+      "branches": [
+        {
+          "branches": [
+            {
+              "branches": [],
+              "etas": {
+                "conditional": {
+                  "mean": null,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                },
+                "probability_within_horizon": 0.0,
+                "unconditional": {
+                  "censored_probability": 1.0,
+                  "p10": null,
+                  "p50": null,
+                  "p90": null
+                }
+              },
+              "incoming_link": {
+                "active_hours": 0.0,
+                "confidence": 0.8,
+                "lag_hours": 2.0,
+                "p_link": 0.9091,
+                "paired_removal_delta_p": null,
+                "paired_removal_delta_ttc": null,
+                "parent_stress": 0.1408,
+                "parent_variance": 0.0369,
+                "u": "mon_nl:river_embankment",
+                "v": "mon_nl:transport",
+                "weight": 0.5
+              },
+              "level": "critical",
+              "node": "mon_nl:river_embankment",
+              "timing_stats": {
+                "mean": 1.0,
+                "p10": 1.0,
+                "p50": 1.0,
+                "p90": 1.0,
+                "sample_size": 10
+              }
+            }
+          ],
+          "etas": {
+            "conditional": {
+              "mean": 26.9091,
+              "p10": 5.0,
+              "p50": 8.0,
+              "p90": 66.0
+            },
+            "probability_within_horizon": 0.11,
+            "unconditional": {
+              "censored_probability": 0.89,
+              "p10": 70.5,
+              "p50": null,
+              "p90": null
+            }
+          },
+          "incoming_link": {
+            "active_hours": 0.0,
+            "confidence": 0.8,
+            "lag_hours": 2.0,
+            "p_link": 0.8842,
+            "paired_removal_delta_p": null,
+            "paired_removal_delta_ttc": null,
+            "parent_stress": 0.1072,
+            "parent_variance": 0.0231,
+            "u": "mon_nl:transport",
+            "v": "mon_nl:emergency_response",
+            "weight": 0.4
+          },
+          "level": "critical",
+          "node": "mon_nl:transport",
+          "timing_stats": {
+            "mean": 1.0,
+            "p10": 1.0,
+            "p50": 1.0,
+            "p90": 1.0,
+            "sample_size": 84
+          }
+        }
+      ],
+      "etas": {
+        "conditional": {
+          "mean": 9.5053,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 40.0
+        },
+        "probability_within_horizon": 0.95,
+        "unconditional": {
+          "censored_probability": 0.05,
+          "p10": 1.0,
+          "p50": 1.0,
+          "p90": 64.0
+        }
+      },
+      "level": "critical",
+      "node": "mon_nl:emergency_response"
+    },
+    "concurrent_clusters": [
+      {
+        "ci_lower": 0.0099,
+        "ci_upper": 0.0668,
+        "cluster_id": "cluster_charaideo:power_charaideo:emergency_response_to_charaideo:health",
+        "converging_nodes": [
+          "charaideo:health"
+        ],
+        "independent_p_critical": 0.96,
+        "interaction_delta": 0.04,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "charaideo:power",
+          "charaideo:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": -0.0001,
+        "ci_upper": 0.0568,
+        "cluster_id": "cluster_sivasagar:power_sivasagar:emergency_response_to_sivasagar:health",
+        "converging_nodes": [
+          "sivasagar:health"
+        ],
+        "independent_p_critical": 0.97,
+        "interaction_delta": 0.03,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "sivasagar:power",
+          "sivasagar:emergency_response"
+        ]
+      },
+      {
+        "ci_lower": 0.0299,
+        "ci_upper": 0.0868,
+        "cluster_id": "cluster_jorhat:power_jorhat:emergency_response_to_jorhat:health",
+        "converging_nodes": [
+          "jorhat:health"
+        ],
+        "independent_p_critical": 0.94,
+        "interaction_delta": 0.06,
+        "joint_p_critical": 1.0,
+        "rollout_count": 100,
+        "root_nodes": [
+          "jorhat:power",
+          "jorhat:emergency_response"
+        ]
+      }
+    ],
+    "confidence": 0.6367,
+    "confidence_category": "medium",
+    "disclosure_strings": [
+      "PROVENANCE: Real inputs are rainfall and soil moisture. Downstream systems are simulated.",
+      "CAUSAL HONESTY: Learned dependencies are causal candidates under the model, not proven causes."
+    ],
+    "drivers": [
+      {
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "contribution": 0.0,
+        "direction": "decreases_risk",
+        "driver_id": "observation_group:mon_nl:emergency_response",
+        "driver_type": "observation_group",
+        "evidence_receipt": {
+          "arrival_times": [
+            "2026-07-07T23:25:55.158071+00:00",
+            "2026-07-07T22:25:21.874697+00:00",
+            "2026-07-07T21:16:36.804626+00:00",
+            "2026-07-07T20:28:23.142572+00:00",
+            "2026-07-07T19:21:49.645808+00:00",
+            "2026-07-07T18:17:54.555276+00:00",
+            "2026-07-07T17:16:15.324904+00:00",
+            "2026-07-07T16:16:27.297703+00:00",
+            "2026-07-07T15:22:31.649876+00:00",
+            "2026-07-07T14:16:56.989490+00:00"
+          ],
+          "drift_events": [],
+          "edge_confidence": null,
+          "edge_first_seen": null,
+          "edge_update_count": null,
+          "edge_weight": null,
+          "node": "mon_nl:emergency_response",
+          "observation_ids": [
+            "sim:5621",
+            "sim:5601",
+            "sim:5581",
+            "sim:5561",
+            "sim:5541",
+            "sim:5521",
+            "sim:5501",
+            "sim:5481",
+            "sim:5461",
+            "sim:5441"
+          ],
+          "paired_removal_effect": null,
+          "parent_node": null,
+          "provenance_note": "Parent stream is a synthetic infrastructure simulation; estimates under the learned model.",
+          "quality_flags": [
+            "driver=synthetic_storm",
+            "QualityFlag.LOW_CONFIDENCE",
+            "QualityFlag.SIMULATED",
+            "QualityFlag.CITIZEN_REPORT"
+          ],
+          "simulated_parent_flag": true,
+          "source_kinds": [
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated",
+            "simulated"
+          ],
+          "sources": [
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report",
+            "citizen_report"
+          ],
+          "trusts": [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        },
+        "label": "Fresh sensor observations for mon_nl:emergency_response"
+      }
+    ],
+    "id": "expl_411ea9054932",
+    "issued_at": "2026-07-08T00:00:00+00:00",
+    "loops": [],
+    "probability_after": 1.0,
+    "probability_before": 1.0,
+    "provenance_mix": {
+      "real_percentage": 19.0879,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 80.9121,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "risk_state_from": "CRITICAL",
+    "risk_state_to": "CRITICAL",
+    "subject": "city",
+    "subject_kind": "city",
+    "template_id": "tpl_standard_cascade_v1",
+    "text": "In city, Fresh sensor observations for mon_nl:emergency_response is estimated to raise stress; this is the largest contributor to the rise in P(critical within 72h) from 100.0% to 100.0% (paired estimate, n=100). The model links incoming stress from mon_nl:transport to city with an estimated median propagation lag of 1.0 hours. Confidence is assessed as medium (0.64): No coherent cascade above threshold. Estimates under the learned model; downstream infrastructure responses are simulated."
+  }
+]

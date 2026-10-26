@@ -1,0 +1,163 @@
+{
+  "description": "Audit receipt proving the physical observations and learning history behind an edge or driver.",
+  "properties": {
+    "arrival_times": {
+      "description": "ISO arrival timestamps (enforcing <= issued_at)",
+      "items": {
+        "type": "string"
+      },
+      "title": "Arrival Times",
+      "type": "array"
+    },
+    "drift_events": {
+      "description": "Recent drift detections touching this edge",
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Drift Events",
+      "type": "array"
+    },
+    "edge_confidence": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Current confidence in EdgeBook",
+      "title": "Edge Confidence"
+    },
+    "edge_first_seen": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ISO timestamp when edge first appeared in EdgeBook",
+      "title": "Edge First Seen"
+    },
+    "edge_update_count": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Number of online recursive updates",
+      "title": "Edge Update Count"
+    },
+    "edge_weight": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Current weight in EdgeBook",
+      "title": "Edge Weight"
+    },
+    "node": {
+      "description": "Target node receiving the influence",
+      "title": "Node",
+      "type": "string"
+    },
+    "observation_ids": {
+      "description": "IDs of observations in the ledger within window",
+      "items": {
+        "type": "string"
+      },
+      "title": "Observation Ids",
+      "type": "array"
+    },
+    "paired_removal_effect": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Lazy-computed paired removal counterfactual",
+      "title": "Paired Removal Effect"
+    },
+    "parent_node": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Parent node providing the influence",
+      "title": "Parent Node"
+    },
+    "provenance_note": {
+      "default": "",
+      "description": "Human-readable provenance and simulation disclosure",
+      "title": "Provenance Note",
+      "type": "string"
+    },
+    "quality_flags": {
+      "description": "Data quality flags (e.g. gated, flatline, late)",
+      "items": {
+        "type": "string"
+      },
+      "title": "Quality Flags",
+      "type": "array"
+    },
+    "simulated_parent_flag": {
+      "default": false,
+      "description": "Explicit flag indicating parent stream is simulated",
+      "title": "Simulated Parent Flag",
+      "type": "boolean"
+    },
+    "source_kinds": {
+      "description": "Source classification: real | simulated | disaggregated",
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Kinds",
+      "type": "array"
+    },
+    "sources": {
+      "description": "Sensor/stream source identifiers",
+      "items": {
+        "type": "string"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "trusts": {
+      "description": "Source reliability score in [0, 1] at arrival time",
+      "items": {
+        "type": "number"
+      },
+      "title": "Trusts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "node"
+  ],
+  "title": "EvidenceReceipt",
+  "type": "object"
+}

@@ -1,0 +1,69 @@
+{
+  "description": "Interacting simultaneous cascades originating from distinct root clusters.",
+  "properties": {
+    "ci_lower": {
+      "default": 0.0,
+      "description": "95% CI lower bound",
+      "title": "Ci Lower",
+      "type": "number"
+    },
+    "ci_upper": {
+      "default": 0.0,
+      "description": "95% CI upper bound",
+      "title": "Ci Upper",
+      "type": "number"
+    },
+    "cluster_id": {
+      "description": "Unique cluster identifier",
+      "title": "Cluster Id",
+      "type": "string"
+    },
+    "converging_nodes": {
+      "description": "Downstream nodes where multiple chains converge",
+      "items": {
+        "type": "string"
+      },
+      "title": "Converging Nodes",
+      "type": "array"
+    },
+    "independent_p_critical": {
+      "description": "Independent baseline probability implied without interaction",
+      "title": "Independent P Critical",
+      "type": "number"
+    },
+    "interaction_delta": {
+      "description": "Amplification delta: joint_p - independent_p",
+      "title": "Interaction Delta",
+      "type": "number"
+    },
+    "joint_p_critical": {
+      "description": "Joint probability P(critical) with all roots active",
+      "title": "Joint P Critical",
+      "type": "number"
+    },
+    "rollout_count": {
+      "default": 300,
+      "description": "Number of rollouts evaluating interaction",
+      "title": "Rollout Count",
+      "type": "integer"
+    },
+    "root_nodes": {
+      "description": "Root trigger nodes in this cluster",
+      "items": {
+        "type": "string"
+      },
+      "title": "Root Nodes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "cluster_id",
+    "root_nodes",
+    "converging_nodes",
+    "joint_p_critical",
+    "independent_p_critical",
+    "interaction_delta"
+  ],
+  "title": "ConcurrentCluster",
+  "type": "object"
+}

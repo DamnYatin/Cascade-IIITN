@@ -1,0 +1,33 @@
+{
+  "description": "Accounting of a single resource budget category.",
+  "properties": {
+    "budget_type": {
+      "description": "Resource name (e.g. 'crews', 'boats', 'pumps')",
+      "title": "Budget Type",
+      "type": "string"
+    },
+    "capacity": {
+      "description": "Total available budget limit",
+      "title": "Capacity",
+      "type": "number"
+    },
+    "used": {
+      "description": "Amount consumed by the plan",
+      "title": "Used",
+      "type": "number"
+    },
+    "utilization": {
+      "description": "Ratio of used / capacity",
+      "title": "Utilization",
+      "type": "number"
+    }
+  },
+  "required": [
+    "budget_type",
+    "used",
+    "capacity",
+    "utilization"
+  ],
+  "title": "ResourceUse",
+  "type": "object"
+}

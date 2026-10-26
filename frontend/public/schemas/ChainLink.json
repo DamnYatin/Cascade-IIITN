@@ -1,0 +1,89 @@
+{
+  "description": "A directed dependency link in a predicted failure chain.",
+  "properties": {
+    "active_hours": {
+      "default": 0.0,
+      "description": "Hours the edge has been active in EdgeBook",
+      "title": "Active Hours",
+      "type": "number"
+    },
+    "confidence": {
+      "description": "Statistical confidence of the learned edge in [0, 1]",
+      "title": "Confidence",
+      "type": "number"
+    },
+    "lag_hours": {
+      "description": "Estimated physical or learned propagation lag in hours",
+      "title": "Lag Hours",
+      "type": "number"
+    },
+    "p_link": {
+      "description": "Empirical usage probability P(u was dominant trigger | v crossed)",
+      "title": "P Link",
+      "type": "number"
+    },
+    "paired_removal_delta_p": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Paired change in P(critical) when link is removed",
+      "title": "Paired Removal Delta P"
+    },
+    "paired_removal_delta_ttc": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Paired change in median time-to-critical when link is removed",
+      "title": "Paired Removal Delta Ttc"
+    },
+    "parent_stress": {
+      "default": 0.0,
+      "description": "Parent's current estimated latent stress in [0, 1]",
+      "title": "Parent Stress",
+      "type": "number"
+    },
+    "parent_variance": {
+      "default": 0.0,
+      "description": "Variance of parent's current stress estimate",
+      "title": "Parent Variance",
+      "type": "number"
+    },
+    "u": {
+      "description": "Source node id (e.g. 'zone:system')",
+      "title": "U",
+      "type": "string"
+    },
+    "v": {
+      "description": "Target node id (e.g. 'zone:system')",
+      "title": "V",
+      "type": "string"
+    },
+    "weight": {
+      "description": "Learned dependency coupling weight (signed)",
+      "title": "Weight",
+      "type": "number"
+    }
+  },
+  "required": [
+    "u",
+    "v",
+    "lag_hours",
+    "weight",
+    "confidence",
+    "p_link"
+  ],
+  "title": "ChainLink",
+  "type": "object"
+}

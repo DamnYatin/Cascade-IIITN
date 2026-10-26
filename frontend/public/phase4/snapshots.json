@@ -1,0 +1,5497 @@
+[
+  {
+    "burn_in": true,
+    "calibrated": false,
+    "calibration_source": "none",
+    "cascade_summary": [
+      {
+        "dominant_parent": "mokokchung_nl:river_embankment",
+        "eta_p10": 3.0,
+        "eta_p50": 4.0,
+        "eta_p90": 6.7,
+        "node": "mokokchung_nl:transport",
+        "probability": 0.42,
+        "stage": 1
+      },
+      {
+        "dominant_parent": "charaideo:river_embankment",
+        "eta_p10": 2.2,
+        "eta_p50": 4.0,
+        "eta_p90": 6.4,
+        "node": "charaideo:transport",
+        "probability": 0.4,
+        "stage": 2
+      },
+      {
+        "dominant_parent": "jorhat:river_embankment",
+        "eta_p10": 3.0,
+        "eta_p50": 4.5,
+        "eta_p90": 7.0,
+        "node": "jorhat:transport",
+        "probability": 0.45,
+        "stage": 3
+      },
+      {
+        "dominant_parent": "sivasagar:emergency_response",
+        "eta_p10": 2.0,
+        "eta_p50": 5.0,
+        "eta_p90": 10.1,
+        "node": "sivasagar:health",
+        "probability": 1.0,
+        "stage": 4
+      },
+      {
+        "dominant_parent": "golaghat:river_embankment",
+        "eta_p10": 3.2,
+        "eta_p50": 5.0,
+        "eta_p90": 16.2,
+        "node": "golaghat:transport",
+        "probability": 0.46,
+        "stage": 5
+      },
+      {
+        "dominant_parent": "karbi_anglong:river_embankment",
+        "eta_p10": 3.0,
+        "eta_p50": 5.0,
+        "eta_p90": 10.0,
+        "node": "karbi_anglong:transport",
+        "probability": 0.37,
+        "stage": 6
+      },
+      {
+        "dominant_parent": "karbi_anglong:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 5.0,
+        "eta_p90": 10.0,
+        "node": "karbi_anglong:health",
+        "probability": 1.0,
+        "stage": 7
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 5.0,
+        "eta_p90": 10.0,
+        "node": "kamrup_metropolitan:health",
+        "probability": 1.0,
+        "stage": 8
+      },
+      {
+        "dominant_parent": "morigaon:river_embankment",
+        "eta_p10": 3.8,
+        "eta_p50": 5.0,
+        "eta_p90": 19.4,
+        "node": "morigaon:transport",
+        "probability": 0.35,
+        "stage": 9
+      },
+      {
+        "dominant_parent": "wokha_nl:river_embankment",
+        "eta_p10": 3.0,
+        "eta_p50": 5.5,
+        "eta_p90": 21.8,
+        "node": "wokha_nl:transport",
+        "probability": 0.4,
+        "stage": 10
+      },
+      {
+        "dominant_parent": "mon_nl:river_embankment",
+        "eta_p10": 4.1,
+        "eta_p50": 6.0,
+        "eta_p90": 10.9,
+        "node": "mon_nl:transport",
+        "probability": 0.32,
+        "stage": 11
+      },
+      {
+        "dominant_parent": "charaideo:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 6.0,
+        "eta_p90": 11.0,
+        "node": "charaideo:health",
+        "probability": 1.0,
+        "stage": 12
+      },
+      {
+        "dominant_parent": "sivasagar:river_embankment",
+        "eta_p10": 2.6,
+        "eta_p50": 6.0,
+        "eta_p90": 26.0,
+        "node": "sivasagar:transport",
+        "probability": 0.37,
+        "stage": 13
+      },
+      {
+        "dominant_parent": "jorhat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 6.0,
+        "eta_p90": 10.0,
+        "node": "jorhat:health",
+        "probability": 1.0,
+        "stage": 14
+      },
+      {
+        "dominant_parent": "golaghat:emergency_response",
+        "eta_p10": 2.9,
+        "eta_p50": 6.0,
+        "eta_p90": 10.0,
+        "node": "golaghat:health",
+        "probability": 1.0,
+        "stage": 15
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:river_embankment",
+        "eta_p10": 3.0,
+        "eta_p50": 6.0,
+        "eta_p90": 8.0,
+        "node": "kamrup_metropolitan:transport",
+        "probability": 0.39,
+        "stage": 16
+      },
+      {
+        "dominant_parent": "morigaon:emergency_response",
+        "eta_p10": 2.9,
+        "eta_p50": 6.0,
+        "eta_p90": 10.1,
+        "node": "morigaon:health",
+        "probability": 1.0,
+        "stage": 17
+      },
+      {
+        "dominant_parent": "jorhat:transport",
+        "eta_p10": 4.5,
+        "eta_p50": 8.0,
+        "eta_p90": 42.0,
+        "node": "jorhat:emergency_response",
+        "probability": 0.96,
+        "stage": 18
+      },
+      {
+        "dominant_parent": "mon_nl:transport",
+        "eta_p10": 5.1,
+        "eta_p50": 9.0,
+        "eta_p90": 51.8,
+        "node": "mon_nl:emergency_response",
+        "probability": 0.96,
+        "stage": 19
+      },
+      {
+        "dominant_parent": "wokha_nl:transport",
+        "eta_p10": 5.0,
+        "eta_p50": 9.0,
+        "eta_p90": 52.4,
+        "node": "wokha_nl:emergency_response",
+        "probability": 0.95,
+        "stage": 20
+      },
+      {
+        "dominant_parent": "mokokchung_nl:transport",
+        "eta_p10": 5.0,
+        "eta_p50": 10.0,
+        "eta_p90": 39.3,
+        "node": "mokokchung_nl:emergency_response",
+        "probability": 0.98,
+        "stage": 21
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:transport",
+        "eta_p10": 6.0,
+        "eta_p50": 10.0,
+        "eta_p90": 51.2,
+        "node": "kamrup_metropolitan:emergency_response",
+        "probability": 0.97,
+        "stage": 22
+      },
+      {
+        "dominant_parent": "sivasagar:transport",
+        "eta_p10": 5.0,
+        "eta_p50": 11.0,
+        "eta_p90": 56.8,
+        "node": "sivasagar:emergency_response",
+        "probability": 0.97,
+        "stage": 23
+      },
+      {
+        "dominant_parent": "golaghat:transport",
+        "eta_p10": 5.0,
+        "eta_p50": 11.0,
+        "eta_p90": 52.0,
+        "node": "golaghat:emergency_response",
+        "probability": 0.98,
+        "stage": 24
+      },
+      {
+        "dominant_parent": "charaideo:transport",
+        "eta_p10": 6.0,
+        "eta_p50": 12.0,
+        "eta_p90": 39.9,
+        "node": "charaideo:emergency_response",
+        "probability": 0.93,
+        "stage": 25
+      },
+      {
+        "dominant_parent": "karbi_anglong:transport",
+        "eta_p10": 5.0,
+        "eta_p50": 12.0,
+        "eta_p90": 44.7,
+        "node": "karbi_anglong:emergency_response",
+        "probability": 0.97,
+        "stage": 26
+      },
+      {
+        "dominant_parent": "morigaon:transport",
+        "eta_p10": 6.0,
+        "eta_p50": 13.0,
+        "eta_p90": 54.6,
+        "node": "morigaon:emergency_response",
+        "probability": 0.93,
+        "stage": 27
+      }
+    ],
+    "city_id": "upper_assam",
+    "city_probabilities": {
+      "1": {
+        "CRITICAL": 0.0,
+        "HIGH_RISK": 0.0,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "12": {
+        "CRITICAL": 0.9,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "24": {
+        "CRITICAL": 0.96,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "3": {
+        "CRITICAL": 0.01,
+        "HIGH_RISK": 0.06,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "48": {
+        "CRITICAL": 0.99,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "6": {
+        "CRITICAL": 0.44,
+        "HIGH_RISK": 0.8,
+        "NORMAL": 1.0,
+        "WATCH": 0.8
+      },
+      "72": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      }
+    },
+    "city_risk_state": "CRITICAL",
+    "config_hash": "840b64fc0bf79b31",
+    "disclosure_string": "PROVENANCE DISCLOSURE: Real inputs are rainfall and soil moisture. Downstream systems (power, transport, comms, health, emergency response) are SIMULATED.",
+    "drift_events": [],
+    "edge_changes": [],
+    "evidence_quality": {
+      "charaideo": 0.5,
+      "city": 0.5,
+      "golaghat": 0.5,
+      "jorhat": 0.5,
+      "kamrup_metropolitan": 0.5,
+      "karbi_anglong": 0.5,
+      "mokokchung_nl": 0.5,
+      "mon_nl": 0.5,
+      "morigaon": 0.5,
+      "sivasagar": 0.5,
+      "wokha_nl": 0.5
+    },
+    "issued_at": "2026-07-05T00:00:00Z",
+    "oracle": false,
+    "provenance_mix": {
+      "real_percentage": 0.0,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 0.0,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "top_edges": [],
+    "zone_probabilities": {
+      "charaideo": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.19,
+          "NORMAL": 1.0,
+          "WATCH": 0.67
+        },
+        "12": {
+          "CRITICAL": 0.42,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.62,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.52,
+          "NORMAL": 1.0,
+          "WATCH": 0.9
+        },
+        "48": {
+          "CRITICAL": 0.76,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.15,
+          "HIGH_RISK": 0.77,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "72": {
+          "CRITICAL": 0.81,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "golaghat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.23,
+          "NORMAL": 1.0,
+          "WATCH": 0.63
+        },
+        "12": {
+          "CRITICAL": 0.47,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.59,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.6,
+          "NORMAL": 1.0,
+          "WATCH": 0.91
+        },
+        "48": {
+          "CRITICAL": 0.76,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.21,
+          "HIGH_RISK": 0.88,
+          "NORMAL": 1.0,
+          "WATCH": 0.96
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "jorhat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.24,
+          "NORMAL": 1.0,
+          "WATCH": 0.71
+        },
+        "12": {
+          "CRITICAL": 0.52,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.67,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.59,
+          "NORMAL": 1.0,
+          "WATCH": 0.93
+        },
+        "48": {
+          "CRITICAL": 0.79,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.23,
+          "HIGH_RISK": 0.88,
+          "NORMAL": 1.0,
+          "WATCH": 0.97
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "kamrup_metropolitan": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.16,
+          "NORMAL": 1.0,
+          "WATCH": 0.66
+        },
+        "12": {
+          "CRITICAL": 0.47,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.58,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.6,
+          "NORMAL": 1.0,
+          "WATCH": 0.88
+        },
+        "48": {
+          "CRITICAL": 0.7,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.14,
+          "HIGH_RISK": 0.88,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "72": {
+          "CRITICAL": 0.8,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "karbi_anglong": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.2,
+          "NORMAL": 1.0,
+          "WATCH": 0.67
+        },
+        "12": {
+          "CRITICAL": 0.46,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.64,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.58,
+          "NORMAL": 1.0,
+          "WATCH": 0.84
+        },
+        "48": {
+          "CRITICAL": 0.81,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.14,
+          "HIGH_RISK": 0.79,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "72": {
+          "CRITICAL": 0.9,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mokokchung_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.07,
+          "NORMAL": 1.0,
+          "WATCH": 0.44
+        },
+        "12": {
+          "CRITICAL": 0.13,
+          "HIGH_RISK": 0.67,
+          "NORMAL": 1.0,
+          "WATCH": 0.9
+        },
+        "24": {
+          "CRITICAL": 0.13,
+          "HIGH_RISK": 0.77,
+          "NORMAL": 1.0,
+          "WATCH": 0.96
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.23,
+          "NORMAL": 1.0,
+          "WATCH": 0.59
+        },
+        "48": {
+          "CRITICAL": 0.14,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 0.44,
+          "NORMAL": 1.0,
+          "WATCH": 0.74
+        },
+        "72": {
+          "CRITICAL": 0.14,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mon_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.06,
+          "NORMAL": 1.0,
+          "WATCH": 0.42
+        },
+        "12": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 0.74,
+          "NORMAL": 1.0,
+          "WATCH": 0.9
+        },
+        "24": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.88,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.19,
+          "NORMAL": 1.0,
+          "WATCH": 0.62
+        },
+        "48": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.47,
+          "NORMAL": 1.0,
+          "WATCH": 0.78
+        },
+        "72": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "morigaon": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.18,
+          "NORMAL": 1.0,
+          "WATCH": 0.63
+        },
+        "12": {
+          "CRITICAL": 0.39,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.57,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.52,
+          "NORMAL": 1.0,
+          "WATCH": 0.82
+        },
+        "48": {
+          "CRITICAL": 0.71,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 0.83,
+          "NORMAL": 1.0,
+          "WATCH": 0.95
+        },
+        "72": {
+          "CRITICAL": 0.83,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "sivasagar": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.26,
+          "NORMAL": 1.0,
+          "WATCH": 0.74
+        },
+        "12": {
+          "CRITICAL": 0.43,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "24": {
+          "CRITICAL": 0.55,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.62,
+          "NORMAL": 1.0,
+          "WATCH": 0.94
+        },
+        "48": {
+          "CRITICAL": 0.69,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.18,
+          "HIGH_RISK": 0.9,
+          "NORMAL": 1.0,
+          "WATCH": 0.96
+        },
+        "72": {
+          "CRITICAL": 0.84,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "wokha_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.08,
+          "NORMAL": 1.0,
+          "WATCH": 0.33
+        },
+        "12": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 0.69,
+          "NORMAL": 1.0,
+          "WATCH": 0.83
+        },
+        "24": {
+          "CRITICAL": 0.14,
+          "HIGH_RISK": 0.78,
+          "NORMAL": 1.0,
+          "WATCH": 0.93
+        },
+        "3": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.22,
+          "NORMAL": 1.0,
+          "WATCH": 0.59
+        },
+        "48": {
+          "CRITICAL": 0.15,
+          "HIGH_RISK": 0.91,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "6": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 0.49,
+          "NORMAL": 1.0,
+          "WATCH": 0.76
+        },
+        "72": {
+          "CRITICAL": 0.16,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        }
+      }
+    },
+    "zone_risk_states": {
+      "charaideo": "HIGH_RISK",
+      "golaghat": "HIGH_RISK",
+      "jorhat": "CRITICAL",
+      "kamrup_metropolitan": "HIGH_RISK",
+      "karbi_anglong": "HIGH_RISK",
+      "mokokchung_nl": "WATCH",
+      "mon_nl": "WATCH",
+      "morigaon": "HIGH_RISK",
+      "sivasagar": "HIGH_RISK",
+      "wokha_nl": "WATCH"
+    }
+  },
+  {
+    "burn_in": true,
+    "calibrated": false,
+    "calibration_source": "none",
+    "cascade_summary": [
+      {
+        "dominant_parent": "mon_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 16.0,
+        "node": "mon_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 1
+      },
+      {
+        "dominant_parent": "mokokchung_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 37.5,
+        "node": "mokokchung_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 2
+      },
+      {
+        "dominant_parent": "wokha_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 29.2,
+        "node": "wokha_nl:emergency_response",
+        "probability": 0.98,
+        "stage": 3
+      },
+      {
+        "dominant_parent": "charaideo:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 18.7,
+        "node": "charaideo:emergency_response",
+        "probability": 1.0,
+        "stage": 4
+      },
+      {
+        "dominant_parent": "sivasagar:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 25.8,
+        "node": "sivasagar:emergency_response",
+        "probability": 1.0,
+        "stage": 5
+      },
+      {
+        "dominant_parent": "jorhat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 13.0,
+        "node": "jorhat:emergency_response",
+        "probability": 1.0,
+        "stage": 6
+      },
+      {
+        "dominant_parent": "golaghat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 22.4,
+        "node": "golaghat:emergency_response",
+        "probability": 1.0,
+        "stage": 7
+      },
+      {
+        "dominant_parent": "karbi_anglong:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 28.8,
+        "node": "karbi_anglong:emergency_response",
+        "probability": 0.99,
+        "stage": 8
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 26.1,
+        "node": "kamrup_metropolitan:emergency_response",
+        "probability": 1.0,
+        "stage": 9
+      },
+      {
+        "dominant_parent": "morigaon:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 21.6,
+        "node": "morigaon:emergency_response",
+        "probability": 1.0,
+        "stage": 10
+      },
+      {
+        "dominant_parent": "charaideo:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "charaideo:health",
+        "probability": 1.0,
+        "stage": 11
+      },
+      {
+        "dominant_parent": "sivasagar:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "sivasagar:health",
+        "probability": 1.0,
+        "stage": 12
+      },
+      {
+        "dominant_parent": "jorhat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "jorhat:health",
+        "probability": 1.0,
+        "stage": 13
+      },
+      {
+        "dominant_parent": "golaghat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "golaghat:health",
+        "probability": 1.0,
+        "stage": 14
+      },
+      {
+        "dominant_parent": "karbi_anglong:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "karbi_anglong:health",
+        "probability": 1.0,
+        "stage": 15
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "kamrup_metropolitan:health",
+        "probability": 1.0,
+        "stage": 16
+      },
+      {
+        "dominant_parent": "morigaon:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "morigaon:health",
+        "probability": 1.0,
+        "stage": 17
+      },
+      {
+        "dominant_parent": "karbi_anglong:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 4.0,
+        "eta_p90": 5.6,
+        "node": "karbi_anglong:transport",
+        "probability": 0.22,
+        "stage": 18
+      },
+      {
+        "dominant_parent": "sivasagar:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 5.0,
+        "eta_p90": 40.8,
+        "node": "sivasagar:transport",
+        "probability": 0.41,
+        "stage": 19
+      },
+      {
+        "dominant_parent": "golaghat:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 5.0,
+        "eta_p90": 8.2,
+        "node": "golaghat:transport",
+        "probability": 0.25,
+        "stage": 20
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:river_embankment",
+        "eta_p10": 4.5,
+        "eta_p50": 6.0,
+        "eta_p90": 9.0,
+        "node": "kamrup_metropolitan:transport",
+        "probability": 0.37,
+        "stage": 21
+      },
+      {
+        "dominant_parent": "wokha_nl:river_embankment",
+        "eta_p10": 5.3,
+        "eta_p50": 6.5,
+        "eta_p90": 7.7,
+        "node": "wokha_nl:transport",
+        "probability": 0.27,
+        "stage": 22
+      },
+      {
+        "dominant_parent": "charaideo:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 6.5,
+        "eta_p90": 28.9,
+        "node": "charaideo:transport",
+        "probability": 0.27,
+        "stage": 23
+      },
+      {
+        "dominant_parent": "mon_nl:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 8.0,
+        "eta_p90": 56.0,
+        "node": "mon_nl:transport",
+        "probability": 0.23,
+        "stage": 24
+      },
+      {
+        "dominant_parent": "morigaon:river_embankment",
+        "eta_p10": 5.6,
+        "eta_p50": 9.0,
+        "eta_p90": 27.8,
+        "node": "morigaon:transport",
+        "probability": 0.27,
+        "stage": 25
+      },
+      {
+        "dominant_parent": "jorhat:river_embankment",
+        "eta_p10": 6.0,
+        "eta_p50": 10.0,
+        "eta_p90": 13.2,
+        "node": "jorhat:transport",
+        "probability": 0.29,
+        "stage": 26
+      },
+      {
+        "dominant_parent": "mokokchung_nl:river_embankment",
+        "eta_p10": 6.2,
+        "eta_p50": 14.5,
+        "eta_p90": 43.1,
+        "node": "mokokchung_nl:transport",
+        "probability": 0.27,
+        "stage": 27
+      }
+    ],
+    "city_id": "upper_assam",
+    "city_probabilities": {
+      "1": {
+        "CRITICAL": 0.0,
+        "HIGH_RISK": 0.06,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "12": {
+        "CRITICAL": 0.97,
+        "HIGH_RISK": 0.99,
+        "NORMAL": 1.0,
+        "WATCH": 0.99
+      },
+      "24": {
+        "CRITICAL": 0.99,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "3": {
+        "CRITICAL": 0.45,
+        "HIGH_RISK": 0.76,
+        "NORMAL": 1.0,
+        "WATCH": 0.76
+      },
+      "48": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "6": {
+        "CRITICAL": 0.88,
+        "HIGH_RISK": 0.97,
+        "NORMAL": 1.0,
+        "WATCH": 0.97
+      },
+      "72": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      }
+    },
+    "city_risk_state": "CRITICAL",
+    "config_hash": "840b64fc0bf79b31",
+    "disclosure_string": "PROVENANCE DISCLOSURE: Real inputs are rainfall and soil moisture. Downstream systems (power, transport, comms, health, emergency response) are SIMULATED.",
+    "drift_events": [],
+    "edge_changes": [],
+    "evidence_quality": {
+      "charaideo": 0.8625,
+      "city": 0.8572,
+      "golaghat": 0.8625,
+      "jorhat": 0.8625,
+      "kamrup_metropolitan": 0.8625,
+      "karbi_anglong": 0.8625,
+      "mokokchung_nl": 0.845,
+      "mon_nl": 0.845,
+      "morigaon": 0.8625,
+      "sivasagar": 0.8625,
+      "wokha_nl": 0.845
+    },
+    "issued_at": "2026-07-05T12:00:00Z",
+    "oracle": false,
+    "provenance_mix": {
+      "real_percentage": 0.0,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 100.0,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "top_edges": [],
+    "zone_probabilities": {
+      "charaideo": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.59,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.68,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.22,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.75,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.44,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "golaghat": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.89,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.52,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.61,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.16,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.79,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.36,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.87,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "jorhat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.59,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.7,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.16,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.39,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.9,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "kamrup_metropolitan": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.66,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.75,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.26,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.87,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.46,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.96,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "karbi_anglong": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.48,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.62,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.2,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.79,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.35,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.88,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mokokchung_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.04,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mon_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.91,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.08,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "morigaon": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.43,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.55,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.17,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.68,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.32,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "sivasagar": {
+        "1": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.66,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.73,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.23,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.84,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.49,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.89,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "wokha_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.87,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "12": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "24": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.89,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "48": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "72": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      }
+    },
+    "zone_risk_states": {
+      "charaideo": "CRITICAL",
+      "golaghat": "CRITICAL",
+      "jorhat": "CRITICAL",
+      "kamrup_metropolitan": "CRITICAL",
+      "karbi_anglong": "HIGH_RISK",
+      "mokokchung_nl": "WATCH",
+      "mon_nl": "WATCH",
+      "morigaon": "HIGH_RISK",
+      "sivasagar": "CRITICAL",
+      "wokha_nl": "WATCH"
+    }
+  },
+  {
+    "burn_in": true,
+    "calibrated": false,
+    "calibration_source": "none",
+    "cascade_summary": [
+      {
+        "dominant_parent": "mon_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 14.6,
+        "node": "mon_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 1
+      },
+      {
+        "dominant_parent": "mokokchung_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 20.9,
+        "node": "mokokchung_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 2
+      },
+      {
+        "dominant_parent": "wokha_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 16.4,
+        "node": "wokha_nl:emergency_response",
+        "probability": 0.99,
+        "stage": 3
+      },
+      {
+        "dominant_parent": "charaideo:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 25.5,
+        "node": "charaideo:emergency_response",
+        "probability": 1.0,
+        "stage": 4
+      },
+      {
+        "dominant_parent": "sivasagar:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 31.1,
+        "node": "sivasagar:emergency_response",
+        "probability": 1.0,
+        "stage": 5
+      },
+      {
+        "dominant_parent": "jorhat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 18.1,
+        "node": "jorhat:emergency_response",
+        "probability": 0.99,
+        "stage": 6
+      },
+      {
+        "dominant_parent": "golaghat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 14.0,
+        "node": "golaghat:emergency_response",
+        "probability": 1.0,
+        "stage": 7
+      },
+      {
+        "dominant_parent": "karbi_anglong:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 19.8,
+        "node": "karbi_anglong:emergency_response",
+        "probability": 0.99,
+        "stage": 8
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 22.3,
+        "node": "kamrup_metropolitan:emergency_response",
+        "probability": 1.0,
+        "stage": 9
+      },
+      {
+        "dominant_parent": "morigaon:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 13.1,
+        "node": "morigaon:emergency_response",
+        "probability": 1.0,
+        "stage": 10
+      },
+      {
+        "dominant_parent": "charaideo:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "charaideo:health",
+        "probability": 1.0,
+        "stage": 11
+      },
+      {
+        "dominant_parent": "sivasagar:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "sivasagar:health",
+        "probability": 1.0,
+        "stage": 12
+      },
+      {
+        "dominant_parent": "jorhat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "jorhat:health",
+        "probability": 1.0,
+        "stage": 13
+      },
+      {
+        "dominant_parent": "golaghat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "golaghat:health",
+        "probability": 1.0,
+        "stage": 14
+      },
+      {
+        "dominant_parent": "karbi_anglong:emergency_response",
+        "eta_p10": 2.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "karbi_anglong:health",
+        "probability": 1.0,
+        "stage": 15
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "kamrup_metropolitan:health",
+        "probability": 1.0,
+        "stage": 16
+      },
+      {
+        "dominant_parent": "morigaon:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "morigaon:health",
+        "probability": 1.0,
+        "stage": 17
+      },
+      {
+        "dominant_parent": "mon_nl:river_embankment",
+        "eta_p10": 3.2,
+        "eta_p50": 6.0,
+        "eta_p90": 17.4,
+        "node": "mon_nl:transport",
+        "probability": 0.37,
+        "stage": 18
+      },
+      {
+        "dominant_parent": "wokha_nl:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 6.0,
+        "eta_p90": 28.7,
+        "node": "wokha_nl:transport",
+        "probability": 0.36,
+        "stage": 19
+      },
+      {
+        "dominant_parent": "sivasagar:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 6.0,
+        "eta_p90": 38.0,
+        "node": "sivasagar:transport",
+        "probability": 0.29,
+        "stage": 20
+      },
+      {
+        "dominant_parent": "golaghat:river_embankment",
+        "eta_p10": 5.6,
+        "eta_p50": 6.0,
+        "eta_p90": 61.8,
+        "node": "golaghat:transport",
+        "probability": 0.25,
+        "stage": 21
+      },
+      {
+        "dominant_parent": "morigaon:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 6.0,
+        "eta_p90": 11.0,
+        "node": "morigaon:transport",
+        "probability": 0.45,
+        "stage": 22
+      },
+      {
+        "dominant_parent": "karbi_anglong:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 7.5,
+        "eta_p90": 28.5,
+        "node": "karbi_anglong:transport",
+        "probability": 0.25,
+        "stage": 23
+      },
+      {
+        "dominant_parent": "charaideo:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 8.0,
+        "eta_p90": 24.0,
+        "node": "charaideo:transport",
+        "probability": 0.35,
+        "stage": 24
+      },
+      {
+        "dominant_parent": "jorhat:river_embankment",
+        "eta_p10": 7.0,
+        "eta_p50": 11.0,
+        "eta_p90": 15.0,
+        "node": "jorhat:transport",
+        "probability": 0.27,
+        "stage": 25
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:river_embankment",
+        "eta_p10": 6.5,
+        "eta_p50": 11.5,
+        "eta_p90": 44.0,
+        "node": "kamrup_metropolitan:transport",
+        "probability": 0.47,
+        "stage": 26
+      },
+      {
+        "dominant_parent": "mokokchung_nl:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 28.0,
+        "eta_p90": 70.0,
+        "node": "mokokchung_nl:transport",
+        "probability": 0.39,
+        "stage": 27
+      }
+    ],
+    "city_id": "upper_assam",
+    "city_probabilities": {
+      "1": {
+        "CRITICAL": 0.0,
+        "HIGH_RISK": 0.05,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "12": {
+        "CRITICAL": 0.97,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "24": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "3": {
+        "CRITICAL": 0.37,
+        "HIGH_RISK": 0.77,
+        "NORMAL": 1.0,
+        "WATCH": 0.77
+      },
+      "48": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "6": {
+        "CRITICAL": 0.84,
+        "HIGH_RISK": 0.98,
+        "NORMAL": 1.0,
+        "WATCH": 0.98
+      },
+      "72": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      }
+    },
+    "city_risk_state": "CRITICAL",
+    "config_hash": "840b64fc0bf79b31",
+    "disclosure_string": "PROVENANCE DISCLOSURE: Real inputs are rainfall and soil moisture. Downstream systems (power, transport, comms, health, emergency response) are SIMULATED.",
+    "drift_events": [],
+    "edge_changes": [],
+    "evidence_quality": {
+      "charaideo": 0.8734,
+      "city": 0.8711,
+      "golaghat": 0.8729,
+      "jorhat": 0.8735,
+      "kamrup_metropolitan": 0.8738,
+      "karbi_anglong": 0.8707,
+      "mokokchung_nl": 0.8674,
+      "mon_nl": 0.8664,
+      "morigaon": 0.8737,
+      "sivasagar": 0.8722,
+      "wokha_nl": 0.8672
+    },
+    "issued_at": "2026-07-06T00:00:00Z",
+    "oracle": false,
+    "provenance_mix": {
+      "real_percentage": 4.8421,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 95.1579,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "top_edges": [],
+    "zone_probabilities": {
+      "charaideo": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.55,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.7,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.23,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.82,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.46,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.88,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "golaghat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.54,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.62,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.19,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.8,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.38,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "jorhat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.48,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.66,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.19,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.79,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.31,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.84,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "kamrup_metropolitan": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.67,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.77,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.22,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.88,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.51,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.93,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "karbi_anglong": {
+        "1": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.9,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.54,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.64,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.21,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.76,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.35,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mokokchung_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.04,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mon_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "morigaon": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.67,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.74,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.21,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.84,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.54,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.92,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "sivasagar": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.46,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.61,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.82,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.34,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.92,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "wokha_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "12": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "48": {
+          "CRITICAL": 0.04,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "72": {
+          "CRITICAL": 0.04,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      }
+    },
+    "zone_risk_states": {
+      "charaideo": "CRITICAL",
+      "golaghat": "CRITICAL",
+      "jorhat": "CRITICAL",
+      "kamrup_metropolitan": "CRITICAL",
+      "karbi_anglong": "CRITICAL",
+      "mokokchung_nl": "WATCH",
+      "mon_nl": "WATCH",
+      "morigaon": "CRITICAL",
+      "sivasagar": "CRITICAL",
+      "wokha_nl": "WATCH"
+    }
+  },
+  {
+    "burn_in": true,
+    "calibrated": false,
+    "calibration_source": "none",
+    "cascade_summary": [
+      {
+        "dominant_parent": "mon_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 10.5,
+        "node": "mon_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 1
+      },
+      {
+        "dominant_parent": "mokokchung_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 29.0,
+        "node": "mokokchung_nl:emergency_response",
+        "probability": 0.99,
+        "stage": 2
+      },
+      {
+        "dominant_parent": "wokha_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 8.0,
+        "node": "wokha_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 3
+      },
+      {
+        "dominant_parent": "charaideo:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 21.2,
+        "node": "charaideo:emergency_response",
+        "probability": 1.0,
+        "stage": 4
+      },
+      {
+        "dominant_parent": "sivasagar:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 30.5,
+        "node": "sivasagar:emergency_response",
+        "probability": 1.0,
+        "stage": 5
+      },
+      {
+        "dominant_parent": "jorhat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 31.0,
+        "node": "jorhat:emergency_response",
+        "probability": 1.0,
+        "stage": 6
+      },
+      {
+        "dominant_parent": "golaghat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 9.2,
+        "node": "golaghat:emergency_response",
+        "probability": 1.0,
+        "stage": 7
+      },
+      {
+        "dominant_parent": "karbi_anglong:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 10.7,
+        "node": "karbi_anglong:emergency_response",
+        "probability": 1.0,
+        "stage": 8
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 6.0,
+        "node": "kamrup_metropolitan:emergency_response",
+        "probability": 1.0,
+        "stage": 9
+      },
+      {
+        "dominant_parent": "morigaon:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 8.4,
+        "node": "morigaon:emergency_response",
+        "probability": 1.0,
+        "stage": 10
+      },
+      {
+        "dominant_parent": "charaideo:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "charaideo:health",
+        "probability": 1.0,
+        "stage": 11
+      },
+      {
+        "dominant_parent": "sivasagar:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "sivasagar:health",
+        "probability": 1.0,
+        "stage": 12
+      },
+      {
+        "dominant_parent": "jorhat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "jorhat:health",
+        "probability": 1.0,
+        "stage": 13
+      },
+      {
+        "dominant_parent": "golaghat:emergency_response",
+        "eta_p10": 2.9,
+        "eta_p50": 3.0,
+        "eta_p90": 3.1,
+        "node": "golaghat:health",
+        "probability": 1.0,
+        "stage": 14
+      },
+      {
+        "dominant_parent": "karbi_anglong:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "karbi_anglong:health",
+        "probability": 1.0,
+        "stage": 15
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "kamrup_metropolitan:health",
+        "probability": 1.0,
+        "stage": 16
+      },
+      {
+        "dominant_parent": "morigaon:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "morigaon:health",
+        "probability": 1.0,
+        "stage": 17
+      },
+      {
+        "dominant_parent": "morigaon:river_embankment",
+        "eta_p10": 3.3,
+        "eta_p50": 4.0,
+        "eta_p90": 41.8,
+        "node": "morigaon:transport",
+        "probability": 0.28,
+        "stage": 18
+      },
+      {
+        "dominant_parent": "golaghat:river_embankment",
+        "eta_p10": 3.6,
+        "eta_p50": 5.0,
+        "eta_p90": 35.6,
+        "node": "golaghat:transport",
+        "probability": 0.36,
+        "stage": 19
+      },
+      {
+        "dominant_parent": "mon_nl:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 6.0,
+        "eta_p90": 58.2,
+        "node": "mon_nl:transport",
+        "probability": 0.36,
+        "stage": 20
+      },
+      {
+        "dominant_parent": "charaideo:river_embankment",
+        "eta_p10": 3.6,
+        "eta_p50": 6.0,
+        "eta_p90": 8.4,
+        "node": "charaideo:transport",
+        "probability": 0.26,
+        "stage": 21
+      },
+      {
+        "dominant_parent": "wokha_nl:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 7.5,
+        "eta_p90": 10.9,
+        "node": "wokha_nl:transport",
+        "probability": 0.47,
+        "stage": 22
+      },
+      {
+        "dominant_parent": "mokokchung_nl:river_embankment",
+        "eta_p10": 4.1,
+        "eta_p50": 8.0,
+        "eta_p90": 51.6,
+        "node": "mokokchung_nl:transport",
+        "probability": 0.34,
+        "stage": 23
+      },
+      {
+        "dominant_parent": "sivasagar:river_embankment",
+        "eta_p10": 4.8,
+        "eta_p50": 8.0,
+        "eta_p90": 69.2,
+        "node": "sivasagar:transport",
+        "probability": 0.33,
+        "stage": 24
+      },
+      {
+        "dominant_parent": "jorhat:river_embankment",
+        "eta_p10": 6.2,
+        "eta_p50": 9.0,
+        "eta_p90": 22.8,
+        "node": "jorhat:transport",
+        "probability": 0.32,
+        "stage": 25
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 22.0,
+        "eta_p90": 59.5,
+        "node": "kamrup_metropolitan:transport",
+        "probability": 0.37,
+        "stage": 26
+      },
+      {
+        "dominant_parent": "karbi_anglong:river_embankment",
+        "eta_p10": 13.5,
+        "eta_p50": 36.5,
+        "eta_p90": 46.5,
+        "node": "karbi_anglong:transport",
+        "probability": 0.35,
+        "stage": 27
+      }
+    ],
+    "city_id": "upper_assam",
+    "city_probabilities": {
+      "1": {
+        "CRITICAL": 0.0,
+        "HIGH_RISK": 0.03,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "12": {
+        "CRITICAL": 0.97,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "24": {
+        "CRITICAL": 0.98,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "3": {
+        "CRITICAL": 0.46,
+        "HIGH_RISK": 0.84,
+        "NORMAL": 1.0,
+        "WATCH": 0.84
+      },
+      "48": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "6": {
+        "CRITICAL": 0.88,
+        "HIGH_RISK": 0.99,
+        "NORMAL": 1.0,
+        "WATCH": 0.99
+      },
+      "72": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      }
+    },
+    "city_risk_state": "CRITICAL",
+    "config_hash": "840b64fc0bf79b31",
+    "disclosure_string": "PROVENANCE DISCLOSURE: Real inputs are rainfall and soil moisture. Downstream systems (power, transport, comms, health, emergency response) are SIMULATED.",
+    "drift_events": [],
+    "edge_changes": [],
+    "evidence_quality": {
+      "charaideo": 0.8739,
+      "city": 0.8721,
+      "golaghat": 0.8738,
+      "jorhat": 0.8738,
+      "kamrup_metropolitan": 0.8739,
+      "karbi_anglong": 0.8739,
+      "mokokchung_nl": 0.8679,
+      "mon_nl": 0.8679,
+      "morigaon": 0.8739,
+      "sivasagar": 0.8739,
+      "wokha_nl": 0.8677
+    },
+    "issued_at": "2026-07-06T12:00:00Z",
+    "oracle": false,
+    "provenance_mix": {
+      "real_percentage": 10.8885,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 89.1115,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "top_edges": [],
+    "zone_probabilities": {
+      "charaideo": {
+        "1": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.47,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.6,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.16,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.76,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.34,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.87,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "golaghat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.7,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.74,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.35,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.57,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.9,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "jorhat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.61,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.69,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.22,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.89,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.45,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.92,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "kamrup_metropolitan": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.65,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.74,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.18,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.83,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.51,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.89,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "karbi_anglong": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.58,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.64,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.26,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.79,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.42,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mokokchung_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mon_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.08,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.13,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "morigaon": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.67,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.74,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.24,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.46,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.91,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "sivasagar": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.56,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.63,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.18,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "48": {
+          "CRITICAL": 0.79,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.4,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "wokha_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.04,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      }
+    },
+    "zone_risk_states": {
+      "charaideo": "CRITICAL",
+      "golaghat": "CRITICAL",
+      "jorhat": "CRITICAL",
+      "kamrup_metropolitan": "CRITICAL",
+      "karbi_anglong": "CRITICAL",
+      "mokokchung_nl": "WATCH",
+      "mon_nl": "WATCH",
+      "morigaon": "CRITICAL",
+      "sivasagar": "CRITICAL",
+      "wokha_nl": "WATCH"
+    }
+  },
+  {
+    "burn_in": true,
+    "calibrated": false,
+    "calibration_source": "none",
+    "cascade_summary": [
+      {
+        "dominant_parent": "mon_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 8.0,
+        "node": "mon_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 1
+      },
+      {
+        "dominant_parent": "mokokchung_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 15.9,
+        "node": "mokokchung_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 2
+      },
+      {
+        "dominant_parent": "wokha_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 21.6,
+        "node": "wokha_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 3
+      },
+      {
+        "dominant_parent": "charaideo:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 9.2,
+        "node": "charaideo:emergency_response",
+        "probability": 1.0,
+        "stage": 4
+      },
+      {
+        "dominant_parent": "sivasagar:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 16.2,
+        "node": "sivasagar:emergency_response",
+        "probability": 1.0,
+        "stage": 5
+      },
+      {
+        "dominant_parent": "jorhat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 13.2,
+        "node": "jorhat:emergency_response",
+        "probability": 1.0,
+        "stage": 6
+      },
+      {
+        "dominant_parent": "golaghat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 7.7,
+        "node": "golaghat:emergency_response",
+        "probability": 1.0,
+        "stage": 7
+      },
+      {
+        "dominant_parent": "karbi_anglong:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 29.6,
+        "node": "karbi_anglong:emergency_response",
+        "probability": 1.0,
+        "stage": 8
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 19.2,
+        "node": "kamrup_metropolitan:emergency_response",
+        "probability": 1.0,
+        "stage": 9
+      },
+      {
+        "dominant_parent": "morigaon:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 16.8,
+        "node": "morigaon:emergency_response",
+        "probability": 1.0,
+        "stage": 10
+      },
+      {
+        "dominant_parent": "charaideo:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "charaideo:health",
+        "probability": 1.0,
+        "stage": 11
+      },
+      {
+        "dominant_parent": "sivasagar:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "sivasagar:health",
+        "probability": 1.0,
+        "stage": 12
+      },
+      {
+        "dominant_parent": "jorhat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "jorhat:health",
+        "probability": 1.0,
+        "stage": 13
+      },
+      {
+        "dominant_parent": "golaghat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "golaghat:health",
+        "probability": 1.0,
+        "stage": 14
+      },
+      {
+        "dominant_parent": "karbi_anglong:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "karbi_anglong:health",
+        "probability": 1.0,
+        "stage": 15
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "kamrup_metropolitan:health",
+        "probability": 1.0,
+        "stage": 16
+      },
+      {
+        "dominant_parent": "morigaon:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "morigaon:health",
+        "probability": 1.0,
+        "stage": 17
+      },
+      {
+        "dominant_parent": "mon_nl:river_embankment",
+        "eta_p10": 4.9,
+        "eta_p50": 6.0,
+        "eta_p90": 25.5,
+        "node": "mon_nl:transport",
+        "probability": 0.42,
+        "stage": 18
+      },
+      {
+        "dominant_parent": "karbi_anglong:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 6.0,
+        "eta_p90": 21.4,
+        "node": "karbi_anglong:transport",
+        "probability": 0.22,
+        "stage": 19
+      },
+      {
+        "dominant_parent": "sivasagar:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 6.5,
+        "eta_p90": 19.0,
+        "node": "sivasagar:transport",
+        "probability": 0.29,
+        "stage": 20
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:river_embankment",
+        "eta_p10": 4.1,
+        "eta_p50": 6.5,
+        "eta_p90": 28.9,
+        "node": "kamrup_metropolitan:transport",
+        "probability": 0.36,
+        "stage": 21
+      },
+      {
+        "dominant_parent": "mokokchung_nl:river_embankment",
+        "eta_p10": 3.5,
+        "eta_p50": 7.0,
+        "eta_p90": 36.5,
+        "node": "mokokchung_nl:transport",
+        "probability": 0.27,
+        "stage": 22
+      },
+      {
+        "dominant_parent": "golaghat:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 7.0,
+        "eta_p90": 46.0,
+        "node": "golaghat:transport",
+        "probability": 0.34,
+        "stage": 23
+      },
+      {
+        "dominant_parent": "wokha_nl:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 7.5,
+        "eta_p90": 44.7,
+        "node": "wokha_nl:transport",
+        "probability": 0.37,
+        "stage": 24
+      },
+      {
+        "dominant_parent": "morigaon:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 8.0,
+        "eta_p90": 24.6,
+        "node": "morigaon:transport",
+        "probability": 0.37,
+        "stage": 25
+      },
+      {
+        "dominant_parent": "charaideo:river_embankment",
+        "eta_p10": 4.9,
+        "eta_p50": 8.5,
+        "eta_p90": 14.5,
+        "node": "charaideo:transport",
+        "probability": 0.34,
+        "stage": 26
+      },
+      {
+        "dominant_parent": "jorhat:river_embankment",
+        "eta_p10": 7.0,
+        "eta_p50": 11.0,
+        "eta_p90": 14.2,
+        "node": "jorhat:transport",
+        "probability": 0.26,
+        "stage": 27
+      }
+    ],
+    "city_id": "upper_assam",
+    "city_probabilities": {
+      "1": {
+        "CRITICAL": 0.0,
+        "HIGH_RISK": 0.06,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "12": {
+        "CRITICAL": 0.98,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "24": {
+        "CRITICAL": 0.99,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "3": {
+        "CRITICAL": 0.45,
+        "HIGH_RISK": 0.91,
+        "NORMAL": 1.0,
+        "WATCH": 0.91
+      },
+      "48": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "6": {
+        "CRITICAL": 0.88,
+        "HIGH_RISK": 0.99,
+        "NORMAL": 1.0,
+        "WATCH": 0.99
+      },
+      "72": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      }
+    },
+    "city_risk_state": "CRITICAL",
+    "config_hash": "840b64fc0bf79b31",
+    "disclosure_string": "PROVENANCE DISCLOSURE: Real inputs are rainfall and soil moisture. Downstream systems (power, transport, comms, health, emergency response) are SIMULATED.",
+    "drift_events": [],
+    "edge_changes": [],
+    "evidence_quality": {
+      "charaideo": 0.874,
+      "city": 0.8722,
+      "golaghat": 0.874,
+      "jorhat": 0.874,
+      "kamrup_metropolitan": 0.874,
+      "karbi_anglong": 0.874,
+      "mokokchung_nl": 0.868,
+      "mon_nl": 0.868,
+      "morigaon": 0.874,
+      "sivasagar": 0.874,
+      "wokha_nl": 0.868
+    },
+    "issued_at": "2026-07-07T00:00:00Z",
+    "oracle": false,
+    "provenance_mix": {
+      "real_percentage": 15.3203,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 84.6797,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "top_edges": [],
+    "zone_probabilities": {
+      "charaideo": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.61,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.7,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.16,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.83,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.43,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.87,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "golaghat": {
+        "1": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.73,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.75,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.29,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.54,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.87,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "jorhat": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.63,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.74,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.31,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.84,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.49,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.9,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "kamrup_metropolitan": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.55,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.66,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.26,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.8,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.45,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "karbi_anglong": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.51,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.6,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.21,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.8,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.37,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mokokchung_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "48": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.06,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mon_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.06,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "morigaon": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.63,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.71,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.2,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.81,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.42,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.9,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "sivasagar": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "12": {
+          "CRITICAL": 0.58,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.67,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.29,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.81,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.47,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.88,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "wokha_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.91,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "48": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "72": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      }
+    },
+    "zone_risk_states": {
+      "charaideo": "CRITICAL",
+      "golaghat": "CRITICAL",
+      "jorhat": "CRITICAL",
+      "kamrup_metropolitan": "CRITICAL",
+      "karbi_anglong": "CRITICAL",
+      "mokokchung_nl": "WATCH",
+      "mon_nl": "WATCH",
+      "morigaon": "CRITICAL",
+      "sivasagar": "CRITICAL",
+      "wokha_nl": "WATCH"
+    }
+  },
+  {
+    "burn_in": true,
+    "calibrated": false,
+    "calibration_source": "none",
+    "cascade_summary": [
+      {
+        "dominant_parent": "mon_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 10.4,
+        "node": "mon_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 1
+      },
+      {
+        "dominant_parent": "mokokchung_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 21.0,
+        "node": "mokokchung_nl:emergency_response",
+        "probability": 0.99,
+        "stage": 2
+      },
+      {
+        "dominant_parent": "wokha_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 13.5,
+        "node": "wokha_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 3
+      },
+      {
+        "dominant_parent": "charaideo:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 8.0,
+        "node": "charaideo:emergency_response",
+        "probability": 1.0,
+        "stage": 4
+      },
+      {
+        "dominant_parent": "sivasagar:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 18.8,
+        "node": "sivasagar:emergency_response",
+        "probability": 1.0,
+        "stage": 5
+      },
+      {
+        "dominant_parent": "jorhat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 19.0,
+        "node": "jorhat:emergency_response",
+        "probability": 1.0,
+        "stage": 6
+      },
+      {
+        "dominant_parent": "golaghat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 15.4,
+        "node": "golaghat:emergency_response",
+        "probability": 1.0,
+        "stage": 7
+      },
+      {
+        "dominant_parent": "karbi_anglong:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 17.0,
+        "node": "karbi_anglong:emergency_response",
+        "probability": 1.0,
+        "stage": 8
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 30.6,
+        "node": "kamrup_metropolitan:emergency_response",
+        "probability": 1.0,
+        "stage": 9
+      },
+      {
+        "dominant_parent": "morigaon:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 28.3,
+        "node": "morigaon:emergency_response",
+        "probability": 1.0,
+        "stage": 10
+      },
+      {
+        "dominant_parent": "charaideo:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "charaideo:health",
+        "probability": 1.0,
+        "stage": 11
+      },
+      {
+        "dominant_parent": "sivasagar:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "sivasagar:health",
+        "probability": 1.0,
+        "stage": 12
+      },
+      {
+        "dominant_parent": "jorhat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "jorhat:health",
+        "probability": 1.0,
+        "stage": 13
+      },
+      {
+        "dominant_parent": "golaghat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "golaghat:health",
+        "probability": 1.0,
+        "stage": 14
+      },
+      {
+        "dominant_parent": "karbi_anglong:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "karbi_anglong:health",
+        "probability": 1.0,
+        "stage": 15
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "kamrup_metropolitan:health",
+        "probability": 1.0,
+        "stage": 16
+      },
+      {
+        "dominant_parent": "morigaon:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "morigaon:health",
+        "probability": 1.0,
+        "stage": 17
+      },
+      {
+        "dominant_parent": "wokha_nl:river_embankment",
+        "eta_p10": 3.0,
+        "eta_p50": 5.0,
+        "eta_p90": 28.2,
+        "node": "wokha_nl:transport",
+        "probability": 0.42,
+        "stage": 18
+      },
+      {
+        "dominant_parent": "charaideo:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 5.0,
+        "eta_p90": 7.0,
+        "node": "charaideo:transport",
+        "probability": 0.44,
+        "stage": 19
+      },
+      {
+        "dominant_parent": "karbi_anglong:river_embankment",
+        "eta_p10": 5.3,
+        "eta_p50": 6.5,
+        "eta_p90": 32.9,
+        "node": "karbi_anglong:transport",
+        "probability": 0.31,
+        "stage": 20
+      },
+      {
+        "dominant_parent": "mon_nl:river_embankment",
+        "eta_p10": 5.6,
+        "eta_p50": 7.0,
+        "eta_p90": 13.0,
+        "node": "mon_nl:transport",
+        "probability": 0.25,
+        "stage": 21
+      },
+      {
+        "dominant_parent": "sivasagar:river_embankment",
+        "eta_p10": 3.6,
+        "eta_p50": 7.0,
+        "eta_p90": 26.8,
+        "node": "sivasagar:transport",
+        "probability": 0.33,
+        "stage": 22
+      },
+      {
+        "dominant_parent": "jorhat:river_embankment",
+        "eta_p10": 6.2,
+        "eta_p50": 7.0,
+        "eta_p90": 7.8,
+        "node": "jorhat:transport",
+        "probability": 0.35,
+        "stage": 23
+      },
+      {
+        "dominant_parent": "morigaon:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 7.0,
+        "eta_p90": 15.0,
+        "node": "morigaon:transport",
+        "probability": 0.34,
+        "stage": 24
+      },
+      {
+        "dominant_parent": "golaghat:river_embankment",
+        "eta_p10": 4.4,
+        "eta_p50": 8.0,
+        "eta_p90": 14.2,
+        "node": "golaghat:transport",
+        "probability": 0.33,
+        "stage": 25
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 8.0,
+        "eta_p90": 27.5,
+        "node": "kamrup_metropolitan:transport",
+        "probability": 0.23,
+        "stage": 26
+      },
+      {
+        "dominant_parent": "mokokchung_nl:river_embankment",
+        "eta_p10": 10.3,
+        "eta_p50": 25.5,
+        "eta_p90": 57.5,
+        "node": "mokokchung_nl:transport",
+        "probability": 0.27,
+        "stage": 27
+      }
+    ],
+    "city_id": "upper_assam",
+    "city_probabilities": {
+      "1": {
+        "CRITICAL": 0.0,
+        "HIGH_RISK": 0.05,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "12": {
+        "CRITICAL": 0.98,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "24": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "3": {
+        "CRITICAL": 0.44,
+        "HIGH_RISK": 0.75,
+        "NORMAL": 1.0,
+        "WATCH": 0.75
+      },
+      "48": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "6": {
+        "CRITICAL": 0.84,
+        "HIGH_RISK": 0.99,
+        "NORMAL": 1.0,
+        "WATCH": 0.99
+      },
+      "72": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      }
+    },
+    "city_risk_state": "CRITICAL",
+    "config_hash": "840b64fc0bf79b31",
+    "disclosure_string": "PROVENANCE DISCLOSURE: Real inputs are rainfall and soil moisture. Downstream systems (power, transport, comms, health, emergency response) are SIMULATED.",
+    "drift_events": [],
+    "edge_changes": [],
+    "evidence_quality": {
+      "charaideo": 0.8741,
+      "city": 0.8723,
+      "golaghat": 0.8741,
+      "jorhat": 0.8741,
+      "kamrup_metropolitan": 0.874,
+      "karbi_anglong": 0.8741,
+      "mokokchung_nl": 0.8681,
+      "mon_nl": 0.8681,
+      "morigaon": 0.874,
+      "sivasagar": 0.8741,
+      "wokha_nl": 0.8681
+    },
+    "issued_at": "2026-07-07T12:00:00Z",
+    "oracle": false,
+    "provenance_mix": {
+      "real_percentage": 17.5253,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 82.4747,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "top_edges": [],
+    "zone_probabilities": {
+      "charaideo": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.77,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.24,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.93,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.58,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.96,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "golaghat": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.58,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.67,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.25,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.81,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.4,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.89,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "jorhat": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.57,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.68,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.13,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.79,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.31,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "kamrup_metropolitan": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.54,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.65,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.23,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.8,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.44,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.91,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "karbi_anglong": {
+        "1": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.61,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.67,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.26,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.8,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.49,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mokokchung_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.04,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mon_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.06,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "morigaon": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.53,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.63,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.72,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.32,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.82,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "sivasagar": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.56,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.68,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.22,
+          "HIGH_RISK": 0.96,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.76,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.48,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.87,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "wokha_nl": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.13,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.13,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      }
+    },
+    "zone_risk_states": {
+      "charaideo": "CRITICAL",
+      "golaghat": "CRITICAL",
+      "jorhat": "CRITICAL",
+      "kamrup_metropolitan": "CRITICAL",
+      "karbi_anglong": "CRITICAL",
+      "mokokchung_nl": "WATCH",
+      "mon_nl": "WATCH",
+      "morigaon": "CRITICAL",
+      "sivasagar": "CRITICAL",
+      "wokha_nl": "WATCH"
+    }
+  },
+  {
+    "burn_in": false,
+    "calibrated": false,
+    "calibration_source": "none",
+    "cascade_summary": [
+      {
+        "dominant_parent": "mon_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 40.0,
+        "node": "mon_nl:emergency_response",
+        "probability": 0.99,
+        "stage": 1
+      },
+      {
+        "dominant_parent": "mokokchung_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 16.8,
+        "node": "mokokchung_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 2
+      },
+      {
+        "dominant_parent": "wokha_nl:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 13.2,
+        "node": "wokha_nl:emergency_response",
+        "probability": 1.0,
+        "stage": 3
+      },
+      {
+        "dominant_parent": "charaideo:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 9.5,
+        "node": "charaideo:emergency_response",
+        "probability": 1.0,
+        "stage": 4
+      },
+      {
+        "dominant_parent": "sivasagar:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 17.0,
+        "node": "sivasagar:emergency_response",
+        "probability": 1.0,
+        "stage": 5
+      },
+      {
+        "dominant_parent": "jorhat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 9.0,
+        "node": "jorhat:emergency_response",
+        "probability": 0.99,
+        "stage": 6
+      },
+      {
+        "dominant_parent": "golaghat:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 9.0,
+        "node": "golaghat:emergency_response",
+        "probability": 1.0,
+        "stage": 7
+      },
+      {
+        "dominant_parent": "karbi_anglong:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 13.9,
+        "node": "karbi_anglong:emergency_response",
+        "probability": 0.99,
+        "stage": 8
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 29.2,
+        "node": "kamrup_metropolitan:emergency_response",
+        "probability": 1.0,
+        "stage": 9
+      },
+      {
+        "dominant_parent": "morigaon:transport",
+        "eta_p10": 1.0,
+        "eta_p50": 1.0,
+        "eta_p90": 25.5,
+        "node": "morigaon:emergency_response",
+        "probability": 1.0,
+        "stage": 10
+      },
+      {
+        "dominant_parent": "charaideo:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "charaideo:health",
+        "probability": 1.0,
+        "stage": 11
+      },
+      {
+        "dominant_parent": "sivasagar:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "sivasagar:health",
+        "probability": 1.0,
+        "stage": 12
+      },
+      {
+        "dominant_parent": "jorhat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "jorhat:health",
+        "probability": 1.0,
+        "stage": 13
+      },
+      {
+        "dominant_parent": "golaghat:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "golaghat:health",
+        "probability": 1.0,
+        "stage": 14
+      },
+      {
+        "dominant_parent": "karbi_anglong:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "karbi_anglong:health",
+        "probability": 1.0,
+        "stage": 15
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "kamrup_metropolitan:health",
+        "probability": 1.0,
+        "stage": 16
+      },
+      {
+        "dominant_parent": "morigaon:emergency_response",
+        "eta_p10": 3.0,
+        "eta_p50": 3.0,
+        "eta_p90": 4.0,
+        "node": "morigaon:health",
+        "probability": 1.0,
+        "stage": 17
+      },
+      {
+        "dominant_parent": "charaideo:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 6.0,
+        "eta_p90": 16.4,
+        "node": "charaideo:transport",
+        "probability": 0.45,
+        "stage": 18
+      },
+      {
+        "dominant_parent": "jorhat:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 6.0,
+        "eta_p90": 31.6,
+        "node": "jorhat:transport",
+        "probability": 0.38,
+        "stage": 19
+      },
+      {
+        "dominant_parent": "golaghat:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 6.0,
+        "eta_p90": 9.0,
+        "node": "golaghat:transport",
+        "probability": 0.41,
+        "stage": 20
+      },
+      {
+        "dominant_parent": "karbi_anglong:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 6.0,
+        "eta_p90": 8.4,
+        "node": "karbi_anglong:transport",
+        "probability": 0.41,
+        "stage": 21
+      },
+      {
+        "dominant_parent": "mokokchung_nl:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 7.5,
+        "eta_p90": 32.8,
+        "node": "mokokchung_nl:transport",
+        "probability": 0.35,
+        "stage": 22
+      },
+      {
+        "dominant_parent": "morigaon:river_embankment",
+        "eta_p10": 4.0,
+        "eta_p50": 7.5,
+        "eta_p90": 34.7,
+        "node": "morigaon:transport",
+        "probability": 0.32,
+        "stage": 23
+      },
+      {
+        "dominant_parent": "mon_nl:river_embankment",
+        "eta_p10": 5.0,
+        "eta_p50": 8.0,
+        "eta_p90": 66.0,
+        "node": "mon_nl:transport",
+        "probability": 0.35,
+        "stage": 24
+      },
+      {
+        "dominant_parent": "wokha_nl:river_embankment",
+        "eta_p10": 3.9,
+        "eta_p50": 9.5,
+        "eta_p90": 28.0,
+        "node": "wokha_nl:transport",
+        "probability": 0.43,
+        "stage": 25
+      },
+      {
+        "dominant_parent": "sivasagar:river_embankment",
+        "eta_p10": 6.8,
+        "eta_p50": 11.0,
+        "eta_p90": 44.2,
+        "node": "sivasagar:transport",
+        "probability": 0.33,
+        "stage": 26
+      },
+      {
+        "dominant_parent": "kamrup_metropolitan:river_embankment",
+        "eta_p10": 6.5,
+        "eta_p50": 13.5,
+        "eta_p90": 52.0,
+        "node": "kamrup_metropolitan:transport",
+        "probability": 0.4,
+        "stage": 27
+      }
+    ],
+    "city_id": "upper_assam",
+    "city_probabilities": {
+      "1": {
+        "CRITICAL": 0.0,
+        "HIGH_RISK": 0.08,
+        "NORMAL": 1.0,
+        "WATCH": 0.1
+      },
+      "12": {
+        "CRITICAL": 0.98,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "24": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "3": {
+        "CRITICAL": 0.43,
+        "HIGH_RISK": 0.87,
+        "NORMAL": 1.0,
+        "WATCH": 0.87
+      },
+      "48": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "6": {
+        "CRITICAL": 0.91,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      },
+      "72": {
+        "CRITICAL": 1.0,
+        "HIGH_RISK": 1.0,
+        "NORMAL": 1.0,
+        "WATCH": 1.0
+      }
+    },
+    "city_risk_state": "CRITICAL",
+    "config_hash": "840b64fc0bf79b31",
+    "disclosure_string": "PROVENANCE DISCLOSURE: Real inputs are rainfall and soil moisture. Downstream systems (power, transport, comms, health, emergency response) are SIMULATED.",
+    "drift_events": [],
+    "edge_changes": [],
+    "evidence_quality": {
+      "charaideo": 0.8741,
+      "city": 0.8723,
+      "golaghat": 0.8741,
+      "jorhat": 0.8741,
+      "kamrup_metropolitan": 0.8741,
+      "karbi_anglong": 0.8741,
+      "mokokchung_nl": 0.8682,
+      "mon_nl": 0.8681,
+      "morigaon": 0.8741,
+      "sivasagar": 0.8741,
+      "wokha_nl": 0.8681
+    },
+    "issued_at": "2026-07-08T00:00:00Z",
+    "oracle": false,
+    "provenance_mix": {
+      "real_percentage": 19.0879,
+      "real_streams": [
+        "rain",
+        "soil_moisture"
+      ],
+      "simulated_percentage": 80.9121,
+      "simulated_systems": [
+        "comms",
+        "emergency_response",
+        "health",
+        "power",
+        "transport"
+      ]
+    },
+    "top_edges": [],
+    "zone_probabilities": {
+      "charaideo": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.89,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.77,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.84,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.34,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.91,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.6,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.93,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "golaghat": {
+        "1": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.6,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.66,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.23,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.43,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.9,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "jorhat": {
+        "1": {
+          "CRITICAL": 0.01,
+          "HIGH_RISK": 0.88,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.62,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.7,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.16,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.78,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.42,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "kamrup_metropolitan": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "12": {
+          "CRITICAL": 0.54,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.69,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.21,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.8,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.37,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.9,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "karbi_anglong": {
+        "1": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 0.98
+        },
+        "12": {
+          "CRITICAL": 0.76,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.81,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.22,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.86,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.55,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.94,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mokokchung_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "24": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "48": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.05,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "72": {
+          "CRITICAL": 0.12,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "mon_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.91,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 0.94,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.07,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.92,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.08,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.03,
+          "HIGH_RISK": 0.93,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.11,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "morigaon": {
+        "1": {
+          "CRITICAL": 0.02,
+          "HIGH_RISK": 0.88,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "12": {
+          "CRITICAL": 0.6,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.7,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.21,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.85,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.5,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.89,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "sivasagar": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.95,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.53,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.64,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.15,
+          "HIGH_RISK": 0.98,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "48": {
+          "CRITICAL": 0.77,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.37,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.87,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      },
+      "wokha_nl": {
+        "1": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "12": {
+          "CRITICAL": 0.06,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "24": {
+          "CRITICAL": 0.08,
+          "HIGH_RISK": 0.99,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "3": {
+          "CRITICAL": 0.0,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 0.99
+        },
+        "48": {
+          "CRITICAL": 0.09,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "6": {
+          "CRITICAL": 0.04,
+          "HIGH_RISK": 0.97,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        },
+        "72": {
+          "CRITICAL": 0.1,
+          "HIGH_RISK": 1.0,
+          "NORMAL": 1.0,
+          "WATCH": 1.0
+        }
+      }
+    },
+    "zone_risk_states": {
+      "charaideo": "CRITICAL",
+      "golaghat": "CRITICAL",
+      "jorhat": "CRITICAL",
+      "kamrup_metropolitan": "CRITICAL",
+      "karbi_anglong": "CRITICAL",
+      "mokokchung_nl": "WATCH",
+      "mon_nl": "WATCH",
+      "morigaon": "CRITICAL",
+      "sivasagar": "CRITICAL",
+      "wokha_nl": "WATCH"
+    }
+  }
+]

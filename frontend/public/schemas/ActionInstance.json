@@ -1,0 +1,67 @@
+{
+  "description": "A concrete instantiated action assigned to a specific target and start time.",
+  "properties": {
+    "action_id": {
+      "description": "Reference to parent Action ID",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "instance_id": {
+      "description": "Unique instance identifier",
+      "title": "Instance Id",
+      "type": "string"
+    },
+    "resource_costs": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "Total resource costs for this instance",
+      "title": "Resource Costs",
+      "type": "object"
+    },
+    "start_time_offset": {
+      "description": "Commitment time offset in hours from decision point",
+      "title": "Start Time Offset",
+      "type": "number"
+    },
+    "target_node": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Assigned target node identifier",
+      "title": "Target Node"
+    },
+    "units": {
+      "default": 1,
+      "description": "Number of units deployed",
+      "title": "Units",
+      "type": "integer"
+    },
+    "zone": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Assigned zone identifier",
+      "title": "Zone"
+    }
+  },
+  "required": [
+    "instance_id",
+    "action_id",
+    "start_time_offset"
+  ],
+  "title": "ActionInstance",
+  "type": "object"
+}

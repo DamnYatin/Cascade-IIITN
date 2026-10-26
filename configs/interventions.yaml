@@ -1,0 +1,308 @@
+# The 72-Hour Warning: Action Library & Interventions Configuration (Phase 4)
+#
+# IMPORTANT HONESTY NOTICE:
+# There is NO empirical real-world data on exact counterfactual intervention magnitudes
+# in this scenario. Every numerical effect size, cost, and delay is an ASSUMPTION or
+# EXPERT ESTIMATE NEEDED. Grounding tags reference Section 12 of Assam_Floods_2026_Report.md
+# for the existence and operational deployment of that class of action only.
+
+version: "1.0.0"
+
+# Default resource constraints available for emergency planning
+default_budgets:
+  crews: 12.0          # Field response teams
+  pumps: 6.0           # High-capacity dewatering pump sets
+  boats: 8.0           # Rescue & evacuation boats
+  generators: 5.0      # Mobile diesel backup generators
+  cost_lakh: 40.0      # Budget cap in INR Lakhs
+
+# Objective weights for multi-objective net benefit scoring
+# net_benefit = delta_loss - (side_effect_weight * harm) - (cost_penalty_weight * cost_ratio)
+objective:
+  primary_loss_weight: 1.0           # Weight on saved cascade-critical zone-hours
+  tail_risk_weight: 0.5              # Weight on reducing 90th percentile CVaR
+  side_effect_weight: 1.5            # Penalty on adverse side-effects to prevent reckless actions
+  cost_penalty_weight: 0.1           # Regularisation penalty on total resource consumption
+  cascade_break_threshold: 0.35      # P(critical) threshold below which cascade is declared broken
+
+# Action catalog
+actions:
+  - id: deploy_dewatering_pumps
+    name: "Deploy High-Capacity Dewatering Pumps"
+    systems: ["river_embankment"]
+    scope: "zone"
+    parameters:
+      flow_reduction_factor: 0.40
+    benefit_patches:
+      - patch_type: "scale_term"
+        target: "{zone}:river_embankment"
+        term: "rain_gain"
+        param_value: 0.60             # 40% reduction in water accumulation rate
+        distribution: "triangular"
+        uncertainty_spread: 0.20
+    side_effect_patches:
+      - patch_type: "add_bias"
+        target: "{zone}:power"
+        param_value: 0.05             # Marginal load on local fuel/power logistics
+        distribution: "constant"
+    resource_costs:
+      crews: 2.0
+      pumps: 2.0
+      cost_lakh: 4.5
+    earliest_start_offset: 0.0
+    activation_delay: 2.0             # 2 hours transport and priming
+    duration: 36.0
+    max_units: 3
+    exclusivity_group: null
+    provenance: "grounded_category"
+    grounded_in: ["[S36]"]
+
+  - id: embankment_sandbagging
+    name: "Embankment Reinforcement and Sandbagging"
+    systems: ["river_embankment"]
+    scope: "zone"
+    parameters:
+      breach_resistance_gain: 0.50
+    benefit_patches:
+      - patch_type: "scale_term"
+        target: "{zone}:river_embankment"
+        term: "upstream_gain"
+        param_value: 0.50             # Halves upstream surge transmission
+        distribution: "triangular"
+        uncertainty_spread: 0.25
+    side_effect_patches:
+      - patch_type: "add_bias"
+        target: "{zone}:transport"
+        param_value: 0.08             # Heavy material trucks cause local congestion
+        distribution: "constant"
+    resource_costs:
+      crews: 4.0
+      cost_lakh: 6.0
+    earliest_start_offset: 1.0
+    activation_delay: 4.0             # 4 hours to transport sandbags and erect berms
+    duration: 48.0
+    max_units: 2
+    exclusivity_group: null
+    provenance: "grounded_category"
+    grounded_in: ["[S13]", "[S16]", "[S24]"]
+
+  - id: traffic_diversion
+    name: "Traffic Diversion & Controlled Arterial Closure"
+    systems: ["transport"]
+    scope: "zone"
+    parameters:
+      inundation_exposure_reduction: 0.45
+    benefit_patches:
+      - patch_type: "scale_edge"
+        target: "{zone}:transport"
+        u: "{zone}:river_embankment"
+        v: "{zone}:transport"
+        param_value: 0.40             # Weakens overflow impact on roads
+        distribution: "constant"
+    side_effect_patches:
+      - patch_type: "add_bias"
+        target: "{zone}:emergency_response"
+        param_value: 0.12             # Detours slow down emergency response vehicle transit
+        distribution: "constant"
+    resource_costs:
+      crews: 2.0
+      cost_lakh: 1.5
+    earliest_start_offset: 0.0
+    activation_delay: 1.0             # 1 hour to establish checkpoints and diversions
+    duration: 24.0
+    max_units: 2
+    exclusivity_group: "traffic_mgmt"
+    provenance: "grounded_category"
+    grounded_in: ["[S12]", "[S19]"]
+
+  - id: rail_service_diversion
+    name: "Rail Traffic Diversion & Track Protection"
+    systems: ["transport"]
+    scope: "zone"
+    parameters:
+      submersion_protection: 0.60
+    benefit_patches:
+      - patch_type: "cap_stress"
+        target: "{zone}:transport"
+        param_value: 0.65             # Caps transit failure before complete gridlock
+        distribution: "constant"
+    side_effect_patches:
+      - patch_type: "add_bias"
+        target: "{zone}:transport"
+        param_value: 0.05             # Stranded passenger load at alternate stations
+        distribution: "constant"
+    resource_costs:
+      crews: 1.0
+      cost_lakh: 3.0
+    earliest_start_offset: 1.0
+    activation_delay: 3.0             # Coordination with Northeast Frontier Railway
+    duration: 48.0
+    max_units: 1
+    exclusivity_group: "rail_mgmt"
+    provenance: "grounded_category"
+    grounded_in: ["[S14]", "[S19]"]
+
+  - id: backup_power_deployment
+    name: "Backup Mobile Generators & Feeder Priority Restoration"
+    systems: ["power"]
+    scope: "zone"
+    parameters:
+      grid_support: 0.50
+    benefit_patches:
+      - patch_type: "cap_stress"
+        target: "{zone}:power"
+        param_value: 0.50             # Prevents complete blackout for essential services
+        distribution: "constant"
+    side_effect_patches: []
+    resource_costs:
+      crews: 2.0
+      generators: 2.0
+      cost_lakh: 5.0
+    earliest_start_offset: 0.0
+    activation_delay: 2.0
+    duration: 48.0
+    max_units: 2
+    exclusivity_group: null
+    provenance: "grounded_category"
+    grounded_in: ["[S14]", "[S21]", "[S37]"]
+
+  - id: mobile_comms_tower
+    name: "Cell-on-Wheels (COW) Mobile Communications Unit"
+    systems: ["comms"]
+    scope: "zone"
+    parameters:
+      bandwidth_reserve: 0.40
+    benefit_patches:
+      - patch_type: "scale_term"
+        target: "{zone}:comms"
+        term: "power_coupling"
+        param_value: 0.50             # Battery backup insulates comms from power drops
+        distribution: "constant"
+    side_effect_patches: []
+    resource_costs:
+      crews: 1.0
+      generators: 1.0
+      cost_lakh: 3.5
+    earliest_start_offset: 2.0
+    activation_delay: 3.0
+    duration: 36.0
+    max_units: 2
+    exclusivity_group: null
+    provenance: "assumed"
+    grounded_in: []
+
+  - id: medical_surge_supplies
+    name: "Medical Surge Capacity & Pre-Positioned Critical Supplies"
+    systems: ["health"]
+    scope: "zone"
+    parameters:
+      casualty_handling_expansion: 0.55
+    benefit_patches:
+      - patch_type: "cap_stress"
+        target: "{zone}:health"
+        param_value: 0.60             # Expands hospital bed and emergency intake ceiling
+        distribution: "constant"
+    side_effect_patches: []
+    resource_costs:
+      crews: 3.0
+      cost_lakh: 7.0
+    earliest_start_offset: 1.0
+    activation_delay: 4.0             # Mobilisation of medical reserve staff
+    duration: 60.0
+    max_units: 2
+    exclusivity_group: null
+    provenance: "grounded_category"
+    grounded_in: ["[S1]", "[S33]", "[S41]"]
+
+  - id: rescue_boat_prepositioning
+    name: "NDRF / SDRF Rescue Boat & Ambulance Pre-Positioning"
+    systems: ["emergency_response"]
+    scope: "zone"
+    parameters:
+      dispatch_latency_reduction: 0.60
+    benefit_patches:
+      - patch_type: "scale_term"
+        target: "{zone}:emergency_response"
+        term: "transport_delay"
+        param_value: 0.45             # 55% reduction in transit bottleneck on response
+        distribution: "triangular"
+        uncertainty_spread: 0.20
+    side_effect_patches:
+      - patch_type: "add_bias"
+        target: "{zone}:transport"
+        param_value: 0.04             # Convoys of boat trailers on primary roads
+        distribution: "constant"
+    resource_costs:
+      crews: 3.0
+      boats: 3.0
+      cost_lakh: 4.0
+    earliest_start_offset: 0.0
+    activation_delay: 2.0
+    duration: 48.0
+    max_units: 3
+    exclusivity_group: null
+    provenance: "grounded_category"
+    grounded_in: ["[S11]", "[S19]", "[S22]"]
+
+  - id: staged_population_evacuation
+    name: "Staged Pre-Emptive Evacuation to High-Ground Relief Camps"
+    systems: ["emergency_response", "health", "transport"]
+    scope: "zone"
+    parameters:
+      exposure_reduction: 0.70
+    benefit_patches:
+      - patch_type: "exposure_change"
+        target: "{zone}"
+        param_value: 0.35             # 65% reduction in population exposure for health/rescue
+        distribution: "triangular"
+        uncertainty_spread: 0.20
+    side_effect_patches:
+      - patch_type: "add_edge"
+        target: "{zone}:transport"
+        u: "{zone}:emergency_response"
+        v: "{zone}:transport"
+        param_value: 0.25             # Evacuation surge sharply increases road congestion
+        lag: 1.0
+      - patch_type: "add_bias"
+        target: "{zone}:health"
+        param_value: 0.08             # Camp health clinic demand increases
+        distribution: "constant"
+    resource_costs:
+      crews: 5.0
+      boats: 4.0
+      cost_lakh: 12.0
+    earliest_start_offset: 2.0
+    activation_delay: 6.0             # 6 hours to coordinate buses, boats, and camps
+    duration: 72.0
+    max_units: 1
+    exclusivity_group: "evacuation"
+    provenance: "grounded_category"
+    grounded_in: ["[S5]", "[S11]", "[S45]"]
+
+  - id: early_school_closure
+    name: "Early Educational Institution Closure & Bus Stand-Down"
+    systems: ["transport", "emergency_response"]
+    scope: "zone"
+    parameters:
+      traffic_volume_reduction: 0.25
+    benefit_patches:
+      - patch_type: "scale_term"
+        target: "{zone}:transport"
+        term: "base_traffic"
+        param_value: 0.75             # Removes school transit from road network
+        distribution: "constant"
+    side_effect_patches:
+      - patch_type: "add_bias"
+        target: "{zone}:emergency_response"
+        param_value: 0.02             # Small monitoring load for stranded students
+        distribution: "constant"
+    resource_costs:
+      crews: 1.0
+      cost_lakh: 0.5
+    earliest_start_offset: 0.0
+    activation_delay: 1.0
+    duration: 48.0
+    max_units: 1
+    exclusivity_group: null
+    provenance: "grounded_category"
+    grounded_in: ["[S17]", "[S18]", "[S34]", "[S50]"]

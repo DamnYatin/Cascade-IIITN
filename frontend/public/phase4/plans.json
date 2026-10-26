@@ -1,0 +1,828 @@
+{
+  "budgets": {
+    "boats": 8.0,
+    "cost_lakh": 40.0,
+    "crews": 12.0,
+    "generators": 5.0,
+    "pumps": 6.0
+  },
+  "decision_time": "2026-07-08T00:00:00+00:00",
+  "plans": [
+    {
+      "actions": [],
+      "decision_time": "2026-07-06T00:00:00+00:00",
+      "feasibility": true,
+      "infeasibility_reason": null,
+      "outcome": {
+        "broken_links": [],
+        "cascade_broken": false,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0,
+        "cvar_critical_zone_hours": 128.1,
+        "delta_critical_zone_hours": 0.0,
+        "delta_p_critical_24h": 0.0,
+        "delta_p_critical_72h": 0.0,
+        "expected_critical_zone_hours_after": 91.5,
+        "expected_critical_zone_hours_before": 91.5,
+        "net_benefit": 0.0,
+        "p_critical_24h_after": 1.0,
+        "p_critical_24h_before": 1.0,
+        "p_critical_72h_after": 1.0,
+        "p_critical_72h_before": 1.0,
+        "plan_id": "plan_do_nothing",
+        "side_effects": []
+      },
+      "plan_id": "plan_do_nothing",
+      "provenance_banner": "ESTIMATES UNDER LEARNED MODEL WITH ASSUMED ACTION EFFECTS. DOWNSTREAM STREAMS ARE SIMULATED.",
+      "resource_use": [
+        {
+          "budget_type": "boats",
+          "capacity": 8.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "cost_lakh",
+          "capacity": 40.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "crews",
+          "capacity": 12.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "generators",
+          "capacity": 5.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "pumps",
+          "capacity": 6.0,
+          "used": 0.0,
+          "utilization": 0.0
+        }
+      ],
+      "selection_rank": 0,
+      "selection_rationale": "Baseline reference (do nothing)",
+      "total_cost": {}
+    },
+    {
+      "actions": [
+        {
+          "action_id": "medical_surge_supplies",
+          "instance_id": "medical_surge_supplies:morigaon:t+3h:u1",
+          "resource_costs": {
+            "cost_lakh": 7.0,
+            "crews": 3.0
+          },
+          "start_time_offset": 3.0,
+          "target_node": "morigaon:health",
+          "units": 1,
+          "zone": "morigaon"
+        }
+      ],
+      "decision_time": "2026-07-06T00:00:00+00:00",
+      "feasibility": true,
+      "infeasibility_reason": null,
+      "outcome": {
+        "broken_links": [],
+        "cascade_broken": false,
+        "ci_lower": 10.0329,
+        "ci_upper": 15.2824,
+        "cvar_critical_zone_hours": 119.2,
+        "delta_critical_zone_hours": 14.28,
+        "delta_p_critical_24h": 0.0,
+        "delta_p_critical_72h": 0.0,
+        "expected_critical_zone_hours_after": 77.22,
+        "expected_critical_zone_hours_before": 91.5,
+        "net_benefit": 12.7244,
+        "p_critical_24h_after": 1.0,
+        "p_critical_24h_before": 1.0,
+        "p_critical_72h_after": 1.0,
+        "p_critical_72h_before": 1.0,
+        "plan_id": "plan_f1892b3d",
+        "side_effects": [
+          {
+            "delta_p_critical": 0.0535,
+            "delta_p_high": 0.057,
+            "description": "Propagated downstream congestion/stress on kamrup_metropolitan:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1641,
+            "node": "kamrup_metropolitan:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0517,
+            "delta_p_high": 0.054,
+            "description": "Propagated downstream congestion/stress on mon_nl:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1573,
+            "node": "mon_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0437,
+            "delta_p_high": 0.048,
+            "description": "Propagated downstream congestion/stress on morigaon:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1353,
+            "node": "morigaon:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0292,
+            "delta_p_high": 0.0533,
+            "description": "Propagated downstream congestion/stress on karbi_anglong:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1116,
+            "node": "karbi_anglong:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0328,
+            "delta_p_high": 0.0275,
+            "description": "Propagated downstream congestion/stress on mokokchung_nl:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0932,
+            "node": "mokokchung_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0225,
+            "delta_p_high": 0.0355,
+            "description": "Propagated downstream congestion/stress on wokha_nl:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0805,
+            "node": "wokha_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0238,
+            "delta_p_high": 0.0287,
+            "description": "Propagated downstream congestion/stress on golaghat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0764,
+            "node": "golaghat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0197,
+            "delta_p_high": 0.035,
+            "description": "Propagated downstream congestion/stress on jorhat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0744,
+            "node": "jorhat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0203,
+            "delta_p_high": 0.0303,
+            "description": "Propagated downstream congestion/stress on charaideo:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0709,
+            "node": "charaideo:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0207,
+            "delta_p_high": 0.0262,
+            "description": "Propagated downstream congestion/stress on sivasagar:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0676,
+            "node": "sivasagar:emergency_response"
+          }
+        ]
+      },
+      "plan_id": "plan_f1892b3d",
+      "provenance_banner": "ESTIMATES UNDER LEARNED MODEL WITH ASSUMED ACTION EFFECTS. DOWNSTREAM STREAMS ARE SIMULATED.",
+      "resource_use": [
+        {
+          "budget_type": "boats",
+          "capacity": 8.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "cost_lakh",
+          "capacity": 40.0,
+          "used": 7.0,
+          "utilization": 0.175
+        },
+        {
+          "budget_type": "crews",
+          "capacity": 12.0,
+          "used": 3.0,
+          "utilization": 0.25
+        },
+        {
+          "budget_type": "generators",
+          "capacity": 5.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "pumps",
+          "capacity": 6.0,
+          "used": 0.0,
+          "utilization": 0.0
+        }
+      ],
+      "selection_rank": 1,
+      "selection_rationale": "Rank 1: Net benefit 12.72 (14.3 saved critical zone-hours, 10 side-effects). Actions: Medical Surge Capacity & Pre-Positioned Critical Supplies.",
+      "total_cost": {
+        "cost_lakh": 7.0,
+        "crews": 3.0
+      }
+    },
+    {
+      "actions": [
+        {
+          "action_id": "medical_surge_supplies",
+          "instance_id": "medical_surge_supplies:morigaon:t+3h:u1",
+          "resource_costs": {
+            "cost_lakh": 7.0,
+            "crews": 3.0
+          },
+          "start_time_offset": 3.0,
+          "target_node": "morigaon:health",
+          "units": 1,
+          "zone": "morigaon"
+        },
+        {
+          "action_id": "early_school_closure",
+          "instance_id": "early_school_closure:mokokchung_nl:t+3h:u1",
+          "resource_costs": {
+            "cost_lakh": 0.5,
+            "crews": 1.0
+          },
+          "start_time_offset": 3.0,
+          "target_node": "mokokchung_nl:transport",
+          "units": 1,
+          "zone": "mokokchung_nl"
+        }
+      ],
+      "decision_time": "2026-07-06T00:00:00+00:00",
+      "feasibility": true,
+      "infeasibility_reason": null,
+      "outcome": {
+        "broken_links": [],
+        "cascade_broken": false,
+        "ci_lower": 9.5641,
+        "ci_upper": 14.8136,
+        "cvar_critical_zone_hours": 119.2,
+        "delta_critical_zone_hours": 14.28,
+        "delta_p_critical_24h": 0.0,
+        "delta_p_critical_72h": 0.0,
+        "expected_critical_zone_hours_after": 77.22,
+        "expected_critical_zone_hours_before": 91.5,
+        "net_benefit": 12.2556,
+        "p_critical_24h_after": 1.0,
+        "p_critical_24h_before": 1.0,
+        "p_critical_72h_after": 1.0,
+        "p_critical_72h_before": 1.0,
+        "plan_id": "plan_e0a2ca6b",
+        "side_effects": [
+          {
+            "delta_p_critical": 0.1233,
+            "delta_p_high": 0.1579,
+            "description": "Direct side-effect on mokokchung_nl:emergency_response caused by action parameter perturbation",
+            "effect_type": "explicit_patch",
+            "harm_score": 0.4044,
+            "node": "mokokchung_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0535,
+            "delta_p_high": 0.057,
+            "description": "Propagated downstream congestion/stress on kamrup_metropolitan:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1641,
+            "node": "kamrup_metropolitan:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0517,
+            "delta_p_high": 0.054,
+            "description": "Propagated downstream congestion/stress on mon_nl:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1573,
+            "node": "mon_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0437,
+            "delta_p_high": 0.048,
+            "description": "Propagated downstream congestion/stress on morigaon:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1353,
+            "node": "morigaon:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0292,
+            "delta_p_high": 0.0533,
+            "description": "Propagated downstream congestion/stress on karbi_anglong:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1116,
+            "node": "karbi_anglong:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0225,
+            "delta_p_high": 0.0355,
+            "description": "Propagated downstream congestion/stress on wokha_nl:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0805,
+            "node": "wokha_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0238,
+            "delta_p_high": 0.0287,
+            "description": "Propagated downstream congestion/stress on golaghat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0764,
+            "node": "golaghat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0197,
+            "delta_p_high": 0.035,
+            "description": "Propagated downstream congestion/stress on jorhat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0744,
+            "node": "jorhat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0203,
+            "delta_p_high": 0.0303,
+            "description": "Propagated downstream congestion/stress on charaideo:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0709,
+            "node": "charaideo:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0207,
+            "delta_p_high": 0.0262,
+            "description": "Propagated downstream congestion/stress on sivasagar:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0676,
+            "node": "sivasagar:emergency_response"
+          }
+        ]
+      },
+      "plan_id": "plan_e0a2ca6b",
+      "provenance_banner": "ESTIMATES UNDER LEARNED MODEL WITH ASSUMED ACTION EFFECTS. DOWNSTREAM STREAMS ARE SIMULATED.",
+      "resource_use": [
+        {
+          "budget_type": "boats",
+          "capacity": 8.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "cost_lakh",
+          "capacity": 40.0,
+          "used": 7.5,
+          "utilization": 0.1875
+        },
+        {
+          "budget_type": "crews",
+          "capacity": 12.0,
+          "used": 4.0,
+          "utilization": 0.3333
+        },
+        {
+          "budget_type": "generators",
+          "capacity": 5.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "pumps",
+          "capacity": 6.0,
+          "used": 0.0,
+          "utilization": 0.0
+        }
+      ],
+      "selection_rank": 2,
+      "selection_rationale": "Rank 2: Net benefit 12.26 (14.3 saved critical zone-hours, 10 side-effects). Actions: Medical Surge Capacity & Pre-Positioned Critical Supplies, Early Educational Institution Closure & Bus Stand-Down.",
+      "total_cost": {
+        "cost_lakh": 7.5,
+        "crews": 4.0
+      }
+    },
+    {
+      "actions": [
+        {
+          "action_id": "medical_surge_supplies",
+          "instance_id": "medical_surge_supplies:morigaon:t+3h:u1",
+          "resource_costs": {
+            "cost_lakh": 7.0,
+            "crews": 3.0
+          },
+          "start_time_offset": 3.0,
+          "target_node": "morigaon:health",
+          "units": 1,
+          "zone": "morigaon"
+        },
+        {
+          "action_id": "early_school_closure",
+          "instance_id": "early_school_closure:mokokchung_nl:t+3h:u1",
+          "resource_costs": {
+            "cost_lakh": 0.5,
+            "crews": 1.0
+          },
+          "start_time_offset": 3.0,
+          "target_node": "mokokchung_nl:transport",
+          "units": 1,
+          "zone": "mokokchung_nl"
+        },
+        {
+          "action_id": "traffic_diversion",
+          "instance_id": "traffic_diversion:mon_nl:t+0h:u1",
+          "resource_costs": {
+            "cost_lakh": 1.5,
+            "crews": 2.0
+          },
+          "start_time_offset": 0.0,
+          "target_node": "mon_nl:transport",
+          "units": 1,
+          "zone": "mon_nl"
+        }
+      ],
+      "decision_time": "2026-07-06T00:00:00+00:00",
+      "feasibility": true,
+      "infeasibility_reason": null,
+      "outcome": {
+        "broken_links": [],
+        "cascade_broken": false,
+        "ci_lower": 8.326,
+        "ci_upper": 13.5718,
+        "cvar_critical_zone_hours": 119.2,
+        "delta_critical_zone_hours": 14.27,
+        "delta_p_critical_24h": 0.0,
+        "delta_p_critical_72h": 0.0,
+        "expected_critical_zone_hours_after": 77.23,
+        "expected_critical_zone_hours_before": 91.5,
+        "net_benefit": 11.0156,
+        "p_critical_24h_after": 1.0,
+        "p_critical_24h_before": 1.0,
+        "p_critical_72h_after": 1.0,
+        "p_critical_72h_before": 1.0,
+        "plan_id": "plan_6f4f53be",
+        "side_effects": [
+          {
+            "delta_p_critical": 0.3731,
+            "delta_p_high": 0.2283,
+            "description": "Direct side-effect on mon_nl:emergency_response caused by action parameter perturbation",
+            "effect_type": "explicit_patch",
+            "harm_score": 0.9746,
+            "node": "mon_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.1233,
+            "delta_p_high": 0.1579,
+            "description": "Direct side-effect on mokokchung_nl:emergency_response caused by action parameter perturbation",
+            "effect_type": "explicit_patch",
+            "harm_score": 0.4044,
+            "node": "mokokchung_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0535,
+            "delta_p_high": 0.057,
+            "description": "Propagated downstream congestion/stress on kamrup_metropolitan:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1641,
+            "node": "kamrup_metropolitan:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0437,
+            "delta_p_high": 0.048,
+            "description": "Propagated downstream congestion/stress on morigaon:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1353,
+            "node": "morigaon:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0292,
+            "delta_p_high": 0.0533,
+            "description": "Propagated downstream congestion/stress on karbi_anglong:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1116,
+            "node": "karbi_anglong:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0225,
+            "delta_p_high": 0.0355,
+            "description": "Propagated downstream congestion/stress on wokha_nl:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0805,
+            "node": "wokha_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0238,
+            "delta_p_high": 0.0287,
+            "description": "Propagated downstream congestion/stress on golaghat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0764,
+            "node": "golaghat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0197,
+            "delta_p_high": 0.035,
+            "description": "Propagated downstream congestion/stress on jorhat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0744,
+            "node": "jorhat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0203,
+            "delta_p_high": 0.0303,
+            "description": "Propagated downstream congestion/stress on charaideo:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0709,
+            "node": "charaideo:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0207,
+            "delta_p_high": 0.0262,
+            "description": "Propagated downstream congestion/stress on sivasagar:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0676,
+            "node": "sivasagar:emergency_response"
+          }
+        ]
+      },
+      "plan_id": "plan_6f4f53be",
+      "provenance_banner": "ESTIMATES UNDER LEARNED MODEL WITH ASSUMED ACTION EFFECTS. DOWNSTREAM STREAMS ARE SIMULATED.",
+      "resource_use": [
+        {
+          "budget_type": "boats",
+          "capacity": 8.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "cost_lakh",
+          "capacity": 40.0,
+          "used": 9.0,
+          "utilization": 0.225
+        },
+        {
+          "budget_type": "crews",
+          "capacity": 12.0,
+          "used": 6.0,
+          "utilization": 0.5
+        },
+        {
+          "budget_type": "generators",
+          "capacity": 5.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "pumps",
+          "capacity": 6.0,
+          "used": 0.0,
+          "utilization": 0.0
+        }
+      ],
+      "selection_rank": 3,
+      "selection_rationale": "Rank 3: Net benefit 11.02 (14.3 saved critical zone-hours, 10 side-effects). Actions: Medical Surge Capacity & Pre-Positioned Critical Supplies, Early Educational Institution Closure & Bus Stand-Down, Traffic Diversion & Controlled Arterial Closure.",
+      "total_cost": {
+        "cost_lakh": 9.0,
+        "crews": 6.0
+      }
+    },
+    {
+      "actions": [
+        {
+          "action_id": "medical_surge_supplies",
+          "instance_id": "medical_surge_supplies:morigaon:t+3h:u1",
+          "resource_costs": {
+            "cost_lakh": 7.0,
+            "crews": 3.0
+          },
+          "start_time_offset": 3.0,
+          "target_node": "morigaon:health",
+          "units": 1,
+          "zone": "morigaon"
+        },
+        {
+          "action_id": "early_school_closure",
+          "instance_id": "early_school_closure:mokokchung_nl:t+3h:u1",
+          "resource_costs": {
+            "cost_lakh": 0.5,
+            "crews": 1.0
+          },
+          "start_time_offset": 3.0,
+          "target_node": "mokokchung_nl:transport",
+          "units": 1,
+          "zone": "mokokchung_nl"
+        },
+        {
+          "action_id": "traffic_diversion",
+          "instance_id": "traffic_diversion:mon_nl:t+0h:u1",
+          "resource_costs": {
+            "cost_lakh": 1.5,
+            "crews": 2.0
+          },
+          "start_time_offset": 0.0,
+          "target_node": "mon_nl:transport",
+          "units": 1,
+          "zone": "mon_nl"
+        },
+        {
+          "action_id": "traffic_diversion",
+          "instance_id": "traffic_diversion:mokokchung_nl:t+0h:u1",
+          "resource_costs": {
+            "cost_lakh": 1.5,
+            "crews": 2.0
+          },
+          "start_time_offset": 0.0,
+          "target_node": "mokokchung_nl:transport",
+          "units": 1,
+          "zone": "mokokchung_nl"
+        }
+      ],
+      "decision_time": "2026-07-06T00:00:00+00:00",
+      "feasibility": true,
+      "infeasibility_reason": null,
+      "outcome": {
+        "broken_links": [],
+        "cascade_broken": false,
+        "ci_lower": 7.0069,
+        "ci_upper": 12.2453,
+        "cvar_critical_zone_hours": 119.2,
+        "delta_critical_zone_hours": 14.25,
+        "delta_p_critical_24h": 0.0,
+        "delta_p_critical_72h": 0.0,
+        "expected_critical_zone_hours_after": 77.25,
+        "expected_critical_zone_hours_before": 91.5,
+        "net_benefit": 9.6928,
+        "p_critical_24h_after": 1.0,
+        "p_critical_24h_before": 1.0,
+        "p_critical_72h_after": 1.0,
+        "p_critical_72h_before": 1.0,
+        "plan_id": "plan_e0aee720",
+        "side_effects": [
+          {
+            "delta_p_critical": 0.4816,
+            "delta_p_high": 0.3071,
+            "description": "Direct side-effect on mokokchung_nl:emergency_response caused by action parameter perturbation",
+            "effect_type": "explicit_patch",
+            "harm_score": 1.2703,
+            "node": "mokokchung_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.3731,
+            "delta_p_high": 0.2283,
+            "description": "Direct side-effect on mon_nl:emergency_response caused by action parameter perturbation",
+            "effect_type": "explicit_patch",
+            "harm_score": 0.9746,
+            "node": "mon_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0535,
+            "delta_p_high": 0.057,
+            "description": "Propagated downstream congestion/stress on kamrup_metropolitan:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1641,
+            "node": "kamrup_metropolitan:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0437,
+            "delta_p_high": 0.048,
+            "description": "Propagated downstream congestion/stress on morigaon:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1353,
+            "node": "morigaon:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0292,
+            "delta_p_high": 0.0533,
+            "description": "Propagated downstream congestion/stress on karbi_anglong:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.1116,
+            "node": "karbi_anglong:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0225,
+            "delta_p_high": 0.0355,
+            "description": "Propagated downstream congestion/stress on wokha_nl:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0805,
+            "node": "wokha_nl:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0238,
+            "delta_p_high": 0.0287,
+            "description": "Propagated downstream congestion/stress on golaghat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0764,
+            "node": "golaghat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0197,
+            "delta_p_high": 0.035,
+            "description": "Propagated downstream congestion/stress on jorhat:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0744,
+            "node": "jorhat:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0203,
+            "delta_p_high": 0.0303,
+            "description": "Propagated downstream congestion/stress on charaideo:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0709,
+            "node": "charaideo:emergency_response"
+          },
+          {
+            "delta_p_critical": 0.0207,
+            "delta_p_high": 0.0262,
+            "description": "Propagated downstream congestion/stress on sivasagar:emergency_response through cascade coupling",
+            "effect_type": "propagated_cascade",
+            "harm_score": 0.0676,
+            "node": "sivasagar:emergency_response"
+          }
+        ]
+      },
+      "plan_id": "plan_e0aee720",
+      "provenance_banner": "ESTIMATES UNDER LEARNED MODEL WITH ASSUMED ACTION EFFECTS. DOWNSTREAM STREAMS ARE SIMULATED.",
+      "resource_use": [
+        {
+          "budget_type": "boats",
+          "capacity": 8.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "cost_lakh",
+          "capacity": 40.0,
+          "used": 10.5,
+          "utilization": 0.2625
+        },
+        {
+          "budget_type": "crews",
+          "capacity": 12.0,
+          "used": 8.0,
+          "utilization": 0.6667
+        },
+        {
+          "budget_type": "generators",
+          "capacity": 5.0,
+          "used": 0.0,
+          "utilization": 0.0
+        },
+        {
+          "budget_type": "pumps",
+          "capacity": 6.0,
+          "used": 0.0,
+          "utilization": 0.0
+        }
+      ],
+      "selection_rank": 4,
+      "selection_rationale": "Rank 4: Net benefit 9.69 (14.2 saved critical zone-hours, 10 side-effects). Actions: Medical Surge Capacity & Pre-Positioned Critical Supplies, Early Educational Institution Closure & Bus Stand-Down, Traffic Diversion & Controlled Arterial Closure, Traffic Diversion & Controlled Arterial Closure.",
+      "total_cost": {
+        "cost_lakh": 10.5,
+        "crews": 8.0
+      }
+    }
+  ],
+  "robustness": {
+    "model_uncertainty": {
+      "baseline_net_benefit": 12.7244,
+      "plan_id": "plan_f1892b3d",
+      "robust": true,
+      "robustness_gap": 0.0085,
+      "uncertainty_net_benefit": 12.7329
+    },
+    "sensitivity": {
+      "depends_on_optimistic_assumptions": false,
+      "plan_id": "plan_f1892b3d",
+      "scaling_curve": [
+        {
+          "cascade_broken": false,
+          "delta_hours": 14.28,
+          "net_benefit": 12.7329,
+          "scale_factor": 0.5
+        },
+        {
+          "cascade_broken": false,
+          "delta_hours": 14.28,
+          "net_benefit": 12.7329,
+          "scale_factor": 0.75
+        },
+        {
+          "cascade_broken": false,
+          "delta_hours": 14.28,
+          "net_benefit": 12.7329,
+          "scale_factor": 1.0
+        },
+        {
+          "cascade_broken": false,
+          "delta_hours": 14.28,
+          "net_benefit": 12.7329,
+          "scale_factor": 1.25
+        },
+        {
+          "cascade_broken": false,
+          "delta_hours": 14.28,
+          "net_benefit": 12.7329,
+          "scale_factor": 1.5
+        }
+      ],
+      "survives_downscale_to_50pct": true
+    }
+  }
+}

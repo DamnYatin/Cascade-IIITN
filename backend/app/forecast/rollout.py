@@ -17,6 +17,7 @@ import numpy as np
 
 from backend.app.forecast.config import StressLevelsConfig
 from backend.app.forecast.learner import ForecastModel
+from backend.app.forecast.trace import TriggerTrace
 
 
 class NoiseBank:
@@ -61,6 +62,8 @@ class RolloutResults:
     first_crossing: Dict[Tuple[str, str], np.ndarray]
     # parent_contributions: (node, parent) -> float average contribution across rollouts
     parent_contributions: Dict[Tuple[str, str], float] = field(default_factory=dict)
+    # Additive TriggerTrace (None if enable_trace=False)
+    trace: Optional[TriggerTrace] = field(default=None)
 
 
 def cascade_rollout(
@@ -74,6 +77,8 @@ def cascade_rollout(
     stress_levels: Optional[StressLevelsConfig] = None,
     rain_outlook_by_zone: Optional[Dict[str, np.ndarray]] = None,  # zone -> (n_rollouts, horizon)
     intervention: Optional[Callable[[ForecastModel], ForecastModel]] = None,
+    enable_trace: bool = False,
+    patches: Optional[List[Any]] = None,
 ) -> RolloutResults:
     """Run vectorised Monte Carlo rollouts across nodes and time steps."""
     if issue_time is None:
@@ -96,6 +101,8 @@ def cascade_rollout(
             n_nodes=n_nodes,
             horizon=horizon,
         )
+    else:
+        n_rollouts = min(n_rollouts, noise_bank.n_rollouts)
 
     # Max lag needed for ring buffer
     max_lag = 1
@@ -111,7 +118,7 @@ def cascade_rollout(
     for i, n in enumerate(nodes):
         m, var = initial_beliefs.get(n, (0.15, 0.04))
         std = float(np.sqrt(max(1e-6, var)))
-        pert = m + std * noise_bank.init_noise[:, i]
+        pert = m + std * noise_bank.init_noise[:n_rollouts, i]
         s0 = np.clip(pert, 0.0, 1.0)
         ring_buffer[0, :, i] = s0
 
@@ -129,6 +136,14 @@ def cascade_rollout(
         for n in nodes
         for lvl in levels
     }
+
+    # Instantiate trigger trace if enabled (default False)
+    trace = TriggerTrace(
+        nodes=nodes,
+        levels=list(levels.keys()),
+        n_rollouts=n_rollouts,
+        horizon=horizon,
+    ) if enable_trace else None
 
     # Track parent contributions to crossing
     parent_accumulators: Dict[Tuple[str, str], float] = defaultdict(float)
@@ -150,7 +165,7 @@ def cascade_rollout(
         s_next = a + rho * s_prev
 
         # Add process noise
-        eps = noise_bank.process_noise[h] * sigmas
+        eps = noise_bank.process_noise[h][:n_rollouts, :] * sigmas
         s_next += eps
 
         # Add coupling effects from parents
@@ -173,10 +188,24 @@ def cascade_rollout(
             t_idx = node_to_idx[target_node]
             zone = target_node.split(":")[0]
             if rain_outlook_by_zone and zone in rain_outlook_by_zone:
-                rain_vals = rain_outlook_by_zone[zone][:, h]  # (n_rollouts,)
+                rain_vals = rain_outlook_by_zone[zone][:n_rollouts, h]  # (n_rollouts,)
                 for feat_name, beta in exo_list:
                     if "rain" in feat_name:
                         s_next[:, t_idx] += beta * (rain_vals / 100.0)
+
+        # Apply dynamic parameter patches if scheduled
+        if patches:
+            from backend.app.intervene.patches import apply_step_patches
+            s_next = apply_step_patches(
+                s_next=s_next,
+                ring_buffer=ring_buffer,
+                h=h,
+                buffer_idx=buffer_idx,
+                max_lag=max_lag,
+                patches=patches,
+                node_to_idx=node_to_idx,
+                n_rollouts=n_rollouts,
+            )
 
         # Clip to [0, 1] to prevent divergence
         s_next = np.clip(s_next, 0.0, 1.0)
@@ -187,9 +216,44 @@ def cascade_rollout(
         step_num = float(h + 1)
         for i, n in enumerate(nodes):
             val_col = s_next[:, i]
+            newly_crossed_by_lvl = {}
             for lvl_name, thresh in levels.items():
                 crossed = (val_col >= thresh) & (first_crossing[(n, lvl_name)] == np.inf)
                 if np.any(crossed):
+                    newly_crossed_by_lvl[lvl_name] = crossed
+
+            if newly_crossed_by_lvl:
+                if trace is not None:
+                    # Trigger terms: each lagged parent term, rain/soil feature terms, bias, noise
+                    term_names = ["bias", "noise"]
+                    term_cols = [
+                        np.full(n_rollouts, a[i], dtype=np.float32),
+                        eps[:, i].astype(np.float32),
+                    ]
+                    if n in active_model.couplings:
+                        for parent_node, lag_h, w in active_model.couplings[n]:
+                            if parent_node in node_to_idx:
+                                p_idx = node_to_idx[parent_node]
+                                lag_steps = int(round(lag_h))
+                                lookup_idx = (buffer_idx + 1 - lag_steps) % (max_lag + 1)
+                                p_val = ring_buffer[lookup_idx, :, p_idx]
+                                term_names.append(f"parent:{parent_node}")
+                                term_cols.append((w * p_val).astype(np.float32))
+
+                    if n in active_model.exogenous_weights:
+                        zone = n.split(":")[0]
+                        if rain_outlook_by_zone and zone in rain_outlook_by_zone:
+                            rain_vals = rain_outlook_by_zone[zone][:n_rollouts, h]
+                            for feat_name, beta in active_model.exogenous_weights[n]:
+                                if "rain" in feat_name:
+                                    term_names.append(f"rain:{feat_name}")
+                                    term_cols.append((beta * (rain_vals / 100.0)).astype(np.float32))
+
+                    term_matrix = np.column_stack(term_cols)
+                    for lvl_name, crossed in newly_crossed_by_lvl.items():
+                        trace.record_step_crossings(n, lvl_name, int(step_num), crossed, term_names, term_matrix)
+
+                for lvl_name, crossed in newly_crossed_by_lvl.items():
                     first_crossing[(n, lvl_name)][crossed] = step_num
                     if lvl_name == "critical":
                         crossing_counts[n] += int(np.sum(crossed))
@@ -203,4 +267,5 @@ def cascade_rollout(
         trajectories=trajectories,
         first_crossing=first_crossing,
         parent_contributions=dict(parent_accumulators),
+        trace=trace,
     )

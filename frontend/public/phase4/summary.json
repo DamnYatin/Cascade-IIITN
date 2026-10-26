@@ -1,0 +1,33 @@
+{
+  "anchor_mode": "off",
+  "city_id": "upper_assam",
+  "commit_hash": "7ed6ebbfa1737c8bba1fffae7f278f31c497023c",
+  "files": {
+    "assumptions.json": {
+      "sha256": "0c6fc49b71fd1e659616b22c3a8136db434fe88ee3ed66e1b72dea4cf10ddb6f",
+      "size_bytes": 27305
+    },
+    "explanations.json": {
+      "sha256": "d2edb1a0e46a94be4bc949eb84f6854f72ad9259c2786444e9b708c25395f077",
+      "size_bytes": 56888
+    },
+    "plans.json": {
+      "sha256": "cc4b7d75a3653efb3ffcfe8a1575dcc65b9fc276d16ca229ee1873c457b5ed69",
+      "size_bytes": 29543
+    },
+    "snapshots.json": {
+      "sha256": "45fd69da19e919435657f623b461eb4feb9b0493827423a781a1d78e706f9313",
+      "size_bytes": 127864
+    },
+    "value_of_lead_time.json": {
+      "sha256": "b6335657f5829ca23082261a039c9a8874a69fa1b975a324e8416603599f23b3",
+      "size_bytes": 981
+    }
+  },
+  "generated_at_utc": "2026-10-26T00:00:00Z",
+  "provenance_disclosure": "DOWNSTREAM INFRASTRUCTURE IS SIMULATED. ACTION EFFECT SIZES ARE ASSUMED. ESTIMATES UNDER LEARNED CAUSAL CANDIDATE MODEL.",
+  "scenario": "Assam Floods July 2026 Hero Window",
+  "seed": 1,
+  "total_bundle_size_bytes": 242581,
+  "version": "1.0.0"
+}

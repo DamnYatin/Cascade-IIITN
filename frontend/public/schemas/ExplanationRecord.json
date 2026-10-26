@@ -1,0 +1,502 @@
+{
+  "$defs": {
+    "CascadeLoop": {
+      "description": "A detected feedback loop in the cascade graph.",
+      "properties": {
+        "amplification_factor": {
+          "description": "Estimated stress amplification factor from paired rollouts",
+          "title": "Amplification Factor",
+          "type": "number"
+        },
+        "is_reinforcing": {
+          "default": true,
+          "description": "Whether feedback reinforces (positive) or damps (negative)",
+          "title": "Is Reinforcing",
+          "type": "boolean"
+        },
+        "links": {
+          "description": "Directed edges forming the feedback cycle",
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Links",
+          "type": "array"
+        },
+        "loop_id": {
+          "description": "Unique loop identifier",
+          "title": "Loop Id",
+          "type": "string"
+        },
+        "nodes": {
+          "description": "Ordered nodes participating in the cycle",
+          "items": {
+            "type": "string"
+          },
+          "title": "Nodes",
+          "type": "array"
+        },
+        "weakest_link": {
+          "description": "Link whose removal yields largest attenuation",
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Weakest Link",
+          "type": "array"
+        }
+      },
+      "required": [
+        "loop_id",
+        "nodes",
+        "links",
+        "amplification_factor",
+        "weakest_link"
+      ],
+      "title": "CascadeLoop",
+      "type": "object"
+    },
+    "ConcurrentCluster": {
+      "description": "Interacting simultaneous cascades originating from distinct root clusters.",
+      "properties": {
+        "ci_lower": {
+          "default": 0.0,
+          "description": "95% CI lower bound",
+          "title": "Ci Lower",
+          "type": "number"
+        },
+        "ci_upper": {
+          "default": 0.0,
+          "description": "95% CI upper bound",
+          "title": "Ci Upper",
+          "type": "number"
+        },
+        "cluster_id": {
+          "description": "Unique cluster identifier",
+          "title": "Cluster Id",
+          "type": "string"
+        },
+        "converging_nodes": {
+          "description": "Downstream nodes where multiple chains converge",
+          "items": {
+            "type": "string"
+          },
+          "title": "Converging Nodes",
+          "type": "array"
+        },
+        "independent_p_critical": {
+          "description": "Independent baseline probability implied without interaction",
+          "title": "Independent P Critical",
+          "type": "number"
+        },
+        "interaction_delta": {
+          "description": "Amplification delta: joint_p - independent_p",
+          "title": "Interaction Delta",
+          "type": "number"
+        },
+        "joint_p_critical": {
+          "description": "Joint probability P(critical) with all roots active",
+          "title": "Joint P Critical",
+          "type": "number"
+        },
+        "rollout_count": {
+          "default": 300,
+          "description": "Number of rollouts evaluating interaction",
+          "title": "Rollout Count",
+          "type": "integer"
+        },
+        "root_nodes": {
+          "description": "Root trigger nodes in this cluster",
+          "items": {
+            "type": "string"
+          },
+          "title": "Root Nodes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "cluster_id",
+        "root_nodes",
+        "converging_nodes",
+        "joint_p_critical",
+        "independent_p_critical",
+        "interaction_delta"
+      ],
+      "title": "ConcurrentCluster",
+      "type": "object"
+    },
+    "DriverRecord": {
+      "description": "An identified causal candidate driver of a risk change.",
+      "properties": {
+        "ci_lower": {
+          "default": 0.0,
+          "description": "Bootstrap 95% CI lower bound",
+          "title": "Ci Lower",
+          "type": "number"
+        },
+        "ci_upper": {
+          "default": 0.0,
+          "description": "Bootstrap 95% CI upper bound",
+          "title": "Ci Upper",
+          "type": "number"
+        },
+        "contribution": {
+          "description": "Estimated contribution to delta stress or delta P(critical)",
+          "title": "Contribution",
+          "type": "number"
+        },
+        "direction": {
+          "description": "Direction: increases_risk | decreases_risk | neutral",
+          "title": "Direction",
+          "type": "string"
+        },
+        "driver_id": {
+          "description": "Unique identifier for the candidate driver",
+          "title": "Driver Id",
+          "type": "string"
+        },
+        "driver_type": {
+          "description": "Type: observation_group | learned_edge | precursor_feature | outlook | uncertainty",
+          "title": "Driver Type",
+          "type": "string"
+        },
+        "evidence_receipt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceReceipt"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Audit receipt behind this driver"
+        },
+        "label": {
+          "description": "Plain-language description using hedged phrasing",
+          "title": "Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "driver_id",
+        "driver_type",
+        "contribution",
+        "direction",
+        "label"
+      ],
+      "title": "DriverRecord",
+      "type": "object"
+    },
+    "EvidenceReceipt": {
+      "description": "Audit receipt proving the physical observations and learning history behind an edge or driver.",
+      "properties": {
+        "arrival_times": {
+          "description": "ISO arrival timestamps (enforcing <= issued_at)",
+          "items": {
+            "type": "string"
+          },
+          "title": "Arrival Times",
+          "type": "array"
+        },
+        "drift_events": {
+          "description": "Recent drift detections touching this edge",
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Drift Events",
+          "type": "array"
+        },
+        "edge_confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Current confidence in EdgeBook",
+          "title": "Edge Confidence"
+        },
+        "edge_first_seen": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ISO timestamp when edge first appeared in EdgeBook",
+          "title": "Edge First Seen"
+        },
+        "edge_update_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Number of online recursive updates",
+          "title": "Edge Update Count"
+        },
+        "edge_weight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Current weight in EdgeBook",
+          "title": "Edge Weight"
+        },
+        "node": {
+          "description": "Target node receiving the influence",
+          "title": "Node",
+          "type": "string"
+        },
+        "observation_ids": {
+          "description": "IDs of observations in the ledger within window",
+          "items": {
+            "type": "string"
+          },
+          "title": "Observation Ids",
+          "type": "array"
+        },
+        "paired_removal_effect": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Lazy-computed paired removal counterfactual",
+          "title": "Paired Removal Effect"
+        },
+        "parent_node": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Parent node providing the influence",
+          "title": "Parent Node"
+        },
+        "provenance_note": {
+          "default": "",
+          "description": "Human-readable provenance and simulation disclosure",
+          "title": "Provenance Note",
+          "type": "string"
+        },
+        "quality_flags": {
+          "description": "Data quality flags (e.g. gated, flatline, late)",
+          "items": {
+            "type": "string"
+          },
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "simulated_parent_flag": {
+          "default": false,
+          "description": "Explicit flag indicating parent stream is simulated",
+          "title": "Simulated Parent Flag",
+          "type": "boolean"
+        },
+        "source_kinds": {
+          "description": "Source classification: real | simulated | disaggregated",
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Kinds",
+          "type": "array"
+        },
+        "sources": {
+          "description": "Sensor/stream source identifiers",
+          "items": {
+            "type": "string"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "trusts": {
+          "description": "Source reliability score in [0, 1] at arrival time",
+          "items": {
+            "type": "number"
+          },
+          "title": "Trusts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "node"
+      ],
+      "title": "EvidenceReceipt",
+      "type": "object"
+    }
+  },
+  "description": "Complete causal explanation for a risk state transition or forecast probability change.",
+  "properties": {
+    "abstentions": {
+      "description": "Reasons for model abstention or degraded confidence",
+      "items": {
+        "type": "string"
+      },
+      "title": "Abstentions",
+      "type": "array"
+    },
+    "chain_tree": {
+      "additionalProperties": true,
+      "description": "Hierarchical failure chain tree with ETAs",
+      "title": "Chain Tree",
+      "type": "object"
+    },
+    "concurrent_clusters": {
+      "description": "Interacting concurrent clusters",
+      "items": {
+        "$ref": "#/$defs/ConcurrentCluster"
+      },
+      "title": "Concurrent Clusters",
+      "type": "array"
+    },
+    "confidence": {
+      "description": "Overall explanation confidence score in [0, 1]",
+      "title": "Confidence",
+      "type": "number"
+    },
+    "confidence_category": {
+      "description": "'high' | 'medium' | 'low'",
+      "title": "Confidence Category",
+      "type": "string"
+    },
+    "disclosure_strings": {
+      "description": "Honesty disclosures regarding simulated streams and models",
+      "items": {
+        "type": "string"
+      },
+      "title": "Disclosure Strings",
+      "type": "array"
+    },
+    "drivers": {
+      "description": "Ranked causal candidate drivers",
+      "items": {
+        "$ref": "#/$defs/DriverRecord"
+      },
+      "title": "Drivers",
+      "type": "array"
+    },
+    "id": {
+      "description": "Deterministic record ID (hash of issued_at + subject + risk_state_to)",
+      "title": "Id",
+      "type": "string"
+    },
+    "issued_at": {
+      "description": "Timestamp when explanation was generated (UTC)",
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+    },
+    "loops": {
+      "description": "Detected reinforcing feedback loops",
+      "items": {
+        "$ref": "#/$defs/CascadeLoop"
+      },
+      "title": "Loops",
+      "type": "array"
+    },
+    "probability_after": {
+      "description": "Current P(cascade-critical within 72h)",
+      "title": "Probability After",
+      "type": "number"
+    },
+    "probability_before": {
+      "description": "Prior P(cascade-critical within 72h)",
+      "title": "Probability Before",
+      "type": "number"
+    },
+    "provenance_mix": {
+      "additionalProperties": true,
+      "description": "Share of real vs simulated vs disaggregated data",
+      "title": "Provenance Mix",
+      "type": "object"
+    },
+    "risk_state_from": {
+      "description": "Prior risk state (NORMAL, WATCH, HIGH_RISK, CRITICAL)",
+      "title": "Risk State From",
+      "type": "string"
+    },
+    "risk_state_to": {
+      "description": "Current risk state (NORMAL, WATCH, HIGH_RISK, CRITICAL)",
+      "title": "Risk State To",
+      "type": "string"
+    },
+    "subject": {
+      "description": "Subject of the explanation (city id or zone id or node id)",
+      "title": "Subject",
+      "type": "string"
+    },
+    "subject_kind": {
+      "description": "Kind: 'city' | 'zone' | 'node'",
+      "title": "Subject Kind",
+      "type": "string"
+    },
+    "template_id": {
+      "default": "",
+      "description": "ID of text template used",
+      "title": "Template Id",
+      "type": "string"
+    },
+    "text": {
+      "default": "",
+      "description": "Hedged, deterministic plain-language explanation",
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "issued_at",
+    "subject",
+    "subject_kind",
+    "risk_state_from",
+    "risk_state_to",
+    "probability_before",
+    "probability_after",
+    "confidence",
+    "confidence_category"
+  ],
+  "title": "ExplanationRecord",
+  "type": "object"
+}

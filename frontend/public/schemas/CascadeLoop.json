@@ -1,0 +1,71 @@
+{
+  "description": "A detected feedback loop in the cascade graph.",
+  "properties": {
+    "amplification_factor": {
+      "description": "Estimated stress amplification factor from paired rollouts",
+      "title": "Amplification Factor",
+      "type": "number"
+    },
+    "is_reinforcing": {
+      "default": true,
+      "description": "Whether feedback reinforces (positive) or damps (negative)",
+      "title": "Is Reinforcing",
+      "type": "boolean"
+    },
+    "links": {
+      "description": "Directed edges forming the feedback cycle",
+      "items": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "type": "array"
+      },
+      "title": "Links",
+      "type": "array"
+    },
+    "loop_id": {
+      "description": "Unique loop identifier",
+      "title": "Loop Id",
+      "type": "string"
+    },
+    "nodes": {
+      "description": "Ordered nodes participating in the cycle",
+      "items": {
+        "type": "string"
+      },
+      "title": "Nodes",
+      "type": "array"
+    },
+    "weakest_link": {
+      "description": "Link whose removal yields largest attenuation",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "title": "Weakest Link",
+      "type": "array"
+    }
+  },
+  "required": [
+    "loop_id",
+    "nodes",
+    "links",
+    "amplification_factor",
+    "weakest_link"
+  ],
+  "title": "CascadeLoop",
+  "type": "object"
+}

@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "ProvenanceType": {
+      "enum": [
+        "assumed",
+        "expert_estimate_needed",
+        "grounded_category"
+      ],
+      "title": "ProvenanceType",
+      "type": "string"
+    }
+  },
+  "description": "Auditable record in the Assumptions Register for sensitivity and transparency.",
+  "properties": {
+    "action_id": {
+      "description": "Associated action id",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "assumed_value": {
+      "description": "Nominal assumed numerical value",
+      "title": "Assumed Value",
+      "type": "number"
+    },
+    "description": {
+      "description": "What physical property this parameter models",
+      "title": "Description",
+      "type": "string"
+    },
+    "grounded_in": {
+      "description": "Literature or report citations",
+      "items": {
+        "type": "string"
+      },
+      "title": "Grounded In",
+      "type": "array"
+    },
+    "parameter_id": {
+      "description": "Unique parameter name",
+      "title": "Parameter Id",
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ProvenanceType",
+      "description": "Provenance level"
+    },
+    "sensitivity_notes": {
+      "default": "",
+      "description": "Observed sensitivity behavior under scaling",
+      "title": "Sensitivity Notes",
+      "type": "string"
+    },
+    "uncertainty_range": {
+      "description": "(lower_bound, upper_bound) spread",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Uncertainty Range",
+      "type": "array"
+    }
+  },
+  "required": [
+    "parameter_id",
+    "action_id",
+    "description",
+    "assumed_value",
+    "uncertainty_range",
+    "provenance"
+  ],
+  "title": "Assumption",
+  "type": "object"
+}
