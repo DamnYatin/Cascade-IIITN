@@ -1,7 +1,9 @@
-import React from 'react';
-import { ShieldAlert, Globe, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ShieldAlert, Globe, ChevronDown, Play, Square, RefreshCw } from 'lucide-react';
 import { StatusDot, StatusVariant } from '../ui/StatusDot';
+import { Button } from '../ui/Button';
 import { CitySummary } from '../../types/api';
+import { useStream } from '../../context/StreamContext';
 
 interface HeaderProps {
   cities: CitySummary[];
@@ -15,28 +17,47 @@ export const Header: React.FC<HeaderProps> = ({
   cities,
   selectedCityId,
   onSelectCity,
-  wsStatus,
-  isBackendHealthy,
 }) => {
-  const getStatusVariant = (): StatusVariant => {
-    if (wsStatus === 'open' && isBackendHealthy) return 'online';
-    if (wsStatus === 'connecting') return 'connecting';
-    if (wsStatus === 'error' || isBackendHealthy === false) return 'critical';
-    return 'offline';
+  const {
+    displayedStatus,
+    connectStream,
+    disconnectStream,
+    reconnectStream,
+  } = useStream();
+
+  const [announcement, setAnnouncement] = useState<string>('');
+
+  // Announce connection state changes politely to screen readers
+  useEffect(() => {
+    setAnnouncement(`Stream status: ${displayedStatus.label}`);
+  }, [displayedStatus.label]);
+
+  const handleConnectionAction = () => {
+    if (displayedStatus.buttonState === 'disconnect') {
+      disconnectStream();
+    } else if (displayedStatus.buttonState === 'retry') {
+      reconnectStream();
+    } else {
+      connectStream();
+    }
   };
 
-  const getStatusLabel = (): string => {
-    if (wsStatus === 'open' && isBackendHealthy) return 'STREAM ACTIVE';
-    if (wsStatus === 'connecting') return 'CONNECTING';
-    if (isBackendHealthy === false) return 'BACKEND OFFLINE';
-    if (wsStatus === 'error') return 'STREAM ERROR';
-    return 'STANDBY';
+  const mapVariantToStatusVariant = (variant: string): StatusVariant => {
+    if (variant === 'online') return 'online';
+    if (variant === 'connecting') return 'connecting';
+    if (variant === 'critical') return 'critical';
+    return 'offline';
   };
 
   return (
     <header className="bg-white border-b border-border transition-all">
+      {/* Polite live region for accessibility */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {announcement}
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-        {/* Brand Identity - matching screenshot */}
+        {/* Brand Identity */}
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-xl bg-[#08090c] flex items-center justify-center text-white shrink-0 shadow-sm">
             <ShieldAlert size={22} className="text-white" />
@@ -56,8 +77,8 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Global Controls & Status - matching screenshot */}
-        <div className="flex items-center gap-3">
+        {/* Global Controls & Status */}
+        <div className="flex items-center gap-2.5">
           {/* Region Dropdown Selector */}
           <div className="relative">
             <div className="bg-navy text-white px-3 py-1.5 rounded-lg flex items-center gap-2 border border-navy shadow-sm cursor-pointer hover:bg-navy-deep transition-colors">
@@ -84,10 +105,37 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
+          {/* Interactive Connect / Disconnect Action Button */}
+          <Button
+            size="sm"
+            variant={displayedStatus.buttonState === 'disconnect' ? 'outline' : 'primary'}
+            disabled={displayedStatus.isConnecting}
+            onClick={handleConnectionAction}
+            className="text-xs h-[34px] px-3 font-mono font-bold whitespace-nowrap"
+            icon={
+              displayedStatus.buttonState === 'disconnect' ? (
+                <Square size={12} className="fill-current" />
+              ) : displayedStatus.buttonState === 'retry' ? (
+                <RefreshCw size={12} className={displayedStatus.isConnecting ? 'animate-spin' : ''} />
+              ) : (
+                <Play size={12} className="fill-current" />
+              )
+            }
+          >
+            {displayedStatus.buttonLabel}
+          </Button>
+
           {/* Status Badge */}
-          <div className="bg-[#34351e] border border-[#565735] text-accent-gold px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-mono font-bold tracking-wider shadow-sm">
-            <StatusDot status={getStatusVariant()} pulse={wsStatus === 'open'} />
-            <span>{getStatusLabel()}</span>
+          <div
+            className={`px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-mono font-bold tracking-wider shadow-sm border transition-all ${displayedStatus.badgeClass}`}
+            role="status"
+            aria-label={displayedStatus.statusAriaLabel}
+          >
+            <StatusDot
+              status={mapVariantToStatusVariant(displayedStatus.variant)}
+              pulse={displayedStatus.pulse}
+            />
+            <span className="whitespace-nowrap">{displayedStatus.label}</span>
           </div>
         </div>
       </div>

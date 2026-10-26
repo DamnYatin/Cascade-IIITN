@@ -42,7 +42,7 @@ export const OverviewPage: React.FC = () => {
     currentConfig,
     latestForecast,
     clockTime,
-    wsStatus,
+    displayedStatus,
     isBackendHealthy,
     selectedCityId,
   } = useStream();
@@ -78,11 +78,7 @@ export const OverviewPage: React.FC = () => {
 
   const getTimelineClockDisplay = () => {
     if (clockTime) return formatLocalTime(clockTime);
-    if (wsStatus === 'connecting') return 'Connecting to stream...';
-    if (wsStatus === 'closed') return 'Stream closed (Standby)';
-    if (wsStatus === 'error') return 'Stream transport error';
-    if (isBackendHealthy === false) return 'Backend unreachable';
-    return 'Standby (awaiting stream)';
+    return displayedStatus.label;
   };
 
   return (
@@ -145,7 +141,7 @@ export const OverviewPage: React.FC = () => {
               </p>
               <div className="mt-0.5">
                 <span className="marker-gold-sm font-bold font-mono text-text-primary uppercase text-lg">
-                  {wsStatus === 'open' ? 'ACTIVE' : wsStatus === 'closed' ? 'CLOSED' : wsStatus.toUpperCase()}
+                  {displayedStatus.label}
                 </span>
               </div>
             </div>

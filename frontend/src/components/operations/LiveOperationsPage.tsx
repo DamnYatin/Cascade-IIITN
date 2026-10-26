@@ -26,8 +26,10 @@ export const LiveOperationsPage: React.FC = () => {
     maxObservations,
     currentConfig,
     clockTime,
-    wsStatus,
+    displayedStatus,
     clearObservations,
+    connectStream,
+    disconnectStream,
     reconnectStream,
   } = useStream();
 
@@ -110,20 +112,32 @@ export const LiveOperationsPage: React.FC = () => {
         <Card variant="navy" className="p-4 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <p className="text-[10px] font-mono uppercase text-text-navy-muted tracking-wider">STREAM STATUS</p>
-            <span className="text-xs font-mono text-accent-gold font-bold uppercase">
-              {wsStatus}
+            <span className="text-xs font-mono text-accent-gold font-bold uppercase truncate max-w-[140px]" title={displayedStatus.label}>
+              {displayedStatus.label}
             </span>
           </div>
           <div className="flex items-center gap-2 mt-2">
-            <Button
-              size="sm"
-              variant="gold"
-              className="flex-1 py-1 text-xs"
-              icon={<RefreshCw size={12} />}
-              onClick={reconnectStream}
-            >
-              Reconnect
-            </Button>
+            {displayedStatus.buttonState === 'disconnect' ? (
+              <Button
+                size="sm"
+                variant="outline"
+                className="flex-1 py-1 text-xs text-white border-white/30 hover:bg-white/10"
+                onClick={disconnectStream}
+              >
+                Disconnect
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                variant="gold"
+                className="flex-1 py-1 text-xs"
+                icon={<RefreshCw size={12} className={displayedStatus.isConnecting ? 'animate-spin' : ''} />}
+                disabled={displayedStatus.isConnecting}
+                onClick={displayedStatus.buttonState === 'retry' ? reconnectStream : connectStream}
+              >
+                {displayedStatus.buttonLabel}
+              </Button>
+            )}
             <Button
               size="sm"
               variant="outline"

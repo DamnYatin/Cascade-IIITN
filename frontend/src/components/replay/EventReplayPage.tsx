@@ -21,9 +21,11 @@ export const EventReplayPage: React.FC = () => {
     streamConfig,
     updateStreamConfig,
     clockTime,
-    wsStatus,
+    displayedStatus,
     activeFaults,
     currentConfig,
+    connectStream,
+    disconnectStream,
     reconnectStream,
   } = useStream();
 
@@ -100,8 +102,8 @@ export const EventReplayPage: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono text-text-muted">Status:</span>
-              <span className="text-xs font-mono font-bold text-navy uppercase">
-                {wsStatus}
+              <span className="text-xs font-mono font-bold text-navy uppercase truncate max-w-[200px]" title={displayedStatus.label}>
+                {displayedStatus.label}
               </span>
             </div>
           </div>
@@ -217,14 +219,26 @@ export const EventReplayPage: React.FC = () => {
             <p className="text-xs text-text-muted">
               Applying changes creates a new deterministic ReplaySession in memory.
             </p>
-            <Button
-              variant="primary"
-              size="md"
-              icon={<RotateCcw size={14} />}
-              onClick={reconnectStream}
-            >
-              Restart Stream with Parameters
-            </Button>
+            <div className="flex items-center gap-2">
+              {displayedStatus.buttonState === 'disconnect' && (
+                <Button
+                  variant="outline"
+                  size="md"
+                  onClick={disconnectStream}
+                >
+                  Disconnect
+                </Button>
+              )}
+              <Button
+                variant="primary"
+                size="md"
+                icon={<RotateCcw size={14} className={displayedStatus.isConnecting ? 'animate-spin' : ''} />}
+                disabled={displayedStatus.isConnecting}
+                onClick={reconnectStream}
+              >
+                Restart Stream with Parameters
+              </Button>
+            </div>
           </div>
         </Card>
 

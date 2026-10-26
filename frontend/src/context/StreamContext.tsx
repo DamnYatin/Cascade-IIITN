@@ -3,6 +3,11 @@ import { useBackendHealth } from '../hooks/useBackendHealth';
 import { useCityConfig } from '../hooks/useCityConfig';
 import { useReplayStream, ConnectionStatus } from '../hooks/useReplayStream';
 import { CityConfigResponse, CitySummary, ForecastSnapshot, Observation } from '../types/api';
+import {
+  ConnectionState,
+  DisplayedStreamStatus,
+  selectDisplayedStatus,
+} from '../lib/connectionStateMachine';
 
 interface StreamContextType {
   selectedCityId: string;
@@ -17,6 +22,8 @@ interface StreamContextType {
   checkHealth: () => void;
   // Stream
   wsStatus: ConnectionStatus;
+  connState: ConnectionState;
+  displayedStatus: DisplayedStreamStatus;
   clockTime: string | null;
   observations: Observation[];
   totalObsCount: number;
@@ -37,6 +44,8 @@ interface StreamContextType {
     forecast: number;
   };
   updateStreamConfig: (newCfg: any) => void;
+  connectStream: () => void;
+  disconnectStream: () => void;
   reconnectStream: () => void;
   clearObservations: () => void;
 }
@@ -60,6 +69,7 @@ export function StreamProvider({ children }: { children: React.ReactNode }) {
   // Streaming WebSocket Hook - mounted once at top-level
   const {
     status: wsStatus,
+    connState,
     clockTime,
     observations,
     totalObsCount,
@@ -71,6 +81,8 @@ export function StreamProvider({ children }: { children: React.ReactNode }) {
     malformedMessageCount,
     config: streamConfig,
     updateConfig: updateStreamConfig,
+    connect: connectStream,
+    disconnect: disconnectStream,
     reconnect: reconnectStream,
     clearObservations,
     maxObservations,
@@ -84,6 +96,12 @@ export function StreamProvider({ children }: { children: React.ReactNode }) {
     forecast: 1,
     autoConnect: true,
   });
+
+  // Pure displayed status combining connection state and backend health
+  const displayedStatus = useMemo(
+    () => selectDisplayedStatus(connState, isHealthy),
+    [connState, isHealthy]
+  );
 
   const value = useMemo(
     () => ({
@@ -100,6 +118,8 @@ export function StreamProvider({ children }: { children: React.ReactNode }) {
       healthError,
       checkHealth,
       wsStatus,
+      connState,
+      displayedStatus,
       clockTime,
       observations,
       totalObsCount,
@@ -112,6 +132,8 @@ export function StreamProvider({ children }: { children: React.ReactNode }) {
       maxObservations,
       streamConfig,
       updateStreamConfig,
+      connectStream,
+      disconnectStream,
       reconnectStream,
       clearObservations,
     }),
@@ -125,6 +147,8 @@ export function StreamProvider({ children }: { children: React.ReactNode }) {
       healthError,
       checkHealth,
       wsStatus,
+      connState,
+      displayedStatus,
       clockTime,
       observations,
       totalObsCount,
@@ -137,6 +161,8 @@ export function StreamProvider({ children }: { children: React.ReactNode }) {
       maxObservations,
       streamConfig,
       updateStreamConfig,
+      connectStream,
+      disconnectStream,
       reconnectStream,
       clearObservations,
     ]

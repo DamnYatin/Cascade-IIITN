@@ -1,7 +1,19 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useReducer, useMemo } from 'react';
 import { getWsUrl } from '../lib/api';
 import { validateStreamMessage } from '../lib/websocket';
-import { ForecastSnapshot, Observation, StreamForecastMessage, StreamObservationsMessage } from '../types/api';
+import {
+  ForecastSnapshot,
+  Observation,
+  StreamForecastMessage,
+  StreamObservationsMessage,
+} from '../types/api';
+import {
+  ConnectionState,
+  INITIAL_CONNECTION_STATE,
+  connectionReducer,
+  selectDisplayedStatus,
+  DisplayedStreamStatus,
+} from '../lib/connectionStateMachine';
 
 export interface ReplayStreamConfig {
   city: string;
@@ -21,25 +33,28 @@ const MAX_BACKOFF_MS = 10000;
 
 export function useReplayStream(initialConfig: ReplayStreamConfig) {
   const [config, setConfig] = useState<ReplayStreamConfig>(initialConfig);
-  const [status, setStatus] = useState<ConnectionStatus>('idle');
+  const [connState, dispatch] = useReducer(connectionReducer, INITIAL_CONNECTION_STATE);
+
   const [clockTime, setClockTime] = useState<string | null>(null);
   const [observations, setObservations] = useState<Observation[]>([]);
   const [totalObsCount, setTotalObsCount] = useState<number>(0);
   const [latestForecast, setLatestForecast] = useState<ForecastSnapshot | null>(null);
   const [forecastHistory, setForecastHistory] = useState<ForecastSnapshot[]>([]);
   const [activeFaults, setActiveFaults] = useState<string[]>([]);
-  const [lastError, setLastError] = useState<string | null>(null);
-  const [reconnectAttempts, setReconnectAttempts] = useState<number>(0);
   const [malformedMessageCount, setMalformedMessageCount] = useState<number>(0);
 
-  // Buffer incoming observations between animation frames for 60fps UI
+  // References
   const obsBufferRef = useRef<Observation[]>([]);
   const frameIdRef = useRef<number | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const manualDisconnectRef = useRef<boolean>(false);
+  const generationRef = useRef<number>(0);
+  const isConnectingRef = useRef<boolean>(false);
+  const sessionObsCountRef = useRef<number>(0);
   const attemptCountRef = useRef<number>(0);
+  const userIntentRef = useRef<'connected' | 'disconnected'>('connected');
 
+  // Buffer incoming observations between animation frames for 60fps UI
   const flushBuffer = useCallback(() => {
     if (obsBufferRef.current.length > 0) {
       const incoming = obsBufferRef.current;
@@ -65,7 +80,6 @@ export function useReplayStream(initialConfig: ReplayStreamConfig) {
       reconnectTimeoutRef.current = null;
     }
     if (wsRef.current) {
-      // Remove handlers before closing to prevent spurious onclose loops
       wsRef.current.onopen = null;
       wsRef.current.onclose = null;
       wsRef.current.onerror = null;
@@ -75,13 +89,31 @@ export function useReplayStream(initialConfig: ReplayStreamConfig) {
       }
       wsRef.current = null;
     }
+    isConnectingRef.current = false;
   }, []);
 
+  // Connect implementation protected by generation ID and single-flight lock
   const connect = useCallback((targetConfig: ReplayStreamConfig) => {
+    // Parameter validation
+    if (!targetConfig.city) {
+      return;
+    }
+
     cleanupSocket();
-    manualDisconnectRef.current = false;
-    setStatus('connecting');
-    setLastError(null);
+
+    // Increment generation ID to invalidate any delayed events from previous sockets
+    generationRef.current += 1;
+    const currentGen = generationRef.current;
+    isConnectingRef.current = true;
+    sessionObsCountRef.current = 0;
+
+    const connectionKey = `${targetConfig.city}:${targetConfig.seed}:${targetConfig.speed}:${targetConfig.hours}:${targetConfig.rain_window}:${targetConfig.anchor}:${targetConfig.forecast}`;
+
+    dispatch({
+      type: 'CONNECT_REQUESTED',
+      connectionKey,
+      generationId: currentGen,
+    });
 
     const wsUrl = getWsUrl('/stream', {
       city: targetConfig.city,
@@ -98,13 +130,15 @@ export function useReplayStream(initialConfig: ReplayStreamConfig) {
       wsRef.current = socket;
 
       socket.onopen = () => {
-        setStatus('open');
-        setLastError(null);
-        attemptCountRef.current = 0;
-        setReconnectAttempts(0);
+        if (generationRef.current !== currentGen) return;
+        isConnectingRef.current = false;
+        dispatch({ type: 'SOCKET_OPEN', generationId: currentGen });
       };
 
       socket.onmessage = (event) => {
+        if (generationRef.current !== currentGen) return;
+        sessionObsCountRef.current += 1;
+        attemptCountRef.current = 0;
         try {
           const raw = JSON.parse(event.data);
           const validated = validateStreamMessage(raw);
@@ -113,6 +147,12 @@ export function useReplayStream(initialConfig: ReplayStreamConfig) {
             setMalformedMessageCount((c) => c + 1);
             return;
           }
+
+          dispatch({
+            type: 'MESSAGE_RECEIVED',
+            generationId: currentGen,
+            timestamp: Date.now(),
+          });
 
           if (validated.type === 'observations') {
             const obsMsg = validated as StreamObservationsMessage;
@@ -130,47 +170,75 @@ export function useReplayStream(initialConfig: ReplayStreamConfig) {
             setLatestForecast(fMsg.forecast);
             setForecastHistory((prev) => [fMsg.forecast, ...prev.slice(0, 19)]);
           }
-        } catch (err: any) {
+        } catch {
           setMalformedMessageCount((c) => c + 1);
         }
       };
 
       socket.onerror = () => {
-        setStatus('error');
-        setLastError('WebSocket transport error. Check that FastAPI backend is running on port 8000.');
+        if (generationRef.current !== currentGen) return;
+        isConnectingRef.current = false;
+        dispatch({
+          type: 'SOCKET_ERROR',
+          generationId: currentGen,
+          message: 'WebSocket transport error. Check that FastAPI backend is running on port 8000.',
+        });
       };
 
       socket.onclose = (ev) => {
-        setStatus('closed');
+        if (generationRef.current !== currentGen) return;
+        isConnectingRef.current = false;
         wsRef.current = null;
 
-        if (!manualDisconnectRef.current) {
-          // Exponential backoff with jitter
-          const attempt = attemptCountRef.current + 1;
-          attemptCountRef.current = attempt;
-          setReconnectAttempts(attempt);
-          const baseDelay = Math.min(1000 * Math.pow(1.5, attempt), MAX_BACKOFF_MS);
-          const jitter = Math.random() * 500;
-          const delay = baseDelay + jitter;
+        // Clean closure: code 1000 OR if data was streamed and replay finished
+        const isCompleted = ev.code === 1000 || sessionObsCountRef.current > 0;
 
-          reconnectTimeoutRef.current = setTimeout(() => {
-            connect(targetConfig);
-          }, delay);
+        dispatch({
+          type: 'SOCKET_CLOSE',
+          generationId: currentGen,
+          code: isCompleted ? 1000 : ev.code,
+          reason: isCompleted ? 'Replay finished' : ev.reason,
+        });
+
+        // Reconnect with capped backoff and jitter ONLY for genuine network/transport drops before data
+        if (!isCompleted && ev.code !== 1000 && userIntentRef.current === 'connected') {
+          attemptCountRef.current += 1;
+          if (attemptCountRef.current <= 3) {
+            const attempt = attemptCountRef.current;
+            const baseDelay = Math.min(1000 * Math.pow(1.5, attempt), MAX_BACKOFF_MS);
+            const jitter = Math.random() * 500;
+            const delay = baseDelay + jitter;
+
+            reconnectTimeoutRef.current = setTimeout(() => {
+              connect(targetConfig);
+            }, delay);
+          } else {
+            dispatch({
+              type: 'SOCKET_ERROR',
+              generationId: currentGen,
+              message: 'Session closed without data (replay may be completed on backend). Click Connect to restart or select a new seed.',
+            });
+          }
         }
       };
     } catch (err: any) {
-      setStatus('error');
-      setLastError(err?.message || 'Failed to initialize WebSocket');
+      isConnectingRef.current = false;
+      dispatch({
+        type: 'SOCKET_ERROR',
+        generationId: currentGen,
+        message: err?.message || 'Failed to initialize WebSocket',
+      });
     }
   }, [cleanupSocket, scheduleFlush]);
 
   // Connect on mount or when key stream parameters change
   useEffect(() => {
     if (config.autoConnect !== false) {
+      userIntentRef.current = 'connected';
+      attemptCountRef.current = 0;
       connect(config);
     }
     return () => {
-      manualDisconnectRef.current = true;
       cleanupSocket();
       if (frameIdRef.current !== null) {
         cancelAnimationFrame(frameIdRef.current);
@@ -178,18 +246,36 @@ export function useReplayStream(initialConfig: ReplayStreamConfig) {
     };
   }, [config.city, config.seed, config.speed, config.hours, config.rain_window, config.anchor, config.forecast]);
 
+  // Stale detection interval derived from backend cadence (speed-scaled)
+  useEffect(() => {
+    // At speed 1.0 backend emits every ~50ms; 8s threshold gives generous margin for GC/network jitter
+    const staleThresholdMs = Math.max(3000, 8000 / (config.speed || 1.0));
+    const interval = setInterval(() => {
+      dispatch({
+        type: 'STALE_CHECK',
+        now: Date.now(),
+        staleThresholdMs,
+      });
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [config.speed]);
+
   const disconnect = useCallback(() => {
-    manualDisconnectRef.current = true;
+    userIntentRef.current = 'disconnected';
+    attemptCountRef.current = 0;
     cleanupSocket();
-    setStatus('closed');
+    dispatch({ type: 'DISCONNECT_REQUESTED' });
   }, [cleanupSocket]);
 
   const reconnect = useCallback(() => {
-    manualDisconnectRef.current = false;
+    userIntentRef.current = 'connected';
     attemptCountRef.current = 0;
-    setReconnectAttempts(0);
+    cleanupSocket();
+    generationRef.current += 1;
+    dispatch({ type: 'RETRY_REQUESTED', generationId: generationRef.current });
     connect(config);
-  }, [config, connect]);
+  }, [config, connect, cleanupSocket]);
 
   const updateConfig = useCallback((newConfig: Partial<ReplayStreamConfig>) => {
     setConfig((prev) => ({ ...prev, ...newConfig }));
@@ -200,19 +286,36 @@ export function useReplayStream(initialConfig: ReplayStreamConfig) {
     setTotalObsCount(0);
   }, []);
 
+  // Backwards-compatible legacy status mapping
+  const legacyStatus: ConnectionStatus = useMemo(() => {
+    if (connState.wsConnection === 'connected') return 'open';
+    if (connState.wsConnection === 'connecting' || connState.wsConnection === 'reconnecting') return 'connecting';
+    if (connState.wsConnection === 'error') return 'error';
+    return 'closed';
+  }, [connState.wsConnection]);
+
+  // Pure selector for displayed status
+  const displayedStatus: DisplayedStreamStatus = useMemo(
+    () => selectDisplayedStatus(connState, true),
+    [connState]
+  );
+
   return {
-    status,
+    status: legacyStatus,
+    connState,
+    displayedStatus,
     clockTime,
     observations,
     totalObsCount,
     latestForecast,
     forecastHistory,
     activeFaults,
-    lastError,
-    reconnectAttempts,
+    lastError: connState.lastError,
+    reconnectAttempts: connState.reconnectAttempts,
     malformedMessageCount,
     config,
     updateConfig,
+    connect: () => connect(config),
     disconnect,
     reconnect,
     clearObservations,

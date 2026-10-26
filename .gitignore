@@ -23,3 +23,8 @@ eval/cache/
 eval/cache_p4/
 data/cache/
 docs/PHASE3_PROMPT.md
+.agents/
+.codex/
+.gemini/
+skills-lock.json
+
