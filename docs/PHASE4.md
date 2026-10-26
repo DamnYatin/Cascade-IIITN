@@ -62,10 +62,11 @@
   - Dev benchmark on seeds {31, 32, 33} completed and saved to `eval/dev_results_p4.json`.
   - Single held-out run executed on seeds {201, 202, 203, 204, 205} and locked in `eval/heldout_lock_p4.json` (`rerun_count: 0`).
   - Cross-topology transfer on `north_bank_assam` (seed 201) completed and recorded.
-- [ ] **H9: Phase 4 Reporting & Requirements Matrix Update**
-  - Generate `docs/EVALUATION_P4.md`.
-  - Update `docs/REQUIREMENTS_MATRIX.md` with Requirements 6 & 7 verified with real numbers, CIs, and honest caveats.
-  - Write `docs/EXPLAINER.md` and `docs/INTERVENTIONS.md`.
+- [x] **H9: Phase 4 Reporting & Requirements Matrix Update**
+  - Generated `docs/EVALUATION_P4.md` from cached held-out results with 95% bootstrap CIs, paired baseline tables, and explicit caveats.
+  - Updated `docs/REQUIREMENTS_MATRIX.md` marking Requirements 6 & 7 as completed with real evidence.
+  - Authored `docs/EXPLAINER.md` (method, equations, attribution additivity, confidence formula, abstention rules, hedging rules, and text lints).
+  - Authored `docs/INTERVENTIONS.md` (action catalog, Assumptions Register with provenance, multi-objective net benefit formulation, and tuning instructions).
 - [ ] **H10: Final Verification & Clean Repository Discipline**
   - Run full test suite twice consecutively and once with `pytest-randomly`.
   - Author `tests/PHASE4_TEST_REPORT.md`.
